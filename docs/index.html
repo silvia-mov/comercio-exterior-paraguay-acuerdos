@@ -140,6 +140,8 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   a { color: inherit; text-decoration: none; }
   .tw { overflow: visible; }
 }
+.contador[hidden] { display: none; }
+.contador { display: inline-block; margin: 12px 0 0; padding: 4px 12px; border-radius: 99px; background: var(--tag, #fec9d7); color: var(--tagtext, #7a2440); font-size: 13px; }
 </style>
 </head>
 <body>
@@ -436,6 +438,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
 <footer>
   <div class="wrap">
     Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT ni del Ministerio de Industria y Comercio.
+    <p id="contador" class="contador" hidden></p>
   </div>
 </footer>
 
@@ -676,6 +679,31 @@ document.getElementById("tabla").innerHTML =
     document.getElementById("dl-vue").href = "descargas/vue/VUE_" + a + ".xlsx";
   }
   sel.addEventListener("change", poner); poner();
+})();
+</script>
+<!-- Contador de visitas sin cookies (GoatCounter) -->
+<script data-goatcounter="https://silvia-mov.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+(function () {
+  var base = "https://silvia-mov.goatcounter.com/counter/";
+  var caja = document.getElementById("contador"), partes = [];
+  function pedir(ruta) {
+    return fetch(base + encodeURIComponent(ruta) + ".json")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { return j && j.count ? String(j.count).replace(/[,\u202f ]/g, ".") : null; })
+      .catch(function () { return null; });
+  }
+  function mostrar() { if (caja && partes.length) { caja.textContent = "Esta página tuvo " + partes.join(" y ") + "."; caja.hidden = false; } }
+  pedir(location.pathname).then(function (v) { if (v) { partes.unshift(v + " visitas"); mostrar(); } });
+    pedir("descargas-total").then(function (d) { if (d) { partes.push(d + " descargas"); mostrar(); } });
+  // Cada descarga se cuenta dos veces: por archivo (para ver cuál se baja más) y en el total
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[download]");
+    if (!a || !window.goatcounter || !window.goatcounter.count) return;
+    var archivo = a.getAttribute("href").split("/").pop();
+    window.goatcounter.count({path: "descarga/" + archivo, title: archivo, event: true});
+    window.goatcounter.count({path: "descargas-total", title: "Descargas (total)", event: true});
+  });
 })();
 </script>
 </body>
