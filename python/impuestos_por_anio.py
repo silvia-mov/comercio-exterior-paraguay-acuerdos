@@ -85,8 +85,17 @@ def main():
             print(a, "sin archivos", flush=True)
             continue
         largo, base, meses = r
-        partes = [("", largo, base)] if len(largo) < 1_000_000 else \
-            [("_" + op.lower(), largo[largo["OPERACION"] == op], base[base["OPERACION"] == op]) for op in sorted(largo["OPERACION"].unique())]
+        # Excel admite 1.048.576 filas: si no entra, un archivo por operación y, si aún no entra, por semestre
+        partes = []
+        for op in sorted(largo["OPERACION"].unique()):
+            lo, bo = largo[largo["OPERACION"] == op], base[base["OPERACION"] == op]
+            if len(lo) < 1_000_000:
+                partes.append(("_" + op.lower(), lo, bo))
+            else:
+                for nombre, meses_sem in (("_1er_semestre", range(1, 7)), ("_2do_semestre", range(7, 14))):
+                    partes.append(("_" + op.lower() + nombre, lo[lo["MES"].isin(meses_sem)], bo[bo["MES"].isin(meses_sem)]))
+        if len(largo) < 1_000_000:
+            partes = [("", largo, base)]
         for sufijo, largo, base in partes:
           destino = SALIDA / f"DNIT_impuestos_{a}{sufijo}.xlsx"
           notas = [f"Impuestos de los despachos de la DNIT, {a}, por tipo de impuesto",
