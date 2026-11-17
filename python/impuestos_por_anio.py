@@ -27,7 +27,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "salidas" / "impuestos"
 NOMBRES = {"DERECHO": "Derecho aduanero (arancel)", "IVA": "IVA", "ISC": "Impuesto selectivo al consumo (ISC)",
            "SERVICIO": "Servicio de valoración", "RENTA": "Anticipo de renta", "OTROS": "Otros tributos"}
-CLAVES = ["AÑO_INT", "MES_NUM", "OPERACION", "COD_REGIMEN", "REGIMEN", "ADUANA", "USO", "POSICION_NCM", "DESCRIPCION_PRODUCTO", "PAIS_PROC_DEST",
+CLAVES = ["AÑO_INT", "OPERACION", "USO", "POSICION_NCM", "DESCRIPCION_PRODUCTO", "PAIS_PROC_DEST",
           "TIPO_ACUERDO", "ACUERDO_CONSOLIDADO"]
 
 
@@ -102,7 +102,7 @@ def main():
                    f"Meses incluidos: {meses}." + (" Año incompleto." if meses < 12 else ""),
                    "Fuente: Dirección Nacional de Ingresos Tributarios (DNIT), datos abiertos de aduana (nivel ítem). Elaboración propia.",
                    "Solo regímenes definitivos; exportaciones solo de origen paraguayo (mismos criterios que el resto del proyecto).",
-                   "Una fila por año, mes, operación, régimen, aduana, uso (nuevo/usado), NCM (8 dígitos), país, acuerdo y TIPO_IMPUESTO. Filas en cero omitidas.",
+                   "Una fila por año, operación, uso (nuevo/usado), NCM (8 dígitos), país, acuerdo y TIPO_IMPUESTO. Filas en cero omitidas.",
                    "MONTO_GS: monto en guaraníes tal como lo publica la DNIT. MONTO_USD: dividido por la cotización de cada despacho.",
                    "PAIS: procedencia (importación) o destino (exportación).",
                    "Hoja 'Base': valor (exportación FOB, importación CIF), base imponible y peso, sin repetir por impuesto."]
