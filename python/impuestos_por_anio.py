@@ -27,7 +27,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "salidas" / "impuestos"
 NOMBRES = {"DERECHO": "Derecho aduanero (arancel)", "IVA": "IVA", "ISC": "Impuesto selectivo al consumo (ISC)",
            "SERVICIO": "Servicio de valoración", "RENTA": "Anticipo de renta", "OTROS": "Otros tributos"}
-CLAVES = ["AÑO_INT", "OPERACION", "POSICION_NCM", "DESCRIPCION_PRODUCTO", "PAIS_PROC_DEST",
+CLAVES = ["AÑO_INT", "MES_NUM", "OPERACION", "COD_REGIMEN", "REGIMEN", "ADUANA", "USO", "POSICION_NCM", "DESCRIPCION_PRODUCTO", "PAIS_PROC_DEST",
           "TIPO_ACUERDO", "ACUERDO_CONSOLIDADO"]
 
 
@@ -60,7 +60,7 @@ def anio(a, regimenes_si, acuerdos):
         x.insert(len(CLAVES), "TIPO_IMPUESTO", NOMBRES[t])
         largo.append(x)
     largo = pd.concat(largo, ignore_index=True)
-    ren = {"AÑO_INT": "AÑO", "POSICION_NCM": "NCM", "DESCRIPCION_PRODUCTO": "DESCRIPCION",
+    ren = {"AÑO_INT": "AÑO", "MES_NUM": "MES", "POSICION_NCM": "NCM", "DESCRIPCION_PRODUCTO": "DESCRIPCION",
            "PAIS_PROC_DEST": "PAIS", "ACUERDO_CONSOLIDADO": "ACUERDO"}
     largo, base = largo.rename(columns=ren), base.rename(columns=ren)
     largo[["MONTO_GS", "MONTO_USD"]] = largo[["MONTO_GS", "MONTO_USD"]].round(2)
@@ -85,22 +85,25 @@ def main():
             print(a, "sin archivos", flush=True)
             continue
         largo, base, meses = r
-        destino = SALIDA / f"DNIT_impuestos_{a}.xlsx"
-        notas = [f"Impuestos de los despachos de la DNIT, {a}, por tipo de impuesto",
-                 f"Meses incluidos: {meses}." + (" Año incompleto." if meses < 12 else ""),
-                 "Fuente: Dirección Nacional de Ingresos Tributarios (DNIT), datos abiertos de aduana (nivel ítem). Elaboración propia.",
-                 "Solo regímenes definitivos; exportaciones solo de origen paraguayo (mismos criterios que el resto del proyecto).",
-                 "Una fila por año, operación, NCM (8 dígitos), país, acuerdo y TIPO_IMPUESTO. Filas en cero omitidas.",
-                 "MONTO_GS: monto en guaraníes tal como lo publica la DNIT. MONTO_USD: dividido por la cotización de cada despacho.",
-                 "PAIS: procedencia (importación) o destino (exportación).",
-                 "Hoja 'Base': valor (exportación FOB, importación CIF), base imponible y peso, sin repetir por impuesto."]
-        escribir(destino, largo, notas)
-        with pd.ExcelWriter(destino, engine="openpyxl", mode="a") as w:
-            base.to_excel(w, sheet_name="Base", index=False)
-        lista.append({"archivo": str(destino), "hoja_datos": "Datos", "filas": ["TIPO_IMPUESTO"],
-                      "columnas": ["OPERACION"], "filtros": ["PAIS", "ACUERDO"],
-                      "valores": [["MONTO_GS", "suma", "Monto (Gs.)"]]})
-        print(f"{destino.name}: {len(largo):,} filas; {meses} meses", flush=True)
+        partes = [("", largo, base)] if len(largo) < 1_000_000 else \
+            [("_" + op.lower(), largo[largo["OPERACION"] == op], base[base["OPERACION"] == op]) for op in sorted(largo["OPERACION"].unique())]
+        for sufijo, largo, base in partes:
+          destino = SALIDA / f"DNIT_impuestos_{a}{sufijo}.xlsx"
+          notas = [f"Impuestos de los despachos de la DNIT, {a}, por tipo de impuesto",
+                   f"Meses incluidos: {meses}." + (" Año incompleto." if meses < 12 else ""),
+                   "Fuente: Dirección Nacional de Ingresos Tributarios (DNIT), datos abiertos de aduana (nivel ítem). Elaboración propia.",
+                   "Solo regímenes definitivos; exportaciones solo de origen paraguayo (mismos criterios que el resto del proyecto).",
+                   "Una fila por año, mes, operación, régimen, aduana, uso (nuevo/usado), NCM (8 dígitos), país, acuerdo y TIPO_IMPUESTO. Filas en cero omitidas.",
+                   "MONTO_GS: monto en guaraníes tal como lo publica la DNIT. MONTO_USD: dividido por la cotización de cada despacho.",
+                   "PAIS: procedencia (importación) o destino (exportación).",
+                   "Hoja 'Base': valor (exportación FOB, importación CIF), base imponible y peso, sin repetir por impuesto."]
+          escribir(destino, largo, notas)
+          with pd.ExcelWriter(destino, engine="openpyxl", mode="a") as w:
+              base.to_excel(w, sheet_name="Base", index=False)
+          lista.append({"archivo": str(destino), "hoja_datos": "Datos", "filas": ["TIPO_IMPUESTO"],
+                        "columnas": ["OPERACION"], "filtros": ["PAIS", "ACUERDO"],
+                        "valores": [["MONTO_GS", "suma", "Monto (Gs.)"]]})
+          print(f"{destino.name}: {len(largo):,} filas; {meses} meses", flush=True)
     cfgj = SALIDA / "_tablas.json"
     cfgj.write_text(json.dumps(lista, ensure_ascii=False), encoding="utf-8")
     subprocess.run(["/usr/bin/python3", str(RAIZ / "python" / "tabla_dinamica.py"), str(cfgj)], check=True)
