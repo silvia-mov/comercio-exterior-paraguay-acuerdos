@@ -29,7 +29,7 @@ normas de 2023 en adelante), histórico de la ex DNA (digesto.aduana.gov.py, ca�
 | 10 | Ley 523/1995 Zonas Francas y Decreto 15.554/1996 | Impuesto de zona franca 0,5 %; ZF01, ZF2I, ZF2E |
 | 11 | Ley 1295/1998 Leasing | Tributos suspendidos (IML1, IML2) |
 | 12 | Ley 608/1995 Regularización | Régimen IC03 |
-| 13 | Norma del cobro de ≈ 0,25 % sobre **carne bovina exportada** (posible tasa de SENACSA; su sitio bloquea accesos automáticos) | Aparece en OTROS de EC01 (no es el Decreto 11.915/08) |
+| 13 | Norma del cobro de ≈ 0,25 % sobre **carne bovina exportada** (posible tasa de SENACSA; su sitio bloquea accesos automáticos) | Aparece en OTROS de EC01 (no es el Decreto 11.915/08) | **ENCONTRADA:** Ley 808/1996 art. 14 inc. c) (texto de la Ley 2044/2002): hasta 0,25 del valor de cada tonelada de carne importada y exportada; Res. CIEFA 3/2021 lo fija en 0,25 % desde el 1/1/2022 (release normas_senacsa de normativa-mercosur).
 | 14 | Resolución DNA 136/2018 Remesa expresa (courier). El Código Aduanero art. 223 ya fija la exención hasta USD 100 FOB | IRE1 a IRE4 |
 | 15 | Resolución DNA 1252/2020 (OEA/OEC) | IC19, IC20, TDA5 |
 | 16 | Convenciones de Viena y sus leyes aprobatorias (el Código Aduanero arts. 237-238 remite a ellas) | ID04, ID09 |
