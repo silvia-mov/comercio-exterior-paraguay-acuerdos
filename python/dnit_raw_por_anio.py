@@ -57,6 +57,42 @@ def anio(a, carpeta):
 
 REG = pd.read_csv(RAIZ / "config" / "regimenes.csv", dtype=str, keep_default_na=False).drop_duplicates("codigo")
 CUENTA = REG.set_index("codigo")["incluir"]
+# Arancel Externo Común (NCM 2026) y listas de Paraguay notificadas al MERCOSUR (config/listas_py.csv)
+_N = pd.read_excel(RAIZ / "NCM_2026_11.xlsx", header=2, dtype=str)
+_N.columns = ["NCM", "DESC", "PT", "AEC", "FAMILIA"]
+_N["COD"] = _N["NCM"].str.replace(".", "", regex=False).str.strip()
+AEC = (_N[_N["COD"].str.len() == 8].set_index("COD")["AEC"].str.replace(",", ".")
+       .str.extract(r"([\d.]+)")[0].astype(float))
+LISTAS = pd.read_csv(RAIZ / "config" / "listas_py.csv", dtype=str)
+NOMBRE_LISTA = {"LNE": "Lista Nacional de Excepciones", "BK": "Bienes de Capital",
+                "BIT": "Informática y Telecomunicaciones", "RMP": "Materias Primas"}
+
+
+def listas_del_anio(a):
+    """Para cada lista, la última notificación hasta fin del año (o la primera disponible)."""
+    out = {}
+    for lista, g in LISTAS.groupby("LISTA"):
+        fechas = sorted(g["FECHA_NOTIFICACION"].unique())
+        previas = [f for f in fechas if f <= f"{a}-12-31"]
+        f = previas[-1] if previas else fechas[0]
+        out[lista] = (set(g.loc[g["FECHA_NOTIFICACION"] == f, "NCM"]), f)
+    return out
+
+
+def motivo_arancel(d, a):
+    ls = listas_del_anio(a)
+    cod = d["POSICION"].astype(str).str.replace(".", "", regex=False).str[:8]
+    aec = cod.map(AEC)
+    m = pd.Series("Otra ley o régimen nacional (sin identificar)", index=d.index)
+    for lista in ("RMP", "BIT", "BK", "LNE"):        # el último que se aplica tiene prioridad
+        m[cod.isin(ls[lista][0])] = NOMBRE_LISTA[lista]
+    m[aec.isna()] = "Sin dato de AEC"
+    m[aec == 0] = "AEC 0 %"
+    m[d["DERECHO"] > 0] = "Pagó arancel"
+    m[~d["ACUERDO"].isin(["SIN ACUERDO", "OMC"])] = "Con acuerdo"
+    return m, {k: v[1] for k, v in ls.items()}
+
+
 QUITAR = ["TOTAL", "AJUSTE A INCLUIR", "AJUSTE A DEDUCIR", "KILO BRUTO"]
 
 
@@ -78,6 +114,15 @@ def main():
             # Ej.: la mercadería que entra a una zona franca (ZF01) se cuenta al salir al país (ZF2I).
             datos.insert(list(datos.columns).index("DESTINACION") + 1, "SE_CUENTA",
                          datos["DESTINACION"].map(CUENTA).fillna("NO"))
+            nota_listas = ""
+            if op == "IMPORTACION":
+                motivo, fechas_listas = motivo_arancel(datos, a)
+                datos.insert(list(datos.columns).index("ACUERDO") + 1, "MOTIVO_ARANCEL", motivo)
+                nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Pagó arancel' = DERECHO > 0; "
+                               "'AEC 0 %' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
+                               "al MERCOSUR (Bienes de Capital, Informática y Telecomunicaciones, Excepciones, Materias Primas); si no, "
+                               "'Otra ley o régimen nacional'. AEC según la NCM 2026. Listas usadas (fecha de notificación): "
+                               + ", ".join(f"{NOMBRE_LISTA[k]} {v}" for k, v in fechas_listas.items()) + ".")
             reg = reg.merge(REG[["codigo", "incluir", "tipo_dnit", "nota"]].rename(
                 columns={"codigo": "DESTINACION", "incluir": "SE_CUENTA", "tipo_dnit": "TIPO", "nota": "MOTIVO"}),
                 on="DESTINACION", how="left").fillna({"SE_CUENTA": "NO", "MOTIVO": "Régimen no informado en la tabla oficial"})
@@ -96,6 +141,7 @@ def main():
                      "Hoja 'Descripciones': textos de cada POSICION (los del primer ítem). Hoja 'Regímenes': nombre de cada código DESTINACION.",
                      "Se quitaron TOTAL (= DERECHO + ISC + SERVICIO + RENTA + IVA + OTROS), los ajustes a incluir/deducir y el kilo bruto.",
                      "ITEMS = ítems de despacho sumados; DESPACHOS = despachos distintos.",
+                     nota_listas,
                      "Valores en dólares, salvo IMPONIBLE GS y los impuestos (DERECHO a OTROS), en guaraníes."]
             with pd.ExcelWriter(salida / nombre, engine="xlsxwriter") as w:
                 b = w.book
@@ -104,7 +150,7 @@ def main():
                     df.to_excel(w, sheet_name=hoja, index=False)
                     w.sheets[hoja].freeze_panes(1, 0)
                     w.sheets[hoja].autofilter(0, 0, len(df), len(df.columns) - 1)
-                pd.DataFrame({"Notas": notas}).to_excel(w, sheet_name="Notas", index=False)
+                pd.DataFrame({"Notas": [n for n in notas if n]}).to_excel(w, sheet_name="Notas", index=False)
             lista.append({"archivo": str(salida / nombre), "hoja_datos": "Datos", "filas": ["ACUERDO"],
                           "columnas": [], "filtros": ["SE_CUENTA", "PAIS PROCEDENCIA/DESTINO", "DESTINACION"],
                           "valores": [["FOB DOLAR", "suma", "FOB (USD)"]]})
