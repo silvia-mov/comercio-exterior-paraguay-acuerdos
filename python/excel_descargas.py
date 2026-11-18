@@ -1,8 +1,7 @@
 """
 Arma los Excel para descargar desde la página: uno por año y por fuente, en Calibri 10,
-con tres hojas:
+con dos hojas:
     Datos            la tabla completa del año
-    Tabla dinámica   una tabla dinámica de verdad, lista para mover filas, columnas y filtros
     Notas            fuente, qué es cada columna y cómo citar
 
 Fuentes (carpeta docs/descargas/<fuente>/):
@@ -63,7 +62,7 @@ def escribir(destino, datos, notas):
         hoja.autofilter(0, 0, len(datos), len(datos.columns) - 1)
         notas_hoja = libro.add_worksheet("Notas")
         notas_hoja.set_column(0, 0, 120, texto)
-        for i, linea in enumerate(notas + ["", AYUDA]):
+        for i, linea in enumerate(notas):
             notas_hoja.write(i, 0, linea, negrita if i == 0 else texto)
 
 
@@ -217,15 +216,8 @@ def main():
             lista.append(dict(tabla, archivo=str(destino)))
             print(f"{destino.relative_to(RAIZ)}: {len(datos):,} filas", flush=True)
 
-    config = SALIDA / "_tablas.json"
-    config.parent.mkdir(parents=True, exist_ok=True)
-    config.write_text(json.dumps(lista, ensure_ascii=False, indent=1), encoding="utf-8")
-    try:
-        subprocess.run(["/usr/bin/python3", str(RAIZ / "python" / "tabla_dinamica.py"), str(config)], check=True)
-    finally:
-        config.unlink()
-    for t in lista:
-        etiquetas_en_espanol(t["archivo"])
+    # Sin tabla dinámica: cada usuario la arma si la necesita.
+
 
 
 if __name__ == "__main__":
