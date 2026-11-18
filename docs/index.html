@@ -306,8 +306,10 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <a class="btn primary" id="dl-dnit" href="descargas/dnit/DNIT_2025.xlsx" download>DNIT: por producto, país y acuerdo</a>
         <a class="btn" id="dl-bcp" href="descargas/bcp/BCP_2025.xlsx" download>BCP: por mes, producto y país</a>
         <a class="btn" id="dl-vue" href="descargas/vue/VUE_2025.xlsx" download>VUE: los 12 meses juntos</a>
+        <a class="btn" id="dl-dnit-x" href="https://github.com/silvia-mov/dnit-datos-anuales/raw/main/datos/DNIT_2025_exportacion.xlsx">DNIT completo: exportaciones</a>
+        <a class="btn" id="dl-dnit-m" href="https://github.com/silvia-mov/dnit-datos-anuales/raw/main/datos/DNIT_2025_importacion.xlsx">DNIT completo: importaciones</a>
       </div>
-      <p class="note">DNIT: exportaciones e importaciones sumadas por producto (NCM 8 dígitos), país y acuerdo, porque los despachos completos superan el millón de filas que admite Excel. BCP: exportaciones del SICEX a 8 dígitos. VUE: certificados de origen; origen de los datos: Ministerio de Industria y Comercio. 2026: año incompleto.</p>
+      <p class="note">DNIT: exportaciones e importaciones sumadas por producto (NCM 8 dígitos), país y acuerdo, porque los despachos completos superan el millón de filas que admite Excel. BCP: exportaciones del SICEX a 8 dígitos. VUE: certificados de origen; origen de los datos: Ministerio de Industria y Comercio. DNIT completo: todos los regímenes y campos, sin el mes; para sumar sin contar dos veces, filtrar SE_CUENTA = SI (la mercadería que pasa por zona franca figura al entrar y al salir); la columna MOTIVO_ARANCEL explica por qué se pagó o no arancel. 2026: año incompleto.</p>
     </div>
     <div class="dl">
       <div class="card">
@@ -692,6 +694,9 @@ document.getElementById("tabla").innerHTML =
     document.getElementById("dl-dnit").href = "descargas/dnit/DNIT_" + a + ".xlsx";
     document.getElementById("dl-bcp").href = "descargas/bcp/BCP_" + a + ".xlsx";
     document.getElementById("dl-vue").href = "descargas/vue/VUE_" + a + ".xlsx";
+    var base = "https://github.com/silvia-mov/dnit-datos-anuales/raw/main/datos/DNIT_" + a;
+    document.getElementById("dl-dnit-x").href = base + "_exportacion.xlsx";
+    document.getElementById("dl-dnit-m").href = base + "_importacion.xlsx";
   }
   sel.addEventListener("change", poner); poner();
 })();
