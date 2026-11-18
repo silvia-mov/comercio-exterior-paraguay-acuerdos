@@ -154,8 +154,8 @@ def excel(anio):
         "La DNIT publica el impuesto por ítem; 'Otros' junta varios conceptos que no se pueden separar.",
         "La tasa promedio de arancel o IVA es menor que la tasa legal porque incluye bienes con 0 %, "
         "exoneraciones (Ley 7548/25 art. 4, ex Ley 60/90) y bienes con IVA del 5 %.",
-        "Norma con asterisco (*): no está en la biblioteca subida; el artículo sale de los documentos "
-        "anteriores y hay que confirmarlo (ver hoja 'Normas faltantes'). Sin asterisco: leída en la biblioteca.",
+        "Norma con asterisco (*): no se tiene el texto; hay que buscarla (ver hoja 'Normas faltantes'). "
+        "Sin asterisco: leída en el texto (biblioteca subida, o Código Aduanero Ley 2422/04 y digesto aduanero de la DNIT).",
         "Se rehace con: python regimenes_tributos/tributos_por_regimen.py --excel --anio " + str(anio),
     ]})
 
