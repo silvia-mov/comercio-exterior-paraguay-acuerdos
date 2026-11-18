@@ -89,7 +89,6 @@ EC10,SI,,,,,No figura en la tabla oficial de la DNIT (consultada en noviembre de
 EC30,SI,,,,,No figura en la tabla oficial de la DNIT (consultada en noviembre de 2026); se conserva por si aparece en años anteriores. No aparece en los datos de 2021.
 EC40,SI,,,,,No figura en la tabla oficial de la DNIT (consultada en noviembre de 2026); se conserva por si aparece en años anteriores. No aparece en los datos de 2021.
 EC50,SI,,,,,No figura en la tabla oficial de la DNIT (consultada en noviembre de 2026); se conserva por si aparece en años anteriores. No aparece en los datos de 2021.
-DAAB,NO,INGRESO A DEPOSITO PARA APROVISIONAMIENTO DE A BORDO,Suspensivo,Importacion,,"Excluido: depósito de suministros para buques o aeronaves; se cuenta al consumirse (nombre según los datos de la DNIT)."
 DAAR,NO,APROVISIONAMIENTO DE A BORDO DE REPUESTOS-RANCHO,Suspensivo,Exportacion,,"Excluido: aprovisionamiento a bordo, no es venta definitiva (nombre según los datos de la DNIT)."
 AFC1,NO,EXPORTACION COMPLEMENTARIA,Declaracion de Embarque,Exportacion,,"Excluido: fracciones de un despacho principal que ya declara todo el valor, como EFC1 (nombre según los datos de la DNIT)."
 TZF1,NO,TRASPASO DENTRO DE ZONA FRANCA,Suspensivo,*,,"Excluido: cambio de titular dentro de una zona franca; la mercadería no sale al país (nombre según los datos de la DNIT)."
