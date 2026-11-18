@@ -93,6 +93,22 @@ def motivo_arancel(d, a):
     return m, {k: v[1] for k, v in ls.items()}
 
 
+RTC = set(pd.read_csv(RAIZ / "config" / "lista_rtc.csv", dtype=str)["NCM"])
+
+
+def regimen_tributario(d):
+    """Clasifica por el IVA pagado sobre la base imponible (los dos en guaraníes)."""
+    cod = d["POSICION"].astype(str).str.replace(".", "", regex=False).str[:8]
+    tasa = (d["IVA"] / d["IMPONIBLE GS"].where(d["IMPONIBLE GS"] > 0)) * 100
+    r = pd.Series("Sin base imponible", index=d.index)
+    r[tasa == 0] = "Sin IVA (exento o suspendido)"
+    r[(tasa > 0) & (tasa <= 2.2)] = "IVA reducido (otro)"
+    r[(tasa > 0) & (tasa <= 2.2) & cod.isin(RTC)] = "Turismo de Compras (IVA ≈ 1,25 %)"
+    r[(tasa > 2.2) & (tasa <= 7.5)] = "IVA 5 %"
+    r[tasa > 7.5] = "IVA 10 %"
+    return r
+
+
 QUITAR = ["TOTAL", "AJUSTE A INCLUIR", "AJUSTE A DEDUCIR", "KILO BRUTO"]
 
 
@@ -118,11 +134,16 @@ def main():
             if op == "IMPORTACION":
                 motivo, fechas_listas = motivo_arancel(datos, a)
                 datos.insert(list(datos.columns).index("ACUERDO") + 1, "MOTIVO_ARANCEL", motivo)
+                datos.insert(list(datos.columns).index("MOTIVO_ARANCEL") + 1, "REGIMEN_TRIBUTARIO", regimen_tributario(datos))
                 nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Pagó arancel' = DERECHO > 0; "
                                "'AEC 0 %' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
                                "al MERCOSUR (Bienes de Capital, Informática y Telecomunicaciones, Excepciones, Materias Primas); si no, "
                                "'Otra ley o régimen nacional'. AEC según la NCM 2026. Listas usadas (fecha de notificación): "
-                               + ", ".join(f"{NOMBRE_LISTA[k]} {v}" for k, v in fechas_listas.items()) + ".")
+                               + ", ".join(f"{NOMBRE_LISTA[k]} {v}" for k, v in fechas_listas.items()) + ". "
+                               "REGIMEN_TRIBUTARIO: según el IVA pagado sobre la base imponible. 'Turismo de Compras' = producto de la lista "
+                               "del Decreto 2063/2024 (Régimen de Turismo de Compras, antes Decreto 1931/2019) con IVA cercano al 1,25 % "
+                               "(10 % sobre el 12,5 % de la base); no es un régimen aduanero, entra como importación común. "
+                               "Para años anteriores a 2024 se usa la misma lista de productos.")
             reg = reg.merge(REG[["codigo", "incluir", "tipo_dnit", "nota"]].rename(
                 columns={"codigo": "DESTINACION", "incluir": "SE_CUENTA", "tipo_dnit": "TIPO", "nota": "MOTIVO"}),
                 on="DESTINACION", how="left").fillna({"SE_CUENTA": "NO", "MOTIVO": "Régimen no informado en la tabla oficial"})
