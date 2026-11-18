@@ -55,6 +55,8 @@ def anio(a, carpeta):
     return out[cols], items, meses
 
 
+REG = pd.read_csv(RAIZ / "config" / "regimenes.csv", dtype=str, keep_default_na=False).drop_duplicates("codigo")
+CUENTA = REG.set_index("codigo")["incluir"]
 QUITAR = ["TOTAL", "AJUSTE A INCLUIR", "AJUSTE A DEDUCIR", "KILO BRUTO"]
 
 
@@ -72,6 +74,13 @@ def main():
             desc = d[["POSICION"] + DESCRIP].drop_duplicates("POSICION").sort_values("POSICION")
             reg = d[["DESTINACION", "REGIMEN"]].drop_duplicates("DESTINACION").sort_values("DESTINACION")
             datos = d.drop(columns=DESCRIP + ["REGIMEN"] + QUITAR)
+            # Para no contar dos veces: solo se suman los regímenes definitivos (config/regimenes.csv).
+            # Ej.: la mercadería que entra a una zona franca (ZF01) se cuenta al salir al país (ZF2I).
+            datos.insert(list(datos.columns).index("DESTINACION") + 1, "SE_CUENTA",
+                         datos["DESTINACION"].map(CUENTA).fillna("NO"))
+            reg = reg.merge(REG[["codigo", "incluir", "tipo_dnit", "nota"]].rename(
+                columns={"codigo": "DESTINACION", "incluir": "SE_CUENTA", "tipo_dnit": "TIPO", "nota": "MOTIVO"}),
+                on="DESTINACION", how="left").fillna({"SE_CUENTA": "NO", "MOTIVO": "Régimen no informado en la tabla oficial"})
             nombre = f"DNIT_{a}_{op.lower()}.xlsx"
             notas = [f"DNIT, datos abiertos 'Nivel Item', {op.lower()}es {a} ({meses} meses)." + (" Año incompleto." if meses < 12 else ""),
                      "Fuente: Dirección Nacional de Ingresos Tributarios (DNIT), https://datosabiertos.aduana.gov.py. Elaboración propia.",
@@ -79,7 +88,11 @@ def main():
                      "Se sumaron los ítems que coinciden en todos los campos, salvo los que cambian en cada despacho: número de despacho, "
                      "oficialización, cancelación, mes, ítem, cotización, canal, mercadería y marca.",
                      "No se filtró ningún régimen ni se agrupó ningún acuerdo: están todas las operaciones (incluidos depósitos, tránsitos, "
-                     "zonas francas, admisiones temporales). Ojo: la mercadería que pasa por zona franca figura al entrar y al salir.",
+                     "zonas francas, admisiones temporales).",
+                     "IMPORTANTE, columna SE_CUENTA: para sumar el comercio sin contar dos veces, filtrar SE_CUENTA = SI (solo regímenes "
+                     "definitivos). La mercadería que pasa por una zona franca figura al entrar (ZF01, SE_CUENTA = NO) y al salir al país "
+                     "(ZF2I, SE_CUENTA = SI). Ej.: celulares 8517.13 en 2023: USD 3.034 millones sumando todo, 1.687 con SE_CUENTA = SI "
+                     "(cifra oficial de Paraguay en UN Comtrade: 1.729 CIF). La hoja 'Regímenes' explica cada código.",
                      "Hoja 'Descripciones': textos de cada POSICION (los del primer ítem). Hoja 'Regímenes': nombre de cada código DESTINACION.",
                      "Se quitaron TOTAL (= DERECHO + ISC + SERVICIO + RENTA + IVA + OTROS), los ajustes a incluir/deducir y el kilo bruto.",
                      "ITEMS = ítems de despacho sumados; DESPACHOS = despachos distintos.",
@@ -93,7 +106,7 @@ def main():
                     w.sheets[hoja].autofilter(0, 0, len(df), len(df.columns) - 1)
                 pd.DataFrame({"Notas": notas}).to_excel(w, sheet_name="Notas", index=False)
             lista.append({"archivo": str(salida / nombre), "hoja_datos": "Datos", "filas": ["ACUERDO"],
-                          "columnas": [], "filtros": ["PAIS PROCEDENCIA/DESTINO", "DESTINACION"],
+                          "columnas": [], "filtros": ["SE_CUENTA", "PAIS PROCEDENCIA/DESTINO", "DESTINACION"],
                           "valores": [["FOB DOLAR", "suma", "FOB (USD)"]]})
             print(f"{nombre}: {len(datos):,} filas", flush=True)
         shutil.rmtree(carpeta, ignore_errors=True)
