@@ -156,15 +156,8 @@ def main():
                           "valores": [["FOB DOLAR", "suma", "FOB (USD)"]]})
             print(f"{nombre}: {len(datos):,} filas", flush=True)
         shutil.rmtree(carpeta, ignore_errors=True)
-    import json
-    cfg = salida / "_tablas.json"
-    cfg.write_text(json.dumps(lista, ensure_ascii=False), encoding="utf-8")
-    subprocess.run(["/usr/bin/python3", str(RAIZ / "python" / "tabla_dinamica.py"), str(cfg)], check=True)
-    cfg.unlink()
-    sys.path.insert(0, str(RAIZ / "python"))
-    from excel_descargas import etiquetas_en_espanol
-    for t in lista:
-        etiquetas_en_espanol(t["archivo"])
+    # Sin tabla dinámica: cada usuario la arma si la necesita.
+
 
 
 if __name__ == "__main__":
