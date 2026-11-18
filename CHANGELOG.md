@@ -2,6 +2,10 @@
 
 ## Sin publicar (próxima v1.1.0)
 
+- **Arancel Nacional Vigente frente al AEC** (`arancel_nacional/`): el ANV de Paraguay a octubre de
+  2025 pasado de PDF a Excel, con la diferencia ANV − AEC, la explicación de cada lista, la historia
+  de BK, BIT y LNE (2018–2026) y el Régimen de Materias Primas.
+
 - **Excel por año para descargar** (`docs/descargas/`, `python/excel_descargas.py`): DNIT resumida por
   producto, país y acuerdo; BCP mensual; VUE con los 12 meses unidos. Calibri 10, hoja de tabla
   dinámica ya armada y hoja de notas. Los Excel de resultados también traen tabla dinámica.
