@@ -1,20 +1,17 @@
 Prioridad,Norma,Para qué,Destinaciones,Dónde buscar
-1,Ley 2422/2004 Código Aduanero (texto completo y actualizado),"Base de todos los regímenes: importación definitiva, suspensión de tributos (admisión temporaria, depósito, tránsito), reimportación exenta (art. 131), reserva de retorno (art. 151), reexportación (art. 191), perfeccionamiento pasivo (art. 192), aprovisionamiento a bordo (arts. 230-233), tienda libre (art. 289)",Todas,BACN (bacn.gov.py) o digesto de la DNIT
-1,Decreto 4672/2005 (reglamento del Código Aduanero) y sus modificaciones (Dec. 1952/2024),"Plazos, garantías, pago proporcional en la admisión temporaria para uso económico, traslados entre depósitos (art. 218)","Todas; en especial IT04, IT14, TDA3, TDA5",BACN o digesto de la DNIT
-1,"Norma que crea el Servicio de Valoración Aduanera (tasa del 0,5 %)","Es el 0,5 % sobre el valor en aduana que aparece en la columna SERVICIO de los datos","Todas las importaciones a consumo, también IT04, IT14, IML1, IC01, TLI4",Digesto de la DNIT (aduanas)
-1,Normas de los cobros que la DNIT suma en OTROS en la importación,"Cerca de 0,4 % del valor en aduana en casi todos los ítems; no se sabe qué conceptos son","IC04, IC09, IM04, IM05, IC20 y demás importaciones",Consultar a la DNIT qué conceptos agrupa OTROS
-1,Decreto del Arancel Nacional vigente (AEC con excepciones nacionales),Tasa del arancel (DERECHO) por NCM; el repositorio ya tiene el Arancel Nacional Vigente oct-2025 en arancel_nacional/ pero es un documento de trabajo sin fuerza legal,Importaciones a consumo,MEF (Política Comercial) o BACN
-2,"Norma del cobro de cerca de 0,25 % en exportaciones de carne bovina (NCM 0201, 0202 y 0206)","Aparece en OTROS en EC01 y EC03; no es el Decreto 11.915/08 (ese es para madera, capítulo 44)","EC01, EC03",Digesto de la DNIT o SENACSA
-2,Ley 523/1995 Zonas Francas y Decreto 15.554/1996,"Impuesto de Zona Franca 0,5 % (art. 14); ingreso al territorio aduanero paga como importación","ZF01, ZF2E, ZF2I, ZF2M, ZF3M, ZF2T, ZF3T, MZF1, XZF1, NZF1",BACN
+1,"Decreto 4672/2005 (reglamento del Código Aduanero), texto completo","Plazos, garantías, pago proporcional en la admisión temporaria (Ley 2422/04 art. 167), traslados entre depósitos (art. 218). El digesto de la DNIT solo tiene sus modificaciones (Dec. 859, 1952/2024 y 3465)","Todas; en especial IT04, IT14, TDA3, TDA5",BACN o Gaceta Oficial
+1,Decreto del Arancel Nacional vigente y Ley 1095/1984 (Arancel de Aduanas),"Tasa del arancel (DERECHO) por NCM; arancel_nacional/ tiene el ANV oct-2025, que es un documento de trabajo sin fuerza legal",Importaciones a consumo,"MEF (Política Comercial), BACN o Gaceta Oficial"
+1,Qué cobros suma la DNIT en OTROS en la importación,"Cerca de 0,4 % del valor en aduana en casi todos los ítems; puede incluir el Arancel Consular (Ley 4033/2010, en parte derogada por la Ley 7196) u otras tasas","IC04, IC09, IM04, IM05, IC20 y demás importaciones",Consultar a la DNIT; Ley 4033/2010 en BACN
+2,"Norma del cobro de cerca de 0,25 % en exportaciones de carne bovina (NCM 0201, 0202 y 0206)","Aparece en OTROS en EC01 y EC03; no es el Decreto 11.915/08 (ese es para madera, capítulo 44). Puede ser una tasa de SENACSA","EC01, EC03",SENACSA (el sitio bloquea accesos automáticos: abrir desde el navegador) o DNIT
+2,"Ley 523/1995 Zonas Francas y Decretos 15.554/1996, 19.461/2002 y 21.309/2003","Impuesto de Zona Franca 0,5 % (art. 14); el Código Aduanero art. 287 remite a esta ley","ZF01, ZF2E, ZF2I, ZF2M, ZF3M, ZF2T, ZF3T, MZF1, XZF1, NZF1, TZF1",BACN
 2,Ley 1295/1998 Leasing,Tributos suspendidos en la importación de bienes en leasing,"IML1, IML2, ICL1, ECL1",BACN
-2,Resolución DNA 136/2018 Remesa expresa (courier),Si hay tributo único o tasas especiales por tramo de valor,"IRE1, IRE2, IRE3, IRE4",Digesto de la DNIT
+2,Resolución DNA 136/2018 Remesa expresa (courier),Reglamenta la exención hasta USD 100 FOB del Código Aduanero art. 223 y dice si el IVA también queda exento,"IRE1, IRE2, IRE3, IRE4",Digesto de la DNIT (histórico)
 2,Ley 608/1995 (regularización),Qué tributos paga la regularización,IC03,BACN
-2,Resolución DNA 1252/2020 (OEA / OEC),Pago en la importación anticipada y en la nacionalización desde depósito de OEC,"IC19, IC20, TDA5",Digesto de la DNIT
-2,Normas de franquicias diplomáticas (Convención de Viena; ley aprobatoria),Exención del arancel,"ID04, ID09",BACN o Ministerio de Relaciones Exteriores
+2,Resolución DNA 1252/2020 (OEA / OEC),Pago en la importación anticipada y en la nacionalización desde depósito de OEC,"IC19, IC20, TDA5",Digesto de la DNIT (histórico)
+2,Convenciones de Viena sobre relaciones diplomáticas y consulares (leyes aprobatorias),El Código Aduanero art. 238 remite a los convenios para el trato tributario,"ID04, ID09",BACN o Ministerio de Relaciones Exteriores
 3,Decreto 5714/2026 (reglamento de la Ley 7547 de maquila),Detalle de la importación temporal maquila y de la nacionalización,"IT02, IT03, IT06, IT16, IVM1, IC12, EM01, EVM1",MIC (CNIME) o BACN
-3,RG DNIT 14/2024 e Instructivo GGA 06/2024 (aprovisionamiento a bordo),Libre de tributos en el aprovisionamiento; nacionalización de saldos,"AB01, DAAB, ICAB",Digesto de la DNIT
-3,Resolución DNA 550/2022 (depósitos aduaneros),Funcionamiento de los depósitos,"IDA2, IDA3, IC09",Digesto de la DNIT
-3,Resolución DNA 218/2020 (despacho fraccionado),Confirma que los tributos van en el despacho principal,IFC1,Digesto de la DNIT
-3,Resolución DNA 285/2017 (DSEM),Exportación menor simplificada,DSEM,Digesto de la DNIT
-3,Norma de importación de asistencia y salvamento,Si está exenta,IS01,Digesto de la DNIT
+3,RG DNIT 14/2024 (aprovisionamiento a bordo),Procedimiento; el Instructivo GGA 06/2024 ya se encontró en el digesto de la DNIT,"AB01, AFC1, DAAB, DAAR, ICAB",Digesto de la DNIT
+3,Resolución DNA 550/2022 (depósitos aduaneros) y Decreto 1394/2014 (art. 217 del Dec. 4672),Funcionamiento y plazos de los depósitos,"IDA2, IDA3, IC09",Digesto de la DNIT (histórico) y BACN
+3,Resolución DNA 218/2020 (despacho fraccionado),Confirma que los tributos van en el despacho principal,IFC1,Digesto de la DNIT (histórico)
+3,Resolución DNA 285/2017 (DSEM),Exportación menor simplificada,DSEM,Digesto de la DNIT (histórico)
 3,Norma de materiales aeronáuticos reemplazados y mantenimiento de aeronaves,Qué se paga,"IMAR, IDMA, ICMA, ERMA, SPA1",Digesto de la DNIT o DINAC
