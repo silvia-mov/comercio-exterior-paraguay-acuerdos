@@ -98,7 +98,8 @@ def motivo_arancel(d, a):
 
 def alerta_peso(d):
     """Compara el valor por kilo de cada fila con la mediana de su NCM en el año.
-    Un error de tipeo en los kilos (5 en vez de 50) hace que el valor por kilo salga 10 veces más alto o más bajo."""
+    Un error de tipeo en los kilos (5 en vez de 50) hace que el valor por kilo salga mucho más alto o más bajo;
+    se marca solo desde 50 veces, porque dentro de un mismo NCM hay productos de valores muy distintos."""
     cod = d["POSICION"].astype(str).str.replace(".", "", regex=False).str[:8]
     uv = d["FOB DOLAR"] / d["KILO NETO"].where(d["KILO NETO"] > 0)
     grupo = pd.DataFrame({"cod": cod, "uv": uv})
@@ -107,8 +108,8 @@ def alerta_peso(d):
     r = uv / med
     a = pd.Series("", index=d.index)
     a[(d["KILO NETO"] <= 0) & (d["FOB DOLAR"] > 0)] = "Sin kilos"
-    a[(n >= 5) & (r >= 10)] = "Valor por kilo 10 veces mayor que lo normal: posibles kilos de menos"
-    a[(n >= 5) & (r <= 0.1)] = "Valor por kilo 10 veces menor que lo normal: posibles kilos de más"
+    a[(n >= 10) & (r >= 50)] = "Valor por kilo 50 veces mayor que lo normal: posibles kilos de menos"
+    a[(n >= 10) & (r <= 0.02)] = "Valor por kilo 50 veces menor que lo normal: posibles kilos de más"
     return a
 
 
@@ -182,8 +183,8 @@ def main():
                      "Hoja 'Descripciones': textos de cada POSICION (los del primer ítem). Hoja 'Regímenes': nombre de cada código DESTINACION.",
                      "Se quitaron TOTAL (= DERECHO + ISC + SERVICIO + RENTA + IVA + OTROS), los ajustes a incluir/deducir y el kilo bruto.",
                      "ITEMS = ítems de despacho sumados; DESPACHOS = despachos distintos.",
-                     "ALERTA_PESO: compara el valor por kilo (FOB / KILO NETO) con la mediana del mismo NCM en el año (si hay al menos 5 filas). "
-                     "Si es 10 veces mayor o menor, probablemente hay un error de carga en los kilos (por ejemplo 5 en vez de 50). Es una alerta, "
+                     "ALERTA_PESO: compara el valor por kilo (FOB / KILO NETO) con la mediana del mismo NCM en el año (si hay al menos 10 filas). "
+                     "Si es 50 veces mayor o menor, probablemente hay un error de carga en los kilos (por ejemplo 5 en vez de 50). Es una alerta, "
                      "no una corrección: los datos no se cambiaron.",
                      nota_listas,
                      "Valores en dólares, salvo IMPONIBLE GS y los impuestos (DERECHO a OTROS), en guaraníes."]
