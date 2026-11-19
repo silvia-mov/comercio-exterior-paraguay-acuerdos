@@ -89,8 +89,27 @@ def motivo_arancel(d, a):
     m[aec.isna()] = "Sin dato de AEC"
     m[aec == 0] = "AEC 0 %"
     m[d["DERECHO"] > 0] = "Pagó arancel"
-    m[~d["ACUERDO"].isin(["SIN ACUERDO", "OMC"])] = "Con acuerdo"
+    con_acuerdo = ~d["ACUERDO"].isin(["SIN ACUERDO", "OMC"])
+    m[con_acuerdo] = "Con acuerdo"
+    # Si el AEC ya es 0 %, invocar el acuerdo no da ninguna ventaja: entraría igual con arancel 0
+    m[con_acuerdo & (aec == 0)] = "Con acuerdo, pero AEC 0 % (el acuerdo no da ventaja)"
     return m, {k: v[1] for k, v in ls.items()}
+
+
+def alerta_peso(d):
+    """Compara el valor por kilo de cada fila con la mediana de su NCM en el año.
+    Un error de tipeo en los kilos (5 en vez de 50) hace que el valor por kilo salga 10 veces más alto o más bajo."""
+    cod = d["POSICION"].astype(str).str.replace(".", "", regex=False).str[:8]
+    uv = d["FOB DOLAR"] / d["KILO NETO"].where(d["KILO NETO"] > 0)
+    grupo = pd.DataFrame({"cod": cod, "uv": uv})
+    med = grupo.groupby("cod")["uv"].transform("median")
+    n = grupo.groupby("cod")["uv"].transform("count")
+    r = uv / med
+    a = pd.Series("", index=d.index)
+    a[(d["KILO NETO"] <= 0) & (d["FOB DOLAR"] > 0)] = "Sin kilos"
+    a[(n >= 5) & (r >= 10)] = "Valor por kilo 10 veces mayor que lo normal: posibles kilos de menos"
+    a[(n >= 5) & (r <= 0.1)] = "Valor por kilo 10 veces menor que lo normal: posibles kilos de más"
+    return a
 
 
 RTC = set(pd.read_csv(RAIZ / "config" / "lista_rtc.csv", dtype=str)["NCM"])
@@ -130,12 +149,13 @@ def main():
             # Ej.: la mercadería que entra a una zona franca (ZF01) se cuenta al salir al país (ZF2I).
             datos.insert(list(datos.columns).index("DESTINACION") + 1, "SE_CUENTA",
                          datos["DESTINACION"].map(CUENTA).fillna("NO"))
+            datos["ALERTA_PESO"] = alerta_peso(datos)
             nota_listas = ""
             if op == "IMPORTACION":
                 motivo, fechas_listas = motivo_arancel(datos, a)
                 datos.insert(list(datos.columns).index("ACUERDO") + 1, "MOTIVO_ARANCEL", motivo)
                 datos.insert(list(datos.columns).index("MOTIVO_ARANCEL") + 1, "REGIMEN_TRIBUTARIO", regimen_tributario(datos))
-                nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Pagó arancel' = DERECHO > 0; "
+                nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Con acuerdo, pero AEC 0 %' = declaró un acuerdo pero el producto ya tiene arancel 0 para cualquier país, así que el acuerdo no le dio ventaja; 'Pagó arancel' = DERECHO > 0; "
                                "'AEC 0 %' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
                                "al MERCOSUR (Bienes de Capital, Informática y Telecomunicaciones, Excepciones, Materias Primas); si no, "
                                "'Otra ley o régimen nacional'. AEC según la NCM 2026. Listas usadas (fecha de notificación): "
@@ -162,6 +182,9 @@ def main():
                      "Hoja 'Descripciones': textos de cada POSICION (los del primer ítem). Hoja 'Regímenes': nombre de cada código DESTINACION.",
                      "Se quitaron TOTAL (= DERECHO + ISC + SERVICIO + RENTA + IVA + OTROS), los ajustes a incluir/deducir y el kilo bruto.",
                      "ITEMS = ítems de despacho sumados; DESPACHOS = despachos distintos.",
+                     "ALERTA_PESO: compara el valor por kilo (FOB / KILO NETO) con la mediana del mismo NCM en el año (si hay al menos 5 filas). "
+                     "Si es 10 veces mayor o menor, probablemente hay un error de carga en los kilos (por ejemplo 5 en vez de 50). Es una alerta, "
+                     "no una corrección: los datos no se cambiaron.",
                      nota_listas,
                      "Valores en dólares, salvo IMPONIBLE GS y los impuestos (DERECHO a OTROS), en guaraníes."]
             with pd.ExcelWriter(salida / nombre, engine="xlsxwriter") as w:
