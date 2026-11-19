@@ -57,12 +57,11 @@ def anio(a, carpeta):
 
 REG = pd.read_csv(RAIZ / "config" / "regimenes.csv", dtype=str, keep_default_na=False).drop_duplicates("codigo")
 CUENTA = REG.set_index("codigo")["incluir"]
-# Arancel Externo Común (NCM 2026) y listas de Paraguay notificadas al MERCOSUR (config/listas_py.csv)
-_N = pd.read_excel(RAIZ / "NCM_2026_11.xlsx", header=2, dtype=str)
-_N.columns = ["NCM", "DESC", "PT", "AEC", "FAMILIA"]
-_N["COD"] = _N["NCM"].str.replace(".", "", regex=False).str.strip()
-AEC = (_N[_N["COD"].str.len() == 8].set_index("COD")["AEC"].str.replace(",", ".")
-       .str.extract(r"([\d.]+)")[0].astype(float))
+# Arancel Externo Común de la versión de la NCM vigente cada año (config/aec_por_anio.csv.gz, armado con
+# las 63 versiones de SAREM del repositorio nomenclaturas-y-correlaciones-del-mercosur) y listas de Paraguay
+# notificadas al MERCOSUR (config/listas_py.csv)
+_A = pd.read_csv(RAIZ / "config" / "aec_por_anio.csv.gz", dtype={"NCM": str})
+AEC_ANIO = {a: g.set_index("NCM")["AEC"] for a, g in _A.groupby("ANIO")}
 LISTAS = pd.read_csv(RAIZ / "config" / "listas_py.csv", dtype=str)
 NOMBRE_LISTA = {"LNE": "Lista Nacional de Excepciones", "BK": "Bienes de Capital",
                 "BIT": "Informática y Telecomunicaciones", "RMP": "Materias Primas"}
@@ -82,7 +81,7 @@ def listas_del_anio(a):
 def motivo_arancel(d, a):
     ls = listas_del_anio(a)
     cod = d["POSICION"].astype(str).str.replace(".", "", regex=False).str[:8]
-    aec = cod.map(AEC)
+    aec = cod.map(AEC_ANIO[min(max(a, min(AEC_ANIO)), max(AEC_ANIO))])
     m = pd.Series("Otra ley o régimen nacional (sin identificar)", index=d.index)
     for lista in ("RMP", "BIT", "BK", "LNE"):        # el último que se aplica tiene prioridad
         m[cod.isin(ls[lista][0])] = NOMBRE_LISTA[lista]
@@ -159,7 +158,7 @@ def main():
                 nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Con acuerdo, pero AEC 0 %' = declaró un acuerdo pero el producto ya tiene arancel 0 para cualquier país, así que el acuerdo no le dio ventaja; 'Pagó arancel' = DERECHO > 0; "
                                "'AEC 0 %' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
                                "al MERCOSUR (Bienes de Capital, Informática y Telecomunicaciones, Excepciones, Materias Primas); si no, "
-                               "'Otra ley o régimen nacional'. AEC según la NCM 2026. Listas usadas (fecha de notificación): "
+                               "'Otra ley o régimen nacional'. AEC de la versión de la NCM vigente ese año (última versión publicada hasta fin de año que contiene el código). Listas usadas (fecha de notificación): "
                                + ", ".join(f"{NOMBRE_LISTA[k]} {v}" for k, v in fechas_listas.items()) + ". "
                                "REGIMEN_TRIBUTARIO: según el IVA pagado sobre la base imponible. 'Turismo de Compras' = producto de la lista "
                                "del Decreto 2063/2024 (Régimen de Turismo de Compras, antes Decreto 1931/2019) con IVA cercano al 1,25 % "
