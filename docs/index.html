@@ -225,7 +225,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source media="(prefers-color-scheme: dark)" srcset="img/utilizacion_socios_dark.png">
         <img src="img/utilizacion_socios_light.png" alt="Tasa de utilización de las preferencias por país socio, 2011 a 2026: Argentina, Brasil, Uruguay, Chile, Bolivia y Perú" loading="lazy">
       </picture>
-      <p class="note">% de lo exportado a cada país que usó una preferencia. Los datos de todos los socios están en las descargas. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">% de lo exportado a cada país que usó una preferencia. El país es el destino que figura en el despacho de la DNIT; el BCP asigna el destino según el certificado de origen, que se tramita después, por eso sus cifras por país pueden diferir (sobre todo en la soja enviada a Argentina y Uruguay), aunque el total y los productos coinciden. Los datos de todos los socios están en las descargas. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
 
   </section>
@@ -233,6 +233,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   <section id="por-acuerdo">
     <h2>El MERCOSUR concentra casi todo el comercio con preferencia, año tras año</h2>
     <p>Exportaciones (FOB) e importaciones (CIF) de cada año según el acuerdo que se usó en el despacho. El MERCOSUR (ACE 18) es entre el 81 % y el 96 % de todo lo que usa una preferencia, según el año. Elija el año para ver el detalle:</p>
+    <p><strong>Importaciones: usar el acuerdo no siempre da una ventaja.</strong> A veces el importador invoca un acuerdo para un producto que ya paga 0 % de arancel a todos los países, así que el acuerdo no le ahorra nada. Por eso mostramos dos cifras: en 2025, el <strong>25,7 %</strong> de lo importado <strong>usó un acuerdo</strong> (lo que declaró el importador) y el <strong>24,6 %</strong> lo usó <strong>con ventaja real</strong>, es decir, sin esos productos con arancel 0 %. La diferencia es de alrededor del 4 % de lo importado con acuerdo cada año. <a href="aduana.html#ventaja">Ver la serie completa</a>.</p>
     <div class="card">
       <label for="anio" class="note">Año</label>
       <select id="anio" aria-label="Elegir el año"></select>
@@ -279,7 +280,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 
   <section id="cuatro-fuentes">
     <h2>Cuatro fuentes distintas cuentan casi lo mismo: los datos abiertos de aduanas son confiables</h2>
-    <p>Las exportaciones de Paraguay se pueden medir con cuatro fuentes públicas. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % del total oficial del BCP en todos los años, y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 y, desde 2023, cubre menos.</p>
+    <p>Las exportaciones de Paraguay se pueden medir con cuatro fuentes públicas. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % del total oficial del BCP en todos los años, y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos.</p>
     <div class="card">
       <div class="legend">
         <span><span class="sw line" style="background:var(--text)"></span>BCP, estadística oficial</span>
@@ -288,7 +289,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <span><span class="sw line" style="background:var(--s4)"></span>Espejo, lo que declaran los socios</span>
       </div>
       <div id="chart2" role="img" aria-label="Gráfico de líneas que compara las exportaciones de Paraguay según el BCP, la DNIT, la VUE y los datos espejo, 2011 a 2026"></div>
-      <p class="note">Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen valores atípicos (octubre y noviembre, partidas 6406 y 3904). Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Elaboración propia.</p>
+      <p class="note">Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Elaboración propia.</p>
     </div>
     <div class="tw">
       <table id="tabla"></table>
