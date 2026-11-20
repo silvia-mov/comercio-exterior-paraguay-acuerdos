@@ -18,7 +18,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 RAIZ = Path(__file__).resolve().parent.parent
 CARPETA = RAIZ / "regimenes_tributos"
 CELESTE = PatternFill("solid", fgColor="DCEBFA")
-AMARILLO = PatternFill("solid", fgColor="FEF3C7")
+VERDE = PatternFill("solid", fgColor="B9EEE1")
 
 
 def control(anio=2025):
@@ -61,9 +61,16 @@ def main():
         if tasa is not None:
             ws.cell(r, 12).fill = relleno
 
-    poner("Tasa por servicio de valoración aduanera", "0,5 % (observado en los datos de la DNIT; norma no encontrada)",
-          "Valor en aduana", "A confirmar: falta la norma que lo crea",
-          "En 2025 el 98,7 % del valor importado pagó 0,5 % (hoja Control_DNIT_2025).")
+    poner("Tasa por servicio de valoración aduanera", "0,5 %", "Valor en aduana (base gravable de las mercaderías importadas)",
+          "Ley 2422/2004 (Código Aduanero), arts. 263 y 393 a)",
+          "El servicio lo creó el Decreto-Ley 5/1974, aprobado por la Ley 489/1974. En 2025 el 99 % del valor importado "
+          "pagó 0,5 % (hoja Control_DNIT_2025).", relleno=VERDE)
+    ws.cell(fila["Tasa por servicio de valoración aduanera"], 7).value = "Ley 2422/2004, Código Aduanero"
+    poner("Importación de vehículos eléctricos (2012)", "0 % de arancel y 0 % de IVA", "Vehículos eléctricos e híbridos importados",
+          "Ley 4601/2012, art. 1", "Modificada por la Ley 5183/2014 (carpeta normas). Texto de la BACN.", relleno=VERDE)
+    poner("Donaciones al Estado y a otras instituciones", "Exentas de todo tributo", "Bienes donados",
+          "Ley 302/1993, art. 2", "No se pueden vender ni transferir por 5 años (art. 5). Texto de la BACN (escaneado, leído con OCR).",
+          relleno=VERDE)
     poner("Canon informático", nota="La DNIT no lo muestra aparte: va dentro de OTROS, que en 2025 fue cerca de 0,4 % "
           "del valor en aduana (hoja Control_DNIT_2025). El monto lo fija la Resolución MH 1144/1992, que falta.")
     poner("Impuesto selectivo al consumo (ISC) en la importación",
@@ -83,13 +90,13 @@ def main():
     for col, v in {2: "2. Cobros y reglas en la exportación", 3: "Cobro sobre la carne bovina exportada",
                    4: "Porcentaje sobre la exportación de carne (NCM 0201, 0202 y 0206); figura en OTROS",
                    5: "Exportación", 6: "Directa", 7: "Ley 808/1996, art. 14 c)", 8: "Resolución CIEFA 3/2021",
-                   9: "Vigente", 10: "No", 11: "Datos de la DNIT (OTROS en EC01 y EC03)", 12: "0,25 % (observado en los datos de la DNIT)",
-                   13: "Valor exportado", 14: "Ley 808/1996, art. 14 c), a leer en el texto",
-                   15: "Falta el texto de la ley y de la resolución para confirmar la tasa."}.items():
+                   9: "Vigente", 10: "Sí (Ley 808/1996)", 11: "Texto de la BACN; datos de la DNIT (OTROS en EC01 y EC03)", 12: "Hasta 0,25 % del valor de cada tonelada",
+                   13: "Valor de la carne importada y exportada", 14: "Ley 808/1996, art. 14 c)",
+                   15: "La Res. CIEFA 3/2021 fija el monto por tonelada (falta su texto). En los datos de la DNIT se ve cerca de 0,25 %."}.items():
         ws.cell(r, col).value = v
         ws.cell(r, col).font = Font(name="Arial", size=10)
         ws.cell(r, col).alignment = Alignment(wrap_text=True, vertical="top")
-    ws.cell(r, 12).fill = CELESTE
+    ws.cell(r, 12).fill = VERDE
     # Las fórmulas del resumen cubrían hasta la fila 45.
     res = wb["Resumen"]
     for row in res.iter_rows():
@@ -114,6 +121,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
+              "Leídas en el texto oficial (BACN) el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012 y 5542/2015; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
