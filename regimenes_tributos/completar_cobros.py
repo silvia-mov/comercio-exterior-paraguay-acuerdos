@@ -96,9 +96,9 @@ def main():
           "importación (art. 20), salvo productos que cumplen el régimen de origen. En los datos de la DNIT el 0,5 % figura "
           "en OTROS en las exportaciones desde zona franca (ZF2E).", relleno=VERDE)
     for nombre, tasa, base, art, nota in [
-        ("Política automotriz nacional", "0 % de arancel; IVA sobre el 20 % del valor aduanero (equivale a 2 %); motos 40 % (4 %)",
+        ("Política automotriz nacional", "0 % de arancel; IVA sobre el 20 % del valor aduanero (equivale a 2 %); motos (87.11): IVA pleno",
          "Bienes de capital, materias primas, partes e insumos para producir o ensamblar vehículos (cap. 87)",
-         "Ley 4838/2012, arts. 6 y 7", "Texto de la BACN."),
+         "Ley 4838/2012, arts. 6 y 7 (art. 7 en la redacción de la Ley 5819)", "La Ley 5819 subió la base del IVA de las motos del 40 % al 100 % del valor aduanero y destina lo recaudado al Hospital del Trauma, el SEME y el MEC."),
         ("Transporte eléctrico", "0 % de impuesto aduanero y 0 % de IVA",
          "Vehículos eléctricos, sus repuestos y equipos para ensamblarlos", "Ley 6925/2022, arts. 10, 11 y 12",
          "Copia escaneada, leída con OCR. La exoneración de repuestos dura 10 años desde la publicación."),
@@ -115,8 +115,8 @@ def main():
          "Maquinaria, vehículos, insumos y materiales para prospección y exploración", "Ley 3180/2007, art. 49",
          "Solo mientras dure la prospección y exploración; no en la explotación (art. 48)."),
         ("Cooperativas", "Exentas de aranceles aduaneros, adicionales y recargos",
-         "Bienes de capital para el objeto social", "Ley 438/1994, art. 113 c), en la redacción de la Ley 5501/2015",
-         "No se pueden transferir hasta 5 años después de su ingreso. Texto de la Ley 5501/2015 (BACN)."),
+         "Bienes de capital para el objeto social", "Ley 438/1994, art. 113, en la redacción de la Ley 6178 (antes, Ley 5501/2015)",
+         "No se pueden transferir libremente hasta 5 años después de su ingreso. La Ley 6178 mantuvo esta exención."),
         ("Negocios fiduciarios", "Sin exoneración en el despacho",
          "Negocios y servicios fiduciarios (operación interna)", "Ley 921/1996, arts. 38 y 39",
          "Exentos de IVA y del impuesto a los actos y documentos; no tocan los tributos a la importación."),
@@ -128,6 +128,12 @@ def main():
          "Copia escaneada, leída con OCR. También admisión temporaria sin tasas ni garantías (art. 7)."),
     ]:
         poner(nombre, tasa, base, art, nota, relleno=VERDE)
+    poner("Diabetes", "Sin exoneración en el despacho", "Medicamentos e insumos que entrega el Ministerio de Salud",
+          "Ley 5372/2014, art. 16", "La ley obliga a entregar gratis insulina e insumos, pero no exonera tributos a la importación.",
+          relleno=VERDE)
+    poner("Ley 285/1993", "Sin relación con la importación", "Beneficios adicionales que la empresa da a sus trabajadores",
+          "Ley 285/1993, arts. 2 y 7", "Reglamenta el art. 93 de la Constitución: esos beneficios son gasto deducible "
+          "exento de tributos, hasta el 10 % de la renta neta.", relleno=VERDE)
     poner("Acuerdos, convenios y tratados internacionales", "Preferencia arancelaria de cada acuerdo",
           "Productos con certificado de origen", "Cada acuerdo y su ley aprobatoria",
           "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).")
@@ -179,7 +185,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025 y 7467/2025; tasa de valoración en el Código Aduanero.",
+              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819 y 6178; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
