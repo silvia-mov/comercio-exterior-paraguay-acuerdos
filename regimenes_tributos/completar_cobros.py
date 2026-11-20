@@ -1,0 +1,130 @@
+"""Completa la lista de cobros y regímenes especiales con lo que se ve en los datos de la DNIT.
+
+Uso (desde la raíz del repositorio):
+    python regimenes_tributos/completar_cobros.py
+
+Lee regimenes_tributos/cobros_original.xlsx (la lista armada a partir de las normas, con la tasa y el artículo de
+cada cobro) y salidas/dnit_anual/DNIT_2025_importacion.xlsx. Escribe regimenes_tributos/Cobros_y_regimenes_especiales.xlsx:
+- celdas en verde: tasa leída en la norma (como en el original);
+- celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía;
+- hoja Control_DNIT_2025: la tasa efectiva que se ve en los datos para cada cobro.
+"""
+from pathlib import Path
+
+import openpyxl
+import pandas as pd
+from openpyxl.styles import Alignment, Font, PatternFill
+
+RAIZ = Path(__file__).resolve().parent.parent
+CARPETA = RAIZ / "regimenes_tributos"
+CELESTE = PatternFill("solid", fgColor="DCEBFA")
+AMARILLO = PatternFill("solid", fgColor="FEF3C7")
+
+
+def control(anio=2025):
+    d = pd.read_excel(RAIZ / "salidas" / "dnit_anual" / f"DNIT_{anio}_importacion.xlsx", sheet_name="Datos", engine="calamine",
+                      usecols=["SE_CUENTA", "IMPONIBLE GS", "IMPONIBLE DOLAR", "IVA", "RENTA", "SERVICIO", "OTROS",
+                               "REGIMEN_TRIBUTARIO"])
+    d = d[(d["SE_CUENTA"] == "SI") & (d["IMPONIBLE GS"] > 0)]
+    w = d["IMPONIBLE DOLAR"]
+    rtc = d["REGIMEN_TRIBUTARIO"].astype(str).str.startswith("Turismo de Compras")
+
+    def pct(col, m=None):
+        m = (d[col] > 0) if m is None else (m & (d[col] > 0))
+        r = d.loc[m, col] / d.loc[m, "IMPONIBLE GS"] * 100
+        return round(r.median(), 2), round(100 * w[m].sum() / w.sum(), 1)
+
+    filas = []
+    for nombre, col, m, norma in [
+        ("Servicio de valoración", "SERVICIO", None, "Norma de creación no encontrada todavía"),
+        ("Otros (en la importación)", "OTROS", None, "Puede incluir el canon informático y el arancel consular; sin desglose en los datos"),
+        ("IVA, tasa general y reducida", "IVA", ~rtc & (d["IVA"] / d["IMPONIBLE GS"] > 0.03), "Ley 6380/2019, art. 90 (10 % y 5 %)"),
+        ("IVA de Turismo de Compras", "IVA", rtc, "Decreto 2063/2024, art. 7 (10 % sobre el 12,5 % de la base = 1,25 %)"),
+        ("Anticipo del IRE, fuera de Turismo de Compras", "RENTA", ~rtc, "Decreto 3182/2019, anexo, art. 87 (0,4 %)"),
+        ("Anticipo del IRE, Turismo de Compras", "RENTA", rtc, "Decreto 2063/2024, art. 7 (1 %)"),
+    ]:
+        med, part = pct(col, m)
+        filas.append([nombre, col, med, part, norma])
+    return filas
+
+
+def main():
+    wb = openpyxl.load_workbook(CARPETA / "cobros_original.xlsx")
+    ws = wb["Lista"]
+    fila = {ws.cell(r, 3).value: r for r in range(2, ws.max_row + 1)}
+
+    def poner(nombre, tasa=None, base=None, articulo=None, nota=None, relleno=CELESTE):
+        r = fila[nombre]
+        for col, v in zip((12, 13, 14, 15), (tasa, base, articulo, nota)):
+            if v is not None:
+                ws.cell(r, col).value = v
+        if tasa is not None:
+            ws.cell(r, 12).fill = relleno
+
+    poner("Tasa por servicio de valoración aduanera", "0,5 % (observado en los datos de la DNIT; norma no encontrada)",
+          "Valor en aduana", "A confirmar: falta la norma que lo crea",
+          "En 2025 el 98,7 % del valor importado pagó 0,5 % (hoja Control_DNIT_2025).")
+    poner("Canon informático", nota="La DNIT no lo muestra aparte: va dentro de OTROS, que en 2025 fue cerca de 0,4 % "
+          "del valor en aduana (hoja Control_DNIT_2025). El monto lo fija la Resolución MH 1144/1992, que falta.")
+    poner("Impuesto selectivo al consumo (ISC) en la importación",
+          nota="OJO: son las tasas MÁXIMAS de la ley. La tasa real de cada producto la fija el Decreto 3109/2019 "
+               "y sus cambios (copia escaneada, falta leerla). Detalle: hoja Tasas_ISC.")
+    poner("Maquila: nuevo régimen",
+          nota="El tributo único se paga a la DNIT como impuesto interno (sobre el valor agregado en el país), "
+               "no en el despacho aduanero: no aparece en los datos de comercio.")
+    poner("Turismo de compras (RTC)", nota="Confirmado en los datos 2025: IVA de cerca de 1,3 % y anticipo del IRE "
+          "de cerca de 1 % de la base en guaraníes (hoja Control_DNIT_2025).")
+    poner("Anticipo del IRE en la importación", nota="En los datos se ve cerca de 0,4 % a 0,5 % (la base de la DNIT "
+          "puede incluir otros tributos). Solo lo pagan los contribuyentes del IRE general.")
+
+    # Fila nueva: el cobro de la carne exportada (ya documentado en este repositorio).
+    r = ws.max_row + 1
+    ws.cell(r, 1).value = r - 1
+    for col, v in {2: "2. Cobros y reglas en la exportación", 3: "Cobro sobre la carne bovina exportada",
+                   4: "Porcentaje sobre la exportación de carne (NCM 0201, 0202 y 0206); figura en OTROS",
+                   5: "Exportación", 6: "Directa", 7: "Ley 808/1996, art. 14 c)", 8: "Resolución CIEFA 3/2021",
+                   9: "Vigente", 10: "No", 11: "Datos de la DNIT (OTROS en EC01 y EC03)", 12: "0,25 % (observado en los datos de la DNIT)",
+                   13: "Valor exportado", 14: "Ley 808/1996, art. 14 c), a leer en el texto",
+                   15: "Falta el texto de la ley y de la resolución para confirmar la tasa."}.items():
+        ws.cell(r, col).value = v
+        ws.cell(r, col).font = Font(name="Arial", size=10)
+        ws.cell(r, col).alignment = Alignment(wrap_text=True, vertical="top")
+    ws.cell(r, 12).fill = CELESTE
+    # Las fórmulas del resumen cubrían hasta la fila 45.
+    res = wb["Resumen"]
+    for row in res.iter_rows():
+        for c in row:
+            if isinstance(c.value, str) and c.value.startswith("="):
+                c.value = c.value.replace("$45", f"${r}")
+
+    # Hoja de control.
+    hc = wb.create_sheet("Control_DNIT_2025")
+    hc.append(["Cobro", "Columna DNIT", "Tasa mediana (% de la base en guaraníes)", "% del valor importado que lo pagó", "Qué dice la norma"])
+    for f in control():
+        hc.append(f)
+    hc.append([])
+    hc.append(["Importaciones definitivas (SE_CUENTA = SI) de 2025. Tasa = cobro / IMPONIBLE GS, mediana de las filas que pagan. "
+               "Programa: regimenes_tributos/completar_cobros.py."])
+    for c in hc[1]:
+        c.font = Font(name="Arial", size=10, bold=True)
+    for w_, col in zip((42, 14, 22, 20, 70), "ABCDE"):
+        hc.column_dimensions[col].width = w_
+
+    # Leeme: colores, avisos y normas que faltan.
+    le = wb["Leeme"]
+    for t in ["", "Agregado en el repositorio (20/11/2026)",
+              "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
+              "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
+              "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
+              "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
+              "El Código Aduanero (Ley 2422/2004) ya está en la carpeta normas del repositorio."]:
+        le.append([t])
+    for c in le["A"]:
+        if c.value in ("Agregado en el repositorio (20/11/2026)",):
+            c.font = Font(name="Arial", bold=True)
+    wb.save(CARPETA / "Cobros_y_regimenes_especiales.xlsx")
+    print("Listo:", CARPETA / "Cobros_y_regimenes_especiales.xlsx")
+
+
+if __name__ == "__main__":
+    main()

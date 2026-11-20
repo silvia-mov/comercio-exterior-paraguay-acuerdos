@@ -33,3 +33,15 @@ publicado en el digesto aduanero de la DNIT): regímenes, exenciones y tasa de v
 Maquila: Ley 7547/25. Una norma con asterisco (*) todavía no se tiene: faltan, sobre todo, el
 Decreto 4672/05 completo, el decreto del arancel, la Ley 523/95 y qué agrupa "Otros". La lista
 está en `normas_faltantes.csv`.
+
+## Cobros y regímenes especiales (por ley)
+
+`Cobros_y_regimenes_especiales.xlsx`: 45 cobros, regímenes que los bajan o eximen y listas del arancel, con la norma,
+la tasa y el artículo de donde sale. Verde: tasa leída en la norma. Celeste: tasa observada en lo que cobró la DNIT en
+2025, sin norma leída todavía (servicio de valoración 0,5 %; carne exportada 0,25 %). Hoja *Control_DNIT_2025*: la tasa
+que se ve en los datos para cada cobro. Las tasas del ISC son las máximas de la ley (la de cada producto la fija el
+Decreto 3109/2019); el tributo único de maquila (1 %) se paga como impuesto interno y no figura en los despachos.
+
+```bash
+python regimenes_tributos/completar_cobros.py   # lee cobros_original.xlsx y los datos DNIT 2025
+```
