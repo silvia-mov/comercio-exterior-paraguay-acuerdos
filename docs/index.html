@@ -232,6 +232,15 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <p class="note">% de lo exportado a cada país que usó una preferencia. El país es el destino que figura en el despacho de la DNIT; el BCP asigna el destino según el certificado de origen, que se tramita después, por eso sus cifras por país pueden diferir (sobre todo en la soja enviada a Argentina y Uruguay), aunque el total y los productos coinciden. Datos de todos los socios: <a href="datos/utilizacion_por_socio.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
 
+      <h3>Argentina y Uruguay: destino en la aduana y destino final</h3>
+    <p>Buena parte de lo que se despacha hacia Argentina y Uruguay sigue viaje a otros mercados (los puertos y las oficinas comerciales de las empresas están allí). El BCP asigna el destino según el certificado de origen, que se tramita después del despacho. La diferencia con Uruguay casi desapareció desde 2018; con Argentina sigue siendo de varios cientos de millones por año.</p>
+    <div class="card">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="img/destino_aduana_bcp_dark.png">
+        <img src="img/destino_aduana_bcp_light.png" alt="Gráfico de líneas, 2011 a 2025: exportaciones a Argentina y a Uruguay según el destino en la aduana y según el destino final del BCP" loading="lazy">
+      </picture>
+      <p class="note">Millones de USD FOB, sin electricidad, años completos. Datos: <a href="datos/destino_aduana_bcp.csv" download>CSV</a>. Fuentes: DNIT y BCP. Elaboración propia.</p>
+    </div>
   </section>
 
   <section id="por-acuerdo">
@@ -528,9 +537,9 @@ const chip = u => { const t = (u - uMin) / (uMax - uMin || 1), x = t * (PAL.leng
   const c = PAL[k].map((v,i) => Math.round(v + (PAL[k+1][i]-v)*f));
   return `<span class="chip" style="background:rgb(${c});color:${t < .15 || t > .85 ? "#fff" : "#1d1a1c"}">${fmt(u,1)} %</span>`; };
 document.getElementById("tabla").innerHTML =
-  "<thead><tr><th>Año</th><th>BCP</th><th>DNIT</th><th>VUE</th><th>Espejo (CIF)</th><th>Con acuerdo</th><th>% con acuerdo</th></tr></thead><tbody>" +
+  "<thead><tr><th>Año</th><th>BCP</th><th>DNIT</th><th>DNIT − BCP</th><th>VUE</th><th>Espejo (CIF)</th><th>Con acuerdo</th><th>% con acuerdo</th></tr></thead><tbody>" +
   D.map(r => { const tot = r[1] + r[2];
-    return `<tr><td>${r[6] < 12 ? r[0] + " (ene–sep)" : r[0]}</td><td>${v1(r[4])}</td><td>${v1(tot)}</td><td>${v1(r[3])}</td><td>${v1(r[5])}</td><td>${v1(r[1])}</td><td>${chip(100*r[1]/tot)}</td></tr>`;
+    return `<tr><td>${r[6] < 12 ? r[0] + " (ene–sep)" : r[0]}</td><td>${v1(r[4])}</td><td>${v1(tot)}</td><td>${v1(tot - r[4])}</td><td>${v1(r[3])}</td><td>${v1(r[5])}</td><td>${v1(r[1])}</td><td>${chip(100*r[1]/tot)}</td></tr>`;
   }).join("") + "</tbody>";
 
 // ---------------- Consultá un dato
