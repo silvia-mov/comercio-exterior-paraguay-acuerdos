@@ -216,7 +216,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <span><span class="sw line" style="background:var(--s3)"></span>% con acuerdo (eje derecho)</span>
       </div>
       <div id="chart1" role="img" aria-label="Gráfico de barras apiladas de exportaciones con y sin acuerdo, 2011 a 2026, con línea del porcentaje con acuerdo"></div>
-      <p class="note">Millones de USD FOB. 2026*: enero a septiembre. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">Millones de USD FOB. 2026* (barra más clara): enero a septiembre. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
 
   </section>
@@ -263,6 +263,13 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       </picture>
       <p class="note">% de lo importado (CIF), años completos. La franja rosada es lo que declaró un acuerdo para productos que ya entraban sin pagar arancel (Arancel Externo Común 0 %, o el mismo producto importado sin acuerdo ese año casi no pagó arancel). Datos: <a href="datos/importaciones_acuerdo_ventaja.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT y las versiones de la NCM (SAREM).</p>
     </div>
+    <h3>Cuánto se ahorra con los acuerdos (estimación)</h3>
+    <div class="kpis">
+      <div class="kpi"><div class="v">USD 411 M</div><div class="l">de arancel ahorrado en 2025 por las importaciones con acuerdo (estimación)</div></div>
+      <div class="kpi"><div class="v">USD 16 M</div><div class="l">de arancel pagado en 2025 por productos de origen MERCOSUR importados sin usar el acuerdo</div></div>
+      <div class="kpi"><div class="v">USD 1.361 M</div><div class="l">exportados en 2025 a Argentina, Brasil y Uruguay sin acuerdo, en productos con arancel externo común mayor a 0 (22 % de lo enviado a esos países)</div></div>
+    </div>
+    <p class="note"><b>Ahorro:</b> lo importado con acuerdo multiplicado por la tasa que pagó ese año el mismo producto importado sin acuerdo (o, si nadie lo importó sin acuerdo, por el Arancel Externo Común). <b>Pagado sin usar el MERCOSUR:</b> es poco, y una parte es esperable: el azúcar y los vehículos están fuera del libre comercio del MERCOSUR, y hay mercadería que no cumple las reglas de origen; lo que más pagó fueron agroquímicos (partida 3808) y vehículos (<a href="datos/ahorro_productos_mercosur_sin_acuerdo.csv" download>lista por producto</a>). <b>Exportaciones al MERCOSUR sin acuerdo:</b> esos países aplican el Arancel Externo Común (salvo sus excepciones nacionales), así que esas ventas podían usar la preferencia; pero una parte sigue viaje a otros destinos (ver "destino en la aduana y destino final") y otra puede no cumplir las reglas de origen. Son estimaciones: no ven exoneraciones propias de cada importador ni rebajas parciales. Datos: <a href="datos/ahorro_arancelario.csv" download>CSV</a>. Código: <code>python/ahorro_arancelario.py</code>.</p>
       <h3>Cómo cambió cada acuerdo</h3>
     <p>El MERCOSUR más que duplicó lo exportado con preferencia entre 2011 y 2025. Fuera de él, el acuerdo con Chile es el que más sumó, y desde 2021 crecen los acuerdos bilaterales con Brasil y Argentina.</p>
     <div class="card">
@@ -492,15 +499,19 @@ function dibujar() {
   const ys = v => f.m.t + f.ih - v / max1 * f.ih;
   ejeY(f, max1, 2500);
   D.forEach((r, i) => {
-    const x = f.m.l + bw * i + bw * .15, w = bw * .7;
-    el("rect", {x, y: ys(r[1]), width: w, height: f.m.t + f.ih - ys(r[1]), fill: "var(--s1)", rx: 2}, f.svg);
-    el("rect", {x, y: ys(r[1] + r[2]), width: w, height: ys(r[1]) - ys(r[1] + r[2]) - 1, fill: "var(--s2)", rx: 2}, f.svg)
+    const x = f.m.l + bw * i + bw * .15, w = bw * .7, op = r[6] < 12 ? .45 : 1;   // año incompleto: más claro
+    el("rect", {x, y: ys(r[1]), width: w, height: f.m.t + f.ih - ys(r[1]), fill: "var(--s1)", rx: 2, opacity: op}, f.svg);
+    el("rect", {x, y: ys(r[1] + r[2]), width: w, height: ys(r[1]) - ys(r[1] + r[2]) - 1, fill: "var(--s2)", rx: 2, opacity: op}, f.svg)
       .appendChild(document.createElementNS(NS, "title")).textContent =
         `${anio(r)}: con acuerdo ${fmt(r[1])} M, sin acuerdo ${fmt(r[2])} M (${fmt(100*r[1]/(r[1]+r[2]),1)} %)`;
   });
   const yp = p => f.m.t + f.ih - p / 100 * f.ih;
   el("polyline", {points: D.map((r, i) => `${xs(i)},${yp(100*r[1]/(r[1]+r[2]))}`).join(" "), fill: "none", stroke: "var(--s3)", "stroke-width": 2.5}, f.svg);
   D.forEach((r, i) => el("circle", {cx: xs(i), cy: yp(100*r[1]/(r[1]+r[2])), r: 3, fill: "var(--s3)"}, f.svg));
+  // Etiquetas de la línea: primer año, máximo y último año
+  const pc = D.map(r => 100 * r[1] / (r[1] + r[2])), imax = pc.indexOf(Math.max(...pc));
+  [...new Set([0, imax, D.length - 1])].forEach(i => el("text", {x: xs(i), y: yp(pc[i]) - 9, "text-anchor": "middle",
+    style: "fill:var(--s3);font-size:12px;font-weight:700;paint-order:stroke;stroke:var(--panel);stroke-width:3px"}, f.svg).textContent = fmt(pc[i], 1) + " %");
   for (let p = 0; p <= 100; p += 25)
     el("text", {x: f.W - f.m.r + 6, y: yp(p) + 4}, f.svg).textContent = p + "%";
   ejeX(f, xs);
