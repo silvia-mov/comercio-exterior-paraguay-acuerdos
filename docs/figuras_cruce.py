@@ -124,7 +124,7 @@ def main():
         fig, ax = plt.subplots(figsize=(10, 4.8))
         fig.subplots_adjust(left=0.07, right=0.97, top=0.7, bottom=0.12)
         series = [
-            ("BCP (oficial)", anual["BCP_SIN_ELECTRICIDAD"], t["texto"], "-"),
+            ("BCP (export. registradas)", anual["BCP_SIN_ELECTRICIDAD"], t["texto"], "-"),
             ("DNIT (despachos)", anual["DNIT_FOB_TOTAL"], t["verde"], "-"),
             ("VUE (certificados)", anual["VUE_FOB"], t["rosa"], "-"),
             ("Espejo (lo que declaran los socios)", anual["ESPEJO_SIN_ELECTRICIDAD"], t["menta"], (0, (4, 2))),
@@ -137,7 +137,7 @@ def main():
         r = (anual["DNIT_FOB_TOTAL"] / anual["BCP_SIN_ELECTRICIDAD"] * 100)
         titulo(fig, t, "Cuatro fuentes distintas cuentan casi lo mismo: los datos abiertos de aduanas son confiables",
                f"Exportaciones de Paraguay, millones de USD, sin electricidad. La DNIT queda entre el {int(r.min())} % y "
-               f"el {int(-(-r.max() // 1))} % del dato oficial del BCP. El espejo está en CIF.")
+               f"el {int(-(-r.max() // 1))} % de las exportaciones registradas del BCP (sin reexportaciones). El espejo está en CIF.")
         leyenda(fig, t, 0.07, 0.77, [(n, c, "●") for n, _, c, _ in series])
         nota = "En 2022 los archivos de la VUE tienen valores atípicos (octubre y noviembre)."
         if nota_parcial:
@@ -172,7 +172,7 @@ def main():
         nom = lambda x: TILDES.get(x.title(), x.title())
         titulo(fig, t, f"En {a_comp}, con {nom(orden[0])} el {ult[orden[0]]:.0f} % usa el acuerdo; "
                f"con {nom(orden[-1])}, solo el {ult[orden[-1]]:.0f} %",
-               "Tasa de utilización: % de lo exportado a cada país que usó una preferencia arancelaria. Los 6 socios "
+               "Participación del comercio con acuerdo: % de lo exportado a cada país que usó una preferencia arancelaria. Los 6 socios "
                f"con más exportaciones con acuerdo (DNIT). Los números son de {a_comp}, último año completo.")
         if nota_parcial:
             fig.text(0.07, 0.01, nota_parcial, fontsize=8.5, color=t["texto2"])

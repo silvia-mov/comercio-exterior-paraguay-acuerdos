@@ -21,7 +21,7 @@ Por país, por producto y por acuerdo, con una [página web](https://silvia-mov.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/utilizacion_anual_dark.png">
-  <img alt="Exportaciones de Paraguay con y sin acuerdo y tasa de utilización, 2011-2026" src="docs/img/utilizacion_anual_light.png">
+  <img alt="Exportaciones de Paraguay con y sin acuerdo y participación del comercio con acuerdo, 2011-2026" src="docs/img/utilizacion_anual_light.png">
 </picture>
 
 <picture>
