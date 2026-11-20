@@ -1,5 +1,18 @@
 # Versiones
 
+## 20 de noviembre de 2026
+
+- Página: "participación del comercio con acuerdo" (no es la tasa de utilización de preferencias de los estudios,
+  que divide por el comercio elegible); comparación contra las exportaciones registradas del BCP (sin reexportaciones).
+- Importaciones con **ventaja arancelaria potencial** (`python/importaciones_ventaja.py`): sin AEC 0 % ni productos que,
+  importados sin acuerdo ese año, casi no pagaron arancel. Gráfico nuevo 2011–2025.
+- AEC de la versión de la NCM vigente cada año (`config/aec_por_anio.csv.gz`, 63 versiones de SAREM).
+- 2026 hasta septiembre en toda la página; títulos con el último año completo (2025).
+- Gráfico por acuerdo con puntos (escala logarítmica); enlaces a los datos de cada gráfico; cruce de las 5 fuentes.
+- Etiquetas de acuerdo mal cargadas en la DNIT (SIN ACURDO, SINACUERDO, SIN MARCA, ML, N) pasan a "sin acuerdo";
+  ALADICUBA pasa a "Cuba (ALADI)". Montos menores a USD 1 millón.
+- Las tablas dinámicas de los Excel se quitaron (cada usuario la arma).
+
 ## Sin publicar (próxima v1.1.0)
 
 - **Arancel Nacional Vigente frente al AEC** (`arancel_nacional/`): el ANV de Paraguay a octubre de
