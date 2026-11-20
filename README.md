@@ -4,14 +4,14 @@
 
 **¿Cuánto exporta e importa Paraguay usando efectivamente cada acuerdo comercial?**<br>
 Con datos abiertos de la DNIT (aduanas), la VUE (MIC), el BCP y UN Comtrade, 2011–2026.<br>
-Por país, por producto y por acuerdo, con una [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/) con buscadores en lenguaje simple.
+Por país, por producto y por acuerdo, con una [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/) con buscadores en lenguaje simple.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
 ![R](https://img.shields.io/badge/R-4.x-276DC3?logo=r&logoColor=white)
 ![Datos](https://img.shields.io/badge/datos-DNIT%20·%20VUE%20·%20BCP%20·%20Comtrade-0b6e4f)
 ![Licencia](https://img.shields.io/badge/licencia-MIT-green)
 
-[Página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/) · [Utilización 2011–2026](#utilización-de-los-acuerdos-20112026) · [Para qué sirve](#para-qué-sirve) · [Inicio rápido](#inicio-rápido) · [Datos](#tres-formas-de-conseguir-los-datos) · [Glosario](docs/GLOSARIO.md)
+[Página web](https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/) · [Utilización 2011–2026](#utilización-de-los-acuerdos-20112026) · [Para qué sirve](#para-qué-sirve) · [Inicio rápido](#inicio-rápido) · [Datos](#tres-formas-de-conseguir-los-datos) · [Glosario](docs/GLOSARIO.md)
 
 </div>
 
@@ -71,7 +71,7 @@ están en [`datos_bcp/`](datos_bcp/LEEME.md) y los datos espejo de UN Comtrade e
 Para cada producto (4 y 8 dígitos de la NCM) y año: cuánto se comerció, qué parte usó un acuerdo y
 cuál fue el acuerdo principal. Sale directamente del campo "acuerdo" de cada despacho; no usa las
 listas de productos con preferencia de cada acuerdo, así que no dice qué productos *podrían* usar un
-acuerdo y no lo usan. En la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/#productos)
+acuerdo y no lo usan. En la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/#productos)
 hay un buscador ("soja", "carne", "yerba" o un código NCM).
 
 ```bash
@@ -99,7 +99,7 @@ La tabla dinámica la arma `python/tabla_dinamica.py` con LibreOffice (requiere 
 ## Comercio según el acuerdo usado, año por año
 
 Un gráfico por año, de exportaciones (FOB) e importaciones (CIF) según el acuerdo usado en el despacho:
-[2011](docs/img/acuerdos_2011_light.png) · [2012](docs/img/acuerdos_2012_light.png) · [2013](docs/img/acuerdos_2013_light.png) · [2014](docs/img/acuerdos_2014_light.png) · [2015](docs/img/acuerdos_2015_light.png) · [2016](docs/img/acuerdos_2016_light.png) · [2017](docs/img/acuerdos_2017_light.png) · [2018](docs/img/acuerdos_2018_light.png) · [2019](docs/img/acuerdos_2019_light.png) · [2020](docs/img/acuerdos_2020_light.png) · [2021](docs/img/acuerdos_2021_light.png) · [2022](docs/img/acuerdos_2022_light.png) · [2023](docs/img/acuerdos_2023_light.png) · [2024](docs/img/acuerdos_2024_light.png) · [2025](docs/img/acuerdos_2025_light.png) · [2026](docs/img/acuerdos_2026_light.png) (2026: enero a septiembre). También en la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/#por-acuerdo), con un selector de años.
+[2011](docs/img/acuerdos_2011_light.png) · [2012](docs/img/acuerdos_2012_light.png) · [2013](docs/img/acuerdos_2013_light.png) · [2014](docs/img/acuerdos_2014_light.png) · [2015](docs/img/acuerdos_2015_light.png) · [2016](docs/img/acuerdos_2016_light.png) · [2017](docs/img/acuerdos_2017_light.png) · [2018](docs/img/acuerdos_2018_light.png) · [2019](docs/img/acuerdos_2019_light.png) · [2020](docs/img/acuerdos_2020_light.png) · [2021](docs/img/acuerdos_2021_light.png) · [2022](docs/img/acuerdos_2022_light.png) · [2023](docs/img/acuerdos_2023_light.png) · [2024](docs/img/acuerdos_2024_light.png) · [2025](docs/img/acuerdos_2025_light.png) · [2026](docs/img/acuerdos_2026_light.png) (2026: enero a septiembre). También en la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/#por-acuerdo), con un selector de años.
 
 Se generan con `python docs/figuras.py` a partir de `salidas/por_acuerdo/` (un resumen por año de `procesar_despachos.py`).
 
@@ -145,7 +145,7 @@ terceros y acuerdos ALADI. Sin electricidad (no pasa por la aduana). Detalle en 
 ├── python/procesar_despachos.py   # versión Python (pandas)
 ├── python/descargar_dnit.py       # descarga los meses de la DNIT (o del respaldo)
 ├── R/procesar_despachos.R         # versión R / RStudio (data.table)
-├── comercio-exterior-paraguay-dnit-mic.Rproj   # abrir en RStudio
+├── comercio-exterior-paraguay-acuerdos.Rproj   # abrir en RStudio
 ├── config/
 │   ├── acuerdos.csv               # cómo se agrupa cada valor de "acuerdo" de la DNIT
 │   ├── regimenes.csv              # qué regímenes aduaneros se consideran definitivos
@@ -188,7 +188,7 @@ terceros y acuerdos ALADI. Sin electricidad (no pasa por la aduana). Detalle en 
    ```
 
    **R / RStudio**
-   - Abra `comercio-exterior-paraguay-dnit-mic.Rproj` en RStudio (fija el directorio de trabajo).
+   - Abra `comercio-exterior-paraguay-acuerdos.Rproj` en RStudio (fija el directorio de trabajo).
    - Abra `R/procesar_despachos.R`, cambie `RUTA_DATOS <- "datos_ejemplo"` y presione **Source**.
    - O por consola: `Rscript R/procesar_despachos.R datos_ejemplo`
 
@@ -201,14 +201,14 @@ Aduanas**: <https://www.dnit.gov.py/web/portal-institucional/datos-abiertos> (de
 archivos mensuales "Nivel Item").
 
 Copias de los archivos mensuales están en las
-[releases de este repositorio](https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/releases)
+[releases de este repositorio](https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/releases)
 (una release por año, por ejemplo `datos-2021`).
 
 ## Tres formas de conseguir los datos
 
 | | Cómo | Para quién |
 |---|---|---|
-| **1. Releases de este repositorio** | Entrar a [Releases](https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/releases), bajar los meses y copiarlos en `datos_dnit/`. | Quien quiere pocos meses, sin usar código. Es además el **respaldo**: copias guardadas aquí por si el portal de la DNIT se cae o cambia de dirección. |
+| **1. Releases de este repositorio** | Entrar a [Releases](https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/releases), bajar los meses y copiarlos en `datos_dnit/`. | Quien quiere pocos meses, sin usar código. Es además el **respaldo**: copias guardadas aquí por si el portal de la DNIT se cae o cambia de dirección. |
 | **2. Script de descarga** | `python python/descargar_dnit.py --anios 2021` | Quien quiere muchos meses. Baja de la DNIT y, si falla, del respaldo en las releases. |
 | **3. Portal de la DNIT a mano** | [Datos Abiertos](https://www.dnit.gov.py/web/portal-institucional/datos-abiertos) → Descargas → año → mes → CSV "Nivel Item". | Siempre disponible, mes por mes. |
 

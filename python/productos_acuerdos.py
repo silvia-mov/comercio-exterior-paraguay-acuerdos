@@ -133,7 +133,7 @@ def main():
         "a que se vende sobre todo a países sin acuerdo o a que la mercadería sigue viaje a otro país.",
         "El año en curso tiene solo los meses indicados en MESES.",
         "Fuente: DNIT, datos abiertos de aduanas. Elaboración propia. Código: "
-        "https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic",
+        "https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos",
     ]})
     hojas = [("Ranking 4 dígitos", ranking(p4)), ("Ranking 8 dígitos", ranking(p8)),
              ("Por acuerdo", por_acuerdo),

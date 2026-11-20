@@ -6,13 +6,13 @@
 <title>Datos de aduana de Paraguay | Descargas y cómo leerlos</title>
 <meta name="description" content="Datos de aduana de Paraguay (DNIT, BCP, VUE) por año para descargar, y cómo leerlos: regímenes, zonas francas, motivo del arancel, Turismo de Compras y errores de kilos.">
 <meta name="keywords" content="comercio exterior Paraguay, exportaciones Paraguay, importaciones Paraguay, acuerdos comerciales, MERCOSUR, ALADI, DNIT datos abiertos, aduana Paraguay, certificados de origen, VUE, preferencias arancelarias, FOB, CIF, NCM">
-<link rel="canonical" href="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/aduana.html">
+<link rel="canonical" href="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/aduana.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_PY">
 <meta property="og:title" content="Comercio exterior de Paraguay por acuerdo comercial">
 <meta property="og:description" content="Exportaciones e importaciones de Paraguay que usan efectivamente un acuerdo comercial. Datos abiertos de la DNIT y de la VUE, 2011-2026, con código en Python y R.">
-<meta property="og:url" content="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/">
-<meta property="og:image" content="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/img/acuerdos_2021_light.png">
+<meta property="og:url" content="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/">
+<meta property="og:image" content="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/img/acuerdos_2021_light.png">
 <meta name="twitter:card" content="summary_large_image">
 <style>
 :root {
@@ -157,7 +157,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <div class="card"><h3>3. Turismo de Compras (REGIMEN_TRIBUTARIO)</h3><p>No es un régimen aduanero: entra como importación común, pero paga IVA sobre el 12,5 % de la base (cerca de 1,25 % en lugar de 10 %), según el Decreto 2063/2024. Se reconoce por el IVA pagado y por la lista de productos del decreto. En 2025, el 92 % de los celulares importados entró así.</p></div>
       <div class="card"><h3>4. Kilos mal cargados (ALERTA_PESO)</h3><p>Un error de tipeo en los kilos (5 en vez de 50) hace que el valor por kilo salga muy distinto de lo normal. Se marcan las filas con un valor por kilo 50 veces mayor o menor que la mediana del mismo producto en el año. Es una alerta para revisar; los datos no se cambian.</p></div>
     </div>
-    <p class="note">Qué impuestos paga cada régimen y con qué norma: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/tree/main/regimenes_tributos">tabla de tributos por régimen</a>. Normas consultadas: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/tree/main/normas">carpeta normas</a>. Ejemplo: el cobro de 0,25 % sobre la carne exportada que aparece en "OTROS" es de la Ley 808/1996 (art. 14 c) y la Res. CIEFA 3/2021.</p>
+    <p class="note">Qué impuestos paga cada régimen y con qué norma: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/regimenes_tributos">tabla de tributos por régimen</a>. Normas consultadas: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/normas">carpeta normas</a>. Ejemplo: el cobro de 0,25 % sobre la carne exportada que aparece en "OTROS" es de la Ley 808/1996 (art. 14 c) y la Res. CIEFA 3/2021.</p>
   </section>
 
   <section id="ventaja">
@@ -217,22 +217,22 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <div class="card">
         <h3>BCP, archivos originales</h3>
         <p>Exportaciones por mes, código NCM y país, 2011–2026, tal como las exporta el SICEX del Banco Central del Paraguay.</p>
-        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/tree/main/datos_bcp">Ver archivos</a></div>
+        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/datos_bcp">Ver archivos</a></div>
       </div>
       <div class="card">
         <h3>VUE, archivos originales</h3>
         <p>Archivos mensuales 2011–2026 de la Ventanilla Única de Exportación. Origen de los datos: Ministerio de Industria y Comercio.</p>
-        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/tree/main/datos_vue">Ver archivos</a></div>
+        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/datos_vue">Ver archivos</a></div>
       </div>
       <div class="card">
         <h3>Espejo, UN Comtrade</h3>
         <p>Lo que cada país declara haber comprado a Paraguay, por año y producto (6 dígitos), 2011–2025. Valores CIF. Fuente: UN Comtrade.</p>
-        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/tree/main/datos_comtrade">Ver archivos</a></div>
+        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/datos_comtrade">Ver archivos</a></div>
       </div>
       <div class="card">
         <h3>DNIT, despachos de aduana</h3>
         <p>Copia de respaldo de los archivos mensuales "Nivel Item" de los datos abiertos de aduanas, un año por versión.</p>
-        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/releases">Ver versiones</a></div>
+        <div class="btns"><a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/releases">Ver versiones</a></div>
       </div>
     </div>
   </section>
@@ -242,7 +242,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <details><summary>¿Cómo armo una tabla dinámica con los Excel?</summary><ol><li>Descargá el Excel del año que quieras (sección <a href="#descargas">Descargar los datos</a>) y abrí la hoja <strong>Datos</strong>.</li><li>Hacé clic en cualquier celda de la tabla y andá a <strong>Insertar → Tabla dinámica</strong> → <strong>Aceptar</strong>.</li><li>En el panel de la derecha, arrastrá un campo (por ejemplo PAIS) a <strong>Filas</strong>, otro (por ejemplo ACUERDO) a <strong>Columnas</strong> y un valor (por ejemplo FOB) a <strong>Valores</strong>.</li><li>En los Excel completos de la DNIT, poné <strong>SE_CUENTA</strong> en <strong>Filtros</strong> y elegí SI, para no contar dos veces lo que pasa por zona franca.</li></ol><p>La hoja <strong>Notas</strong> explica cada columna.</p></details>
     <details><summary>¿Qué es la NCM y qué quiere decir "8 dígitos"?</summary><p>La NCM (Nomenclatura Común del MERCOSUR) es la lista de códigos que se usa para clasificar cada producto en la aduana. Cuantos más dígitos, más detalle. Por ejemplo, la soja en grano:</p><ul><li><strong>12</strong>: capítulo de semillas y frutos oleaginosos.</li><li><strong>1201</strong> (4 dígitos, "partida"): habas de soja.</li><li><strong>1201.90</strong> (6 dígitos): las demás habas de soja (no para siembra). Hasta aquí es igual en casi todo el mundo (Sistema Armonizado).</li><li><strong>1201.90.00</strong> (8 dígitos): el código propio del MERCOSUR.</li></ul><p>Los datos de la DNIT y del BCP vienen a 8 dígitos; los de UN Comtrade, a 6.</p></details>
     <details><summary>¿El país que figura es el destino final?</summary><p>No siempre. En la DNIT figura el país declarado en el despacho, que puede ser un país de paso. Por ejemplo, parte de lo que sale hacia Argentina o Uruguay por la hidrovía sigue después hacia otros mercados. En cambio, el certificado de origen de la VUE suele indicar el destino final. Por eso las cifras por país pueden diferir entre fuentes, aunque el total del año sea parecido.</p></details>
-    <details><summary>¿Se cuentan la maquila, las reexportaciones y lo que solo pasa en tránsito?</summary><p>Se cuenta solo el comercio definitivo, como recomienda la propia DNIT:</p><ul><li><strong>Sí se cuentan</strong>: las exportaciones e importaciones definitivas, incluidas las <strong>exportaciones de maquila</strong> (régimen definitivo), siempre que la mercadería figure como de origen paraguayo.</li><li><strong>No se cuentan</strong>: las reexportaciones de mercadería de otro origen, el tránsito, las importaciones temporales (incluida la entrada temporal de insumos de maquila), los depósitos y la entrada a zona franca, para no contar dos veces la misma mercadería.</li></ul><p>La lista completa de regímenes está en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/docs/GLOSARIO.md#3-qu%C3%A9-despachos-se-cuentan-y-cu%C3%A1les-no">glosario</a>.</p></details>
+    <details><summary>¿Se cuentan la maquila, las reexportaciones y lo que solo pasa en tránsito?</summary><p>Se cuenta solo el comercio definitivo, como recomienda la propia DNIT:</p><ul><li><strong>Sí se cuentan</strong>: las exportaciones e importaciones definitivas, incluidas las <strong>exportaciones de maquila</strong> (régimen definitivo), siempre que la mercadería figure como de origen paraguayo.</li><li><strong>No se cuentan</strong>: las reexportaciones de mercadería de otro origen, el tránsito, las importaciones temporales (incluida la entrada temporal de insumos de maquila), los depósitos y la entrada a zona franca, para no contar dos veces la misma mercadería.</li></ul><p>La lista completa de regímenes está en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md#3-qu%C3%A9-despachos-se-cuentan-y-cu%C3%A1les-no">glosario</a>.</p></details>
     <details><summary>¿Aparecen nombres de empresas?</summary><p>No. Los datos abiertos de la DNIT no identifican a importadores ni exportadores.</p></details>
     <details><summary>¿Qué pasa si la web de la DNIT cambia o deja de funcionar?</summary><p>Los archivos mensuales tienen una copia de respaldo en las versiones (releases) del repositorio, y el programa de descarga la usa automáticamente si el portal no responde.</p></details>
     <details><summary>¿Por qué importaciones en CIF y exportaciones en FOB?</summary><p>Es la convención habitual: las importaciones se miden con el costo puesto en el país (incluye flete y seguro) y las exportaciones con el valor en la frontera de salida.</p></details>
@@ -259,7 +259,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 
 <footer>
   <div class="wrap">
-    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT ni del Ministerio de Industria y Comercio.
+    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT ni del Ministerio de Industria y Comercio.
     <p id="contador" class="contador" hidden></p>
     <p class="banderas"><a href="https://info.flagcounter.com/VjYa" target="_blank" rel="noopener"><img src="https://s05.flagcounter.com/count2/VjYa/bg_201B1D/txt_F5EEF1/border_3A2F33/columns_3/maxflags_15/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Contador de visitas por país" loading="lazy" style="border:0;max-width:100%"></a></p>
   </div>

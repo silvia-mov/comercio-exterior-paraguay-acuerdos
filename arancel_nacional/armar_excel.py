@@ -207,7 +207,7 @@ notas = [
     ('Historia_BK, _BIT, _LNE', 'Qué códigos estuvieron en cada lista y con qué arancel, según las notificaciones semestrales de Paraguay al MERCOSUR (2018 a enero 2026).'),
     ('Materias_primas', 'Códigos del Régimen de Materias Primas de Paraguay por año (2018, 2019, 1er semestre 2020, 2023, 2024 y 2025). Dentro del régimen el arancel es 0 %.'),
     ('Estructura', 'Todas las filas del PDF en orden (partidas, subpartidas, ítems, códigos y desgloses), para leer la jerarquía.'),
-    ('NCM_nov2026', 'La NCM de noviembre 2026 de SAREM (archivo NCM_2026_11.xlsx del repositorio comercio-exterior-paraguay-dnit-mic), solo para control.'),
+    ('NCM_nov2026', 'La NCM de noviembre 2026 de SAREM (archivo NCM_2026_11.xlsx del repositorio comercio-exterior-paraguay-acuerdos), solo para control.'),
     ('Columnas nuevas (hoja Arancel)', None),
     ('Régimen de Materias Primas 2025', 'Sí, si el código está en la lista 2025 del régimen. Ojo: el PDF muestra el ANV normal para esos códigos, pero el importador que usa el régimen paga 0 %.'),
     ('Diferencia ANV − AEC', 'En puntos porcentuales. Ejemplo: AEC 16 y ANV 14,4 da −1,6. Negativo = Paraguay cobra menos que el AEC.'),

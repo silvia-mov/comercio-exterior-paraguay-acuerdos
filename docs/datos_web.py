@@ -47,7 +47,7 @@ def main():
         "Comercio); BCP (SICEX); UN Comtrade. Elaboración propia.",
         "CODIGO_PAIS = NA es Namibia, no un dato faltante: al leer los CSV, desactivar la conversión de "
         "'NA' (pandas: keep_default_na=False; R: na = '').",
-        "Método y código: https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic",
+        "Método y código: https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos",
     ]})
 
     # Comercio por acuerdo (exportaciones FOB e importaciones CIF), de procesar_despachos.py año por año

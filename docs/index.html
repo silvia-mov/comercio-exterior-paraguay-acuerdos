@@ -6,13 +6,13 @@
 <title>Comercio exterior de Paraguay por acuerdo comercial | Datos abiertos DNIT y VUE</title>
 <meta name="description" content="Cuánto exporta e importa Paraguay usando efectivamente cada acuerdo comercial (MERCOSUR, ALADI y otros). Series 2011-2026 con datos abiertos de la DNIT y certificados de origen de la VUE (MIC). Código libre en Python y R.">
 <meta name="keywords" content="comercio exterior Paraguay, exportaciones Paraguay, importaciones Paraguay, acuerdos comerciales, MERCOSUR, ALADI, DNIT datos abiertos, aduana Paraguay, certificados de origen, VUE, preferencias arancelarias, FOB, CIF, NCM">
-<link rel="canonical" href="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/">
+<link rel="canonical" href="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_PY">
 <meta property="og:title" content="Comercio exterior de Paraguay por acuerdo comercial">
 <meta property="og:description" content="Exportaciones e importaciones de Paraguay que usan efectivamente un acuerdo comercial. Datos abiertos de la DNIT y de la VUE, 2011-2026, con código en Python y R.">
-<meta property="og:url" content="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/">
-<meta property="og:image" content="https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/img/acuerdos_2021_light.png">
+<meta property="og:url" content="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/">
+<meta property="og:image" content="https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/img/acuerdos_2021_light.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
@@ -20,8 +20,8 @@
   "@type": "Dataset",
   "name": "Comercio exterior de Paraguay por acuerdo comercial (DNIT y VUE, 2011-2026)",
   "description": "Exportaciones (FOB) e importaciones (CIF) de Paraguay según si el despacho aduanero usó una preferencia de un acuerdo comercial (MERCOSUR, acuerdos del MERCOSUR con terceros y acuerdos ALADI), calculadas con los datos abiertos de despachos de la Dirección Nacional de Ingresos Tributarios (DNIT), y comparadas con los certificados de origen publicados por la Ventanilla Única de Exportación (VUE) del Ministerio de Industria y Comercio.",
-  "url": "https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/",
-  "sameAs": "https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic",
+  "url": "https://silvia-mov.github.io/comercio-exterior-paraguay-acuerdos/",
+  "sameAs": "https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos",
   "keywords": ["comercio exterior", "Paraguay", "acuerdos comerciales", "MERCOSUR", "ALADI", "exportaciones", "importaciones", "certificados de origen", "aduana"],
   "license": "https://opensource.org/licenses/MIT",
   "isAccessibleForFree": true,
@@ -36,7 +36,7 @@
   "distribution": [{
     "@type": "DataDownload",
     "encodingFormat": "text/csv",
-    "contentUrl": "https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/releases"
+    "contentUrl": "https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/releases"
   }]
 }
 </script>
@@ -160,10 +160,10 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="eyebrow">Datos abiertos · Paraguay · 2011–2026</p>
     <h1>Comercio exterior de Paraguay por acuerdo comercial</h1>
     <p class="lead">¿Cuánto exporta e importa Paraguay <strong>usando efectivamente</strong> un acuerdo comercial? Series anuales calculadas con los despachos aduaneros públicos de la DNIT y comparadas con los certificados de origen de la VUE.</p>
-    <p class="note" style="margin-top:-8px">Última actualización: 20 de noviembre de 2026 · <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/CHANGELOG.md">Qué cambió</a>.</p>
+    <p class="note" style="margin-top:-8px">Última actualización: 20 de noviembre de 2026 · <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/CHANGELOG.md">Qué cambió</a>.</p>
     <div class="btns">
-      <a class="btn primary" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">Ver el código en GitHub</a>
-      <a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/docs/GLOSARIO.md">Glosario</a>
+      <a class="btn primary" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos">Ver el código en GitHub</a>
+      <a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md">Glosario</a>
       <a class="btn" href="aduana.html">Datos de aduana y descargas</a>
     </div>
   </div>
@@ -373,7 +373,7 @@ python python/descargar_dnit.py --anios 2021
 python python/procesar_despachos.py --anios 2021</code></pre>
     <p>El resultado es un Excel con las hojas <em>Totales por año</em>, <em>Por acuerdo</em>, <em>Control</em> y <em>Detalle</em>. Para el cruce con los certificados de origen:</p>
 <pre><code>python python/cruzar_dnit_vue.py --anios 2011-2026</code></pre>
-    <p>En RStudio, abra el proyecto <code>.Rproj</code> y ejecute <code>R/procesar_despachos.R</code>. Las instrucciones completas están en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic#readme">README</a>.</p>
+    <p>En RStudio, abra el proyecto <code>.Rproj</code> y ejecute <code>R/procesar_despachos.R</code>. Las instrucciones completas están en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos#readme">README</a>.</p>
   </section>
 
   <section id="metodo">
@@ -385,7 +385,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
       <li>"Con acuerdo" incluye las preferencias del MERCOSUR intrazona y los acuerdos preferenciales. "Sin acuerdo" incluye los despachos sin preferencia, los que figuran como OMC y los que no tienen dato de acuerdo.</li>
       <li>Las fechas corresponden a la cancelación del despacho. La electricidad no pasa por la aduana y no está incluida.</li>
     </ul>
-    <p>El detalle de cada concepto, columna y decisión está en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/docs/GLOSARIO.md">glosario</a>.</p>
+    <p>El detalle de cada concepto, columna y decisión está en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md">glosario</a>.</p>
   </section>
 
   <section id="preguntas">
@@ -413,7 +413,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
     <details><summary>¿Por qué no está la electricidad?</summary><p>La energía de Itaipú y Yacyretá no pasa por la aduana, así que no aparece en los despachos de la DNIT ni en los certificados de origen. Sí la registra el Banco Central del Paraguay (código NCM 2716). Era cerca del 29 % de lo exportado en 2011 y cerca del 11 % en 2025. Para comparar las cuatro fuentes se usa siempre la cifra <strong>sin electricidad</strong>.</p></details>
     <details><summary>¿Hasta qué mes hay datos y cada cuánto se actualiza?</summary><p>Los años 2011 a 2025 están completos. 2026 está incompleto: en los gráficos llega hasta septiembre, el último mes disponible del Banco Central, para que las fuentes sean comparables; los Excel de la DNIT y de la VUE pueden traer algún mes más (cada archivo lo dice en su hoja Notas). Los datos del Banco Central son preliminares durante dos años y se pueden corregir. La página se actualiza cuando las instituciones publican meses nuevos.</p></details>
     <details><summary>¿Los montos tienen en cuenta la inflación?</summary><p>No. Todos los valores están en dólares de cada año (dólares corrientes), tal como los publican las fuentes. Una parte de los cambios de un año a otro se debe a los precios (por ejemplo, el precio de la soja) y no solo a las cantidades. Para ver cantidades, los archivos traen también el peso en kilos.</p></details>
-    <details><summary>¿Qué es MERCOSUR "intrazona" y qué son los demás acuerdos?</summary><p><strong>MERCOSUR intrazona</strong> es el comercio entre los socios del MERCOSUR (Argentina, Brasil, Paraguay y Uruguay) bajo su propio acuerdo, el ACE 18. Los acuerdos <strong>con terceros países</strong> son los que el MERCOSUR firmó como bloque con otros (Chile, Bolivia, Perú, Colombia, Israel, Egipto, entre otros), y en esta página se llaman "preferenciales" junto con los acuerdos de ALADI. Los dos tipos cuentan como "con acuerdo". Más detalle en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/docs/GLOSARIO.md#2-con-acuerdo-y-sin-acuerdo">glosario</a>.</p></details>
+    <details><summary>¿Qué es MERCOSUR "intrazona" y qué son los demás acuerdos?</summary><p><strong>MERCOSUR intrazona</strong> es el comercio entre los socios del MERCOSUR (Argentina, Brasil, Paraguay y Uruguay) bajo su propio acuerdo, el ACE 18. Los acuerdos <strong>con terceros países</strong> son los que el MERCOSUR firmó como bloque con otros (Chile, Bolivia, Perú, Colombia, Israel, Egipto, entre otros), y en esta página se llaman "preferenciales" junto con los acuerdos de ALADI. Los dos tipos cuentan como "con acuerdo". Más detalle en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md#2-con-acuerdo-y-sin-acuerdo">glosario</a>.</p></details>
     <details><summary>¿Por qué empieza en 2011?</summary><p>Porque desde 2011 hay datos de las cuatro fuentes (DNIT, VUE, Banco Central y UN Comtrade) y se pueden comparar entre sí. El Banco Central tiene datos más antiguos, pero sin las otras fuentes no se podría verificar que las cifras sean coherentes.</p></details>
     <details><summary>¿Por qué el BCP da más que la DNIT?</summary><p>Porque el BCP suma la electricidad de Itaipú, Yacyretá y la ANDE, que no pasa por la aduana, y cuenta todos los regímenes aduaneros (maquila, zonas francas, courier y otros). Sin la electricidad, la diferencia es pequeña.</p></details>
     <details><summary>¿Puedo usar estos datos y el código?</summary><p>Sí. El código tiene licencia MIT. Al usar los datos de la VUE, cite "Origen de los datos: Ministerio de Industria y Comercio". Este proyecto es independiente y no cuenta con el respaldo de la DNIT ni del Ministerio.</p></details>
@@ -441,7 +441,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
 
 <footer>
   <div class="wrap">
-    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT, del Banco Central del Paraguay, del Ministerio de Industria y Comercio ni de ningún gobierno.
+    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT, del Banco Central del Paraguay, del Ministerio de Industria y Comercio ni de ningún gobierno.
     <p id="contador" class="contador" hidden></p>
     <p class="banderas"><a href="https://info.flagcounter.com/VjYa" target="_blank" rel="noopener"><img src="https://s05.flagcounter.com/count2/VjYa/bg_201B1D/txt_F5EEF1/border_3A2F33/columns_3/maxflags_15/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Contador de visitas por país" loading="lazy" style="border:0;max-width:100%"></a></p>
   </div>

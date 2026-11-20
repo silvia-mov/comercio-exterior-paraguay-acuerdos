@@ -99,7 +99,7 @@ def dnit(anio):
              "TIPO_ACUERDO y ACUERDO_CONSOLIDADO: preferencia arancelaria declarada en el despacho. 'OMC' y "
              "'Sin acuerdo' pagan el arancel general.",
              "PAIS: destino (exportación) u origen (importación) según la DNIT.",
-             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic"]
+             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos"]
     tabla = {"hoja_datos": "Datos", "filas": ["ACUERDO_CONSOLIDADO"], "columnas": ["OPERACION"],
              "filtros": ["PAIS", "PARTIDA"], "valores": [["VALOR_USD", "suma", "Valor (USD)"]]}
     return d, notas, tabla
@@ -121,7 +121,7 @@ def bcp(anio):
              "FOB_DOLAR: valor FOB en dólares. KILOS_NETOS: peso neto.",
              "ELECTRICIDAD: SI para la NCM 2716 (energía eléctrica de Itaipú y Yacyretá), que no pasa por la aduana.",
              "CODIGO_PAIS: código de país de la DNIT, para cruzar con los otros archivos.",
-             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic"]
+             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos"]
     tabla = {"hoja_datos": "Datos", "filas": ["PAIS"], "columnas": ["MES"],
              "filtros": ["ELECTRICIDAD", "PARTIDA"], "valores": [["FOB_DOLAR", "suma", "FOB (USD)"]]}
     return d, notas, tabla
@@ -158,7 +158,7 @@ def vue(anio):
              "Este archivo no es una publicación oficial del Ministerio ni cuenta con su aval.",
              "FOBDOLAR: valor FOB en dólares. TONELADA: peso en toneladas. CAPITULO: partida de 4 dígitos "
              "(cuando el archivo la trae).",
-             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic"]
+             "Código y explicación: https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos"]
     tabla = {"hoja_datos": "Datos", "filas": ["PAISDESTINO"], "columnas": ["MES"],
              "filtros": ["CATEGORIA"], "valores": [["FOBDOLAR", "suma", "FOB (USD)"]]}
     return d, notas, tabla
