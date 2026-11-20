@@ -95,6 +95,42 @@ def main():
           "Exentos de todo otro tributo (art. 13). Lo que sale de la zona franca al resto del país paga todos los tributos de "
           "importación (art. 20), salvo productos que cumplen el régimen de origen. En los datos de la DNIT el 0,5 % figura "
           "en OTROS en las exportaciones desde zona franca (ZF2E).", relleno=VERDE)
+    for nombre, tasa, base, art, nota in [
+        ("Política automotriz nacional", "0 % de arancel; IVA sobre el 20 % del valor aduanero (equivale a 2 %); motos 40 % (4 %)",
+         "Bienes de capital, materias primas, partes e insumos para producir o ensamblar vehículos (cap. 87)",
+         "Ley 4838/2012, arts. 6 y 7", "Texto de la BACN."),
+        ("Transporte eléctrico", "0 % de impuesto aduanero y 0 % de IVA",
+         "Vehículos eléctricos, sus repuestos y equipos para ensamblarlos", "Ley 6925/2022, arts. 10, 11 y 12",
+         "Copia escaneada, leída con OCR. La exoneración de repuestos dura 10 años desde la publicación."),
+        ("Bienes de alta tecnología", "0 % de arancel; IVA 10 % sobre el 15 % del valor aduanero (equivale a 1,5 %)",
+         "Materias primas, partes y piezas para producir bienes de alta tecnología", "Ley 4427/2012, arts. 7 y 8",
+         "Texto de la BACN. Vigencia a confirmar: no figura en el art. 153 de la Ley 6380/2019."),
+        ("Garantías para las inversiones y el empleo", "Sin exoneración propia en el despacho",
+         "Maquinaria y equipos que no se producen en el país", "Ley 5542/2015, art. 9",
+         "Remite al régimen arancelario de la Ley 60/90. Lo propio de esta ley es la invariabilidad del impuesto a la renta."),
+        ("Leasing", "IVA en suspenso en la importación", "Bienes importados por el dador para entregarlos en leasing",
+         "Ley 1295/1998, arts. 71 y 75", "Con fianza o con el contrato inscripto. Si el tomador tiene una exoneración, "
+         "el dador importa bajo ese régimen."),
+        ("Minería", "Exentos de derechos de importación, IVA y todo otro impuesto",
+         "Maquinaria, vehículos, insumos y materiales para prospección y exploración", "Ley 3180/2007, art. 49",
+         "Solo mientras dure la prospección y exploración; no en la explotación (art. 48)."),
+        ("Cooperativas", "Exentas de aranceles aduaneros, adicionales y recargos",
+         "Bienes de capital para el objeto social", "Ley 438/1994, art. 113 c), en la redacción de la Ley 5501/2015",
+         "No se pueden transferir hasta 5 años después de su ingreso. Texto de la Ley 5501/2015 (BACN)."),
+        ("Negocios fiduciarios", "Sin exoneración en el despacho",
+         "Negocios y servicios fiduciarios (operación interna)", "Ley 921/1996, arts. 38 y 39",
+         "Exentos de IVA y del impuesto a los actos y documentos; no tocan los tributos a la importación."),
+        ("Vacunas", "Exento de todo tributo a la importación",
+         "Vacunas, jeringas y equipos de cadena de frío que importa el Ministerio de Salud", "Ley 7577/2025, art. 2",
+         "Despacho directo a consumo con prioridad (art. 3)."),
+        ("Eventos deportivos internacionales", "Exentos de todo impuesto, tasa, contribución o canon a la importación",
+         "Equipos e implementos deportivos para eventos declarados por decreto", "Ley 7467/2025, arts. 6, 7 y 8",
+         "Copia escaneada, leída con OCR. También admisión temporaria sin tasas ni garantías (art. 7)."),
+    ]:
+        poner(nombre, tasa, base, art, nota, relleno=VERDE)
+    poner("Acuerdos, convenios y tratados internacionales", "Preferencia arancelaria de cada acuerdo",
+          "Productos con certificado de origen", "Cada acuerdo y su ley aprobatoria",
+          "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).")
     r_rmp = fila["Régimen de materias primas (RMP)"]
     ws.cell(r_rmp, 7).value = "Decreto 11.771/2000 (modifica el art. 12 del Decreto 1053/1993); prorrogado por el Decreto 8664/2022"
     poner("Régimen de materias primas (RMP)", "0 % de arancel", "Materias primas e insumos para el proceso productivo propio",
@@ -143,7 +179,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 y Res. CIEFA 3/2021; tasa de valoración en el Código Aduanero.",
+              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025 y 7467/2025; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
