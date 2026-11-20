@@ -111,10 +111,10 @@ def main():
     ws.cell(r, 1).value = r - 1
     for col, v in {2: "2. Cobros y reglas en la exportación", 3: "Cobro sobre la carne bovina exportada",
                    4: "Porcentaje sobre la exportación de carne (NCM 0201, 0202 y 0206); figura en OTROS",
-                   5: "Exportación", 6: "Directa", 7: "Ley 808/1996, art. 14 c)", 8: "Resolución CIEFA 3/2021",
-                   9: "Vigente", 10: "Sí (Ley 808/1996)", 11: "Texto de la BACN; datos de la DNIT (OTROS en EC01 y EC03)", 12: "Hasta 0,25 % del valor de cada tonelada",
-                   13: "Valor de la carne importada y exportada", 14: "Ley 808/1996, art. 14 c)",
-                   15: "La Res. CIEFA 3/2021 fija el monto por tonelada (falta su texto). En los datos de la DNIT se ve cerca de 0,25 %."}.items():
+                   5: "Exportación", 6: "Directa", 7: "Ley 808/1996, art. 14 c)", 8: "Resolución CIEFA 3/2021 (texto en la carpeta normas)",
+                   9: "Vigente", 10: "Sí (Ley 808/1996)", 11: "Texto de la BACN; datos de la DNIT (OTROS en EC01 y EC03)", 12: "0,25 % por cada tonelada de carne",
+                   13: "Valor de la carne importada y exportada", 14: "Ley 808/1996, art. 14 c) (tope); Res. CIEFA 3/2021, art. 1 (valor desde el 01/01/2022)",
+                   15: "La Res. CIEFA 3/2021 (17/12/2021, Acta CIEFA 385) fija el valor en 0,25 % desde el 01/01/2022. En los datos de la DNIT se ve cerca de 0,25 %."}.items():
         ws.cell(r, col).value = v
         ws.cell(r, col).font = Font(name="Arial", size=10)
         ws.cell(r, col).alignment = Alignment(wrap_text=True, vertical="top")
@@ -143,7 +143,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995 y Decretos 11.771/2000 y 11.525/2007; tasa de valoración en el Código Aduanero.",
+              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 y Res. CIEFA 3/2021; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
