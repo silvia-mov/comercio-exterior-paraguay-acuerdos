@@ -135,6 +135,35 @@ def main():
     poner("Ley 285/1993", "Sin relación con la importación", "Beneficios adicionales que la empresa da a sus trabajadores",
           "Ley 285/1993, arts. 2 y 7", "Reglamenta el art. 93 de la Constitución: esos beneficios son gasto deducible "
           "exento de tributos, hasta el 10 % de la renta neta.", relleno=VERDE)
+    def celda(nombre, col, valor):
+        ws.cell(fila[nombre], col).value = valor
+    poner("Tasas de legalización y aranceles consulares", "Sin tasa consular en la importación desde 2023",
+          "Visado de facturas, conocimientos de embarque y demás documentos de importación",
+          "Ley 4033/2010, art. 11 (tabla); Ley 7196/2023, arts. 2 a 4",
+          "La Ley 7196/2023 derogó la 1.ª sección (operaciones de importación) del capítulo de comercio y los capítulos "
+          "de transporte; siguen las tasas por otros trámites consulares.", relleno=VERDE)
+    celda("Tasas de legalización y aranceles consulares", 7, "Ley 4033/2010, Del Arancel Consular")
+    celda("Tasas de legalización y aranceles consulares", 9, "Vigente para otros trámites; derogada para la importación (Ley 7196/2023)")
+    poner("Ajuste de precios en la exportación de granos", "No es una tasa: el precio de exportación se ajusta a la cotización de bolsa del día del embarque",
+          "Bienes con cotización internacional (granos y derivados)", "Ley 6380/2019, art. 38, num. 7 (antes Ley 5061/2013, art. 4)",
+          "La misma regla pasó de la Ley 5061/2013 a la Ley 6380/2019, para el Impuesto a la Renta Empresarial.", relleno=VERDE)
+    celda("Ajuste de precios en la exportación de granos", 7, "Ley 6380/2019, art. 38, num. 7")
+    celda("Ajuste de precios en la exportación de granos", 9, "Vigente (Ley 6380/2019)")
+    celda("Bienes de alta tecnología", 9, "Derogada: Ley 6380/2019, art. 153, num. 5 (no está entre las excepciones) y "
+          "expresamente por la Ley 7546/2025, art. 22")
+    poner("Sector azucarero (AZ)", "30 % (Arancel Nacional Vigente)", "Azúcar (partida 17.01 y otras del anexo)",
+          "Dec. CMC 19/94, arts. 3 y 4", "La Dec. CMC 19/94 deja que cada país aplique su propia protección al azúcar, "
+          "también dentro del MERCOSUR. Falta leer el decreto nacional que fija el 30 %.", relleno=CELESTE)
+    celda("Sector azucarero (AZ)", 7, "Dec. CMC 19/94 (MERCOSUR); decreto nacional a confirmar")
+    # Ley 6380/2019, art. 153, num. 5: siguen vigentes solo las exoneraciones de esta lista.
+    for nombre in ["Donaciones al Estado y a otras instituciones", "Franquicias diplomáticas y consulares", "Ley 285/1993",
+                   "Cooperativas", "Negocios fiduciarios", "Leasing", "Minería", "Zonas francas",
+                   "Inversión: Ley 60/90 (régimen anterior)", "Maquila: Ley 1064/1997 (régimen anterior)",
+                   "Política automotriz nacional", "Importación de vehículos eléctricos (2012)", "Diabetes",
+                   "Garantías para las inversiones y el empleo"]:
+        v = ws.cell(fila[nombre], 9).value or ""
+        if "Ley 6380" not in v:
+            celda(nombre, 9, (v + ". " if v and v != "Vigente" else "Vigente. ") + "Exceptuada de la derogación general de la Ley 6380/2019, art. 153, num. 5")
     poner("Acuerdos, convenios y tratados internacionales", "Preferencia arancelaria de cada acuerdo",
           "Productos con certificado de origen", "Cada acuerdo y su ley aprobatoria",
           "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).")
@@ -186,7 +215,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819 y 6178; tasa de valoración en el Código Aduanero.",
+              "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819 y 6178; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
