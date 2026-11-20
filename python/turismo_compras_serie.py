@@ -22,7 +22,8 @@ CEL = "85171"   # 8517.12 (hasta 2022) y 8517.13 (desde 2022): teléfonos celula
 
 
 def main():
-    meses = pd.read_csv(DATOS / "utilizacion_por_anio.csv").set_index("AÑO")["MESES"]
+    # Meses de cada archivo anual (los mismos que usa importaciones_ventaja.py)
+    meses = pd.read_csv(DATOS / "importaciones_acuerdo_ventaja.csv", encoding="utf-8-sig").set_index("AÑO")["MESES"]
     filas, cel = [], []
     for f in sorted(ANUAL.glob("DNIT_*_importacion.xlsx")):
         a = int(f.stem.split("_")[1])

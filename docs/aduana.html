@@ -140,7 +140,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <a class="btn primary" href="./">Volver a comercio por acuerdo</a>
       <a class="btn" href="#descargas">Descargar datos</a>
     </div>
-    <p class="note corte">Datos de la DNIT hasta septiembre de 2026. La DNIT puede corregir despachos después (por declaraciones tardías o rectificaciones): los archivos de esta página son una copia a esa fecha y se regeneran con cada actualización.</p>
+    <p class="note corte">Datos de la DNIT hasta octubre de 2026. La DNIT puede corregir despachos después (por declaraciones tardías o rectificaciones): los archivos de esta página son una copia a esa fecha y se regeneran con cada actualización.</p>
   </div>
 </header>
 
@@ -178,9 +178,9 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <div class="card">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="img/turismo_compras_dark.png">
-        <img src="img/turismo_compras_light.png" alt="Gráfico de barras apiladas, 2011 a 2026: parte de lo importado que pagó IVA reducido, entre 12 % y 24 % cada año, alrededor de 20 % desde 2023" loading="lazy">
+        <img src="img/turismo_compras_light.png" alt="Gráfico de barras apiladas, 2011 a 2026: parte de lo importado que pagó IVA reducido, entre 12 % y 24 % cada año, alrededor de 20 % desde 2023, con una línea del BCP que sigue casi los mismos valores" loading="lazy">
       </picture>
-      <p class="note">El IVA reducido para estos productos no empezó en 2024: el Decreto 2063/2024 reemplazó a un régimen anterior parecido (Decreto 1931/2019, y antes otros). En verde, los códigos de la lista actual; antes de 2022 los mismos productos tenían otros códigos y caen en rosa, por eso la división cambia y el total no. Datos: <a href="datos/turismo_compras_por_anio.csv" download>CSV</a>. Código: python/turismo_compras_serie.py. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">El IVA reducido para estos productos no empezó en 2024: el Decreto 2063/2024 reemplazó a un régimen anterior parecido (Decreto 1931/2019, y antes otros). En verde, los códigos de la lista actual; antes de 2022 los mismos productos tenían otros códigos y caen en rosa, por eso la división cambia y el total no. <strong>Control con el dato oficial:</strong> el Anexo Estadístico del BCP (Cuadro 52a) publica la importación bajo el Régimen de Turismo, y su porcentaje queda a 1 o 2 puntos del total de las barras en casi todos los años (por ejemplo, 2019: 23,6 % en los dos; 2023: 22,3 % y 22,8 %). Datos: <a href="datos/turismo_bcp_por_anio.csv" download>CSV del BCP</a> y <a href="datos/turismo_compras_por_anio.csv" download>CSV</a>. Código: python/turismo_compras_serie.py y python/leer_anexo_bcp.py. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
   </section>
 
