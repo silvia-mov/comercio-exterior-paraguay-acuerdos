@@ -490,9 +490,10 @@ sel.addEventListener("change", () => {
 // Tabla
 const v1 = x => x === null ? "–" : fmt(x, 1);
 const UT = D.map(r => 100*r[1]/(r[1]+r[2])), uMin = Math.min(...UT), uMax = Math.max(...UT);
-const chip = u => { const t = (u - uMin) / (uMax - uMin || 1);   // 0 = más bajo, 1 = más alto (más verde)
-  const c0 = [226,246,240], c1 = [31,143,115], c = c0.map((v,i) => Math.round(v + (c1[i]-v)*t));
-  return `<span class="chip" style="background:rgb(${c});color:${t > .55 ? "#fff" : "#123a31"}">${fmt(u,1)} %</span>`; };
+const PAL = [[255,88,131],[255,145,173],[254,201,215],[185,238,225],[121,211,190],[57,184,154]];   // más bajo rosado, más alto verde
+const chip = u => { const t = (u - uMin) / (uMax - uMin || 1), x = t * (PAL.length - 1), k = Math.min(Math.floor(x), PAL.length - 2), f = x - k;
+  const c = PAL[k].map((v,i) => Math.round(v + (PAL[k+1][i]-v)*f));
+  return `<span class="chip" style="background:rgb(${c});color:${t < .15 || t > .85 ? "#fff" : "#1d1a1c"}">${fmt(u,1)} %</span>`; };
 document.getElementById("tabla").innerHTML =
   "<thead><tr><th>Año</th><th>BCP</th><th>DNIT</th><th>VUE</th><th>Espejo (CIF)</th><th>Con acuerdo</th><th>Utilización</th></tr></thead><tbody>" +
   D.map(r => { const tot = r[1] + r[2];
