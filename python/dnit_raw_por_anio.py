@@ -177,7 +177,7 @@ def main():
                      "zonas francas, admisiones temporales).",
                      "IMPORTANTE, columna SE_CUENTA: para sumar el comercio sin contar dos veces, filtrar SE_CUENTA = SI (solo regímenes "
                      "definitivos). La mercadería que pasa por una zona franca figura al entrar (ZF01, SE_CUENTA = NO) y al salir al país "
-                     "(ZF2I, SE_CUENTA = SI). Ej.: celulares 8517.13 en 2023: USD 3.034 millones sumando todo, 1.687 con SE_CUENTA = SI "
+                     "(ZF2I, SE_CUENTA = SI). Ej.: celulares 8517.13 en 2023: USD 3.100 millones sumando todo, 1.722 con SE_CUENTA = SI "
                      "(cifra oficial de Paraguay en UN Comtrade: 1.729 CIF). La hoja 'Regímenes' explica cada código.",
                      "Hoja 'Descripciones': textos de cada POSICION (los del primer ítem). Hoja 'Regímenes': nombre de cada código DESTINACION.",
                      "Se quitaron TOTAL (= DERECHO + ISC + SERVICIO + RENTA + IVA + OTROS), los ajustes a incluir/deducir y el kilo bruto.",

@@ -2,6 +2,10 @@
 
 ## 20 de noviembre de 2026
 
+- Página de aduana: Turismo de Compras completo (anticipo IRE 1 %, reemplaza al Decreto 1931/2019); 98 % de los
+  celulares en 2025 (antes decía 92 %, con datos previos a la regeneración); ejemplo de celulares 2023 actualizado
+  (3.100 / 1.722 / 1.729); lista de 4 pasos; fecha de corte; glosario de regímenes; gráficos de IVA reducido 2011–2026
+  y del doble conteo (`python/turismo_compras_serie.py`, `docs/figuras_turismo.py`).
 - Página: "participación del comercio con acuerdo" (no es la tasa de utilización de preferencias de los estudios,
   que divide por el comercio elegible); comparación contra las exportaciones registradas del BCP (sin reexportaciones).
 - Importaciones con **ventaja arancelaria potencial** (`python/importaciones_ventaja.py`): sin AEC 0 % ni productos que,
