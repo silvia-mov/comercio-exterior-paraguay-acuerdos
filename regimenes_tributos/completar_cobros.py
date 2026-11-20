@@ -84,6 +84,21 @@ def main():
     poner("Anticipo del IRE en la importación", nota="En los datos se ve cerca de 0,4 % a 0,5 % (la base de la DNIT "
           "puede incluir otros tributos). Solo lo pagan los contribuyentes del IRE general.")
 
+    poner("Maquila: Ley 1064/1997 (régimen anterior)", "Tributo único de 1 %", "Valor agregado en territorio nacional",
+          "Ley 1064/1997, art. 29", "Igual tasa que la Ley 7547/2025. Se paga como impuesto interno, no en el despacho.",
+          relleno=VERDE)
+    poner("Franquicias diplomáticas y consulares", "Exentos del gravamen aduanero y de los tributos internos a la importación",
+          "Bienes importados por misiones, organismos internacionales y funcionarios que regresan", "Ley 110/1992, art. 3",
+          "Bajo condición de reciprocidad (art. 2). No se eximen las tasas por servicios prestados.", relleno=VERDE)
+    r_rmp = fila["Régimen de materias primas (RMP)"]
+    ws.cell(r_rmp, 7).value = "Decreto 11.771/2000 (modifica el art. 12 del Decreto 1053/1993); prorrogado por el Decreto 8664/2022"
+    poner("Régimen de materias primas (RMP)", "0 % de arancel", "Materias primas e insumos para el proceso productivo propio",
+          "Decreto 1053/1993, art. 12, en la redacción del Decreto 11.771/2000, art. 1",
+          "Requisitos: inscripción anual, pedido de al menos USD 1.500 FOB y que no haya producción nacional. "
+          "Texto tomado de una copia de relacionespublicas.com.py (no oficial).", relleno=VERDE)
+    poner("Canon informático", nota="La DNIT no lo muestra aparte: va dentro de OTROS, que en 2025 fue cerca de 0,4 % "
+          "del valor en aduana (hoja Control_DNIT_2025). La Res. DGA 25/1994 lo cobra por despacho de importación desde el "
+          "14/02/1994 y dice que la exportación no paga, pero el cuadro de montos (Res. MH 1144/1992, art. 2) no está en la copia.")
     # Fila nueva: el cobro de la carne exportada (ya documentado en este repositorio).
     r = ws.max_row + 1
     ws.cell(r, 1).value = r - 1
@@ -121,7 +136,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Leídas en el texto oficial (BACN) el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012 y 5542/2015; tasa de valoración en el Código Aduanero.",
+              "Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992 y Decreto 11.771/2000; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
