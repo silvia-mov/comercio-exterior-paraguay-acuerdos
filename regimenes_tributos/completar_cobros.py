@@ -66,6 +66,7 @@ def main():
           "El servicio lo creó el Decreto-Ley 5/1974, aprobado por la Ley 489/1974. En 2025 el 99 % del valor importado "
           "pagó 0,5 % (hoja Control_DNIT_2025).", relleno=VERDE)
     ws.cell(fila["Tasa por servicio de valoración aduanera"], 7).value = "Ley 2422/2004, Código Aduanero"
+    ws.cell(fila["Tasa por servicio de valoración aduanera"], 9).value = "Vigente (se cobró en 2025: hoja Control_DNIT_2025)"
     poner("Importación de vehículos eléctricos (2012)", "0 % de arancel y 0 % de IVA", "Vehículos eléctricos e híbridos importados",
           "Ley 4601/2012, art. 1", "Modificada por la Ley 5183/2014 (carpeta normas). Texto de la BACN.", relleno=VERDE)
     poner("Donaciones al Estado y a otras instituciones", "Exentas de todo tributo", "Bienes donados",
