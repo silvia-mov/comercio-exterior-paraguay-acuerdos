@@ -65,9 +65,14 @@ def grafico_acuerdos(por_acuerdo, anio, modo, t):
         d["nombre"] = d["ACUERDO_CONSOLIDADO"].replace(NOMBRES_CORTOS)
         d = d[d["M"] >= 1].sort_values("M")
         colores = [t["con"] if tipo != "SIN_ACUERDO" else t["sin"] for tipo in d["TIPO_ACUERDO"]]
-        ax.barh(d["nombre"], d["M"], color=colores, height=0.7)
-        for y, v in enumerate(d["M"]):
-            ax.text(v, y, " " + millones(v), va="center", fontsize=8.5, color=t["texto2"])
+        # Puntos y no barras: en escala logarítmica el largo de una barra no es proporcional al valor
+        y = range(len(d))
+        ax.scatter(d["M"], y, s=70, color=colores, zorder=3, edgecolors=t["eje"], linewidths=0.4)
+        ax.set_yticks(list(y), d["nombre"])
+        ax.set_ylim(-0.7, len(d) - 0.3)
+        ax.grid(axis="y", color=t["grilla"], linewidth=0.5)
+        for yy, v in zip(y, d["M"]):
+            ax.text(v * 1.35, yy, millones(v), va="center", fontsize=8.5, color=t["texto2"])
         ax.set_xscale("log")
         ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(millones))
         ax.set_title(titulo, loc="left", fontsize=11.5, color=t["texto"], pad=8)
@@ -90,9 +95,9 @@ def grafico_acuerdos(por_acuerdo, anio, modo, t):
     fig.text(0.01, 0.905, f"Comercio de Paraguay según el acuerdo usado, {periodo}. Millones de USD. "
              "Despachos aduaneros definitivos (datos abiertos de la DNIT).",
              fontsize=10.5, color=t["texto2"], va="top")
-    fig.text(0.2, 0.82, "■  Con acuerdo", color=t["con"], fontsize=10.5)
+    fig.text(0.2, 0.82, "●  Con acuerdo", color=t["con"], fontsize=10.5)
     # el rosa claro no se lee como texto: cuadrado en color, etiqueta en gris
-    fig.text(0.42, 0.82, "■", color=t["sin"], fontsize=10.5)
+    fig.text(0.42, 0.82, "●", color=t["sin"], fontsize=10.5)
     fig.text(0.435, 0.82, "Sin acuerdo / OMC", color=t["texto2"], fontsize=10.5)
     fig.savefig(IMG / f"acuerdos_{anio}_{modo}.png", dpi=200, facecolor=FONDO[modo])
     plt.close(fig)

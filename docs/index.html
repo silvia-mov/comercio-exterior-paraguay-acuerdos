@@ -160,6 +160,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p class="eyebrow">Datos abiertos · Paraguay · 2011–2026</p>
     <h1>Comercio exterior de Paraguay por acuerdo comercial</h1>
     <p class="lead">¿Cuánto exporta e importa Paraguay <strong>usando efectivamente</strong> un acuerdo comercial? Series anuales calculadas con los despachos aduaneros públicos de la DNIT y comparadas con los certificados de origen de la VUE.</p>
+    <p class="note" style="margin-top:-8px">Última actualización: 20 de noviembre de 2026.</p>
     <div class="btns">
       <a class="btn primary" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">Ver el código en GitHub</a>
       <a class="btn" href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic/blob/main/docs/GLOSARIO.md">Glosario</a>
@@ -175,7 +176,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <a href="#socios">Por socio</a>
     <a href="#por-acuerdo">Por acuerdo</a>
     <a href="#productos">Productos</a>
-    <a href="#cuatro-fuentes">Cuatro fuentes</a>
+    <a href="#cuatro-fuentes">Cinco fuentes</a>
     <a href="aduana.html">Aduana y descargas</a>
     <a href="#para-que">Para qué sirve</a>
     <a href="#como-usar">Cómo usarlo</a>
@@ -215,7 +216,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <span><span class="sw line" style="background:var(--s3)"></span>% con acuerdo (eje derecho)</span>
       </div>
       <div id="chart1" role="img" aria-label="Gráfico de barras apiladas de exportaciones con y sin acuerdo, 2011 a 2026, con línea del porcentaje con acuerdo"></div>
-      <p class="note">Millones de USD FOB. 2026*: enero a septiembre. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">Millones de USD FOB. 2026*: enero a septiembre. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
 
   </section>
@@ -228,7 +229,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source media="(prefers-color-scheme: dark)" srcset="img/utilizacion_socios_dark.png">
         <img src="img/utilizacion_socios_light.png" alt="Tasa de utilización de las preferencias por país socio, 2011 a 2026: Argentina, Brasil, Uruguay, Chile, Bolivia y Perú" loading="lazy">
       </picture>
-      <p class="note">% de lo exportado a cada país que usó una preferencia. El país es el destino que figura en el despacho de la DNIT; el BCP asigna el destino según el certificado de origen, que se tramita después, por eso sus cifras por país pueden diferir (sobre todo en la soja enviada a Argentina y Uruguay), aunque el total y los productos coinciden. Los datos de todos los socios están en las descargas. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">% de lo exportado a cada país que usó una preferencia. El país es el destino que figura en el despacho de la DNIT; el BCP asigna el destino según el certificado de origen, que se tramita después, por eso sus cifras por país pueden diferir (sobre todo en la soja enviada a Argentina y Uruguay), aunque el total y los productos coinciden. Datos de todos los socios: <a href="datos/utilizacion_por_socio.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
 
   </section>
@@ -244,7 +245,14 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source id="src-acuerdo" media="(prefers-color-scheme: dark)" srcset="img/acuerdos_2025_dark.png">
         <img id="img-acuerdo" src="img/acuerdos_2025_light.png" alt="Comercio de Paraguay según el acuerdo usado" loading="lazy">
       </picture>
-      <p class="note">Escala logarítmica: cada línea vertical es diez veces la anterior, para que se vean a la vez el MERCOSUR y los acuerdos chicos. 2026: enero a septiembre. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">Escala logarítmica (puntos en lugar de barras, porque en esta escala el largo de una barra no es proporcional al valor): cada línea vertical es diez veces la anterior, para que se vean a la vez el MERCOSUR y los acuerdos chicos. 2026: enero a septiembre. Datos: <a href="datos/comercio_por_acuerdo.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+    </div>
+    <div class="card">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="img/importaciones_ventaja_dark.png">
+        <img src="img/importaciones_ventaja_light.png" alt="Gráfico de líneas, 2011 a 2025: porcentaje de lo importado que usó un acuerdo y porcentaje que lo usó con ventaja real; la diferencia es de alrededor de un punto por año" loading="lazy">
+      </picture>
+      <p class="note">% de lo importado (CIF), años completos. La franja rosada es lo que declaró un acuerdo para productos que ya tienen arancel 0 % para todos los países. Datos: <a href="datos/importaciones_acuerdo_ventaja.csv" download>CSV</a>. Fuente: elaboración propia con datos abiertos de la DNIT y las versiones de la NCM (SAREM).</p>
     </div>
   </section>
 
@@ -277,13 +285,13 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <div id="p-res"><p class="chica">Escribí el nombre de un producto o su código NCM (4 dígitos).</p></div>
         <div id="p-mini"></div>
       </div>
-      <p class="note">Cada despacho dice si usó un acuerdo. No sabemos si los productos que no lo usaron tenían o no una rebaja disponible: algunos no la tienen, otros ya pagan cero para todos o siguen viaje a otro país.</p>
+      <p class="note">Cada despacho dice si usó un acuerdo. No sabemos si los productos que no lo usaron tenían o no una rebaja disponible: algunos no la tienen, otros ya pagan cero para todos o siguen viaje a otro país. Datos por producto: <a href="datos/productos_4_digitos.csv" download>CSV (4 dígitos)</a> · <a href="datos/productos_8_digitos.zip" download>ZIP (8 dígitos)</a>.</p>
     </div>
   </section>
 
   <section id="cuatro-fuentes">
-    <h2>Cuatro fuentes distintas cuentan casi lo mismo: los datos abiertos de aduanas son confiables</h2>
-    <p>Las exportaciones de Paraguay se pueden medir con cuatro fuentes públicas. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % del total oficial del BCP en todos los años, y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos.</p>
+    <h2>Cinco fuentes distintas cuentan casi lo mismo: los datos abiertos de aduanas son confiables</h2>
+    <p>Las exportaciones de Paraguay se pueden medir con cuatro fuentes públicas. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % del total oficial del BCP en todos los años, y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos. Los diez cruces de a pares entre las cinco fuentes, con las mayores diferencias y sus explicaciones, están en un Excel: <a href="datos/Cruces_5_fuentes_comercio_Paraguay.xlsx" download>Cruces de las 5 fuentes</a>.</p>
     <div class="card">
       <div class="legend">
         <span><span class="sw line" style="background:var(--text)"></span>BCP, estadística oficial</span>
@@ -292,7 +300,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <span><span class="sw line" style="background:var(--s4)"></span>Espejo, lo que declaran los socios</span>
       </div>
       <div id="chart2" role="img" aria-label="Gráfico de líneas que compara las exportaciones de Paraguay según el BCP, la DNIT, la VUE y los datos espejo, 2011 a 2026"></div>
-      <p class="note">Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Elaboración propia.</p>
+      <p class="note">Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a>. Elaboración propia.</p>
     </div>
     <div class="tw">
       <table id="tabla"></table>
