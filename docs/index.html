@@ -199,7 +199,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   </section>
 
   <section id="resultados">
-    <h2>Seis de cada diez dólares exportados ya usan un acuerdo comercial</h2>
+    <h2>Más de la mitad de lo exportado ya usa un acuerdo comercial</h2>
     <p>La <strong>tasa de utilización</strong> es la parte de lo exportado que usó efectivamente una preferencia de un acuerdo comercial (MERCOSUR, acuerdos del MERCOSUR con terceros países y acuerdos ALADI). Se calcula con los despachos de la DNIT: valor FOB de las exportaciones de origen paraguayo, con y sin acuerdo.</p>
 
     <div class="kpis">
@@ -221,8 +221,8 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   </section>
 
   <section id="socios">
-    <h2>Con Bolivia y Brasil, más del 80 % usa el acuerdo; con Perú, solo el 22 %</h2>
-    <p>En los socios del MERCOSUR y en Bolivia, casi todo lo exportado usa la preferencia. Con Chile la utilización se duplicó desde 2011, y con Perú sigue siendo baja.</p>
+    <h2>En 2025, con Bolivia el 82 % usa el acuerdo; con Perú, solo el 25 %</h2>
+    <p>Con los socios del MERCOSUR y con Bolivia, la mayor parte de lo exportado usa la preferencia: entre el 77 % y el 82 % en 2025, el último año completo. Con Chile la utilización se duplicó desde 2011 (de 33 % a 65 %), y con Perú sigue siendo baja.</p>
     <div class="card">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="img/utilizacion_socios_dark.png">
@@ -244,7 +244,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source id="src-acuerdo" media="(prefers-color-scheme: dark)" srcset="img/acuerdos_2025_dark.png">
         <img id="img-acuerdo" src="img/acuerdos_2025_light.png" alt="Comercio de Paraguay según el acuerdo usado" loading="lazy">
       </picture>
-      <p class="note">Escala logarítmica: cada línea vertical es diez veces la anterior, para que se vean a la vez el MERCOSUR y los acuerdos chicos. 2026: enero a octubre. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">Escala logarítmica: cada línea vertical es diez veces la anterior, para que se vean a la vez el MERCOSUR y los acuerdos chicos. 2026: enero a septiembre. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
   </section>
 
@@ -310,7 +310,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <div class="grid2">
       <div class="card"><h3>Abierto</h3><p>Usa solo datos públicos. Cualquier persona puede repetir los cálculos y obtener las mismas cifras.</p></div>
       <div class="card"><h3>Transparente</h3><p>Cada decisión (qué regímenes se cuentan, cómo se agrupan los acuerdos, qué se excluye) está escrita en el glosario y en archivos de configuración que se cambian sin programar.</p></div>
-      <div class="card"><h3>Verificable</h3><p>El reporte incluye una hoja de control con todo lo excluido. El código está en Python y en R, con resultados idénticos.</p></div>
+      <div class="card"><h3>Verificable</h3><p>El reporte incluye una hoja de control con todo lo excluido. El código está en Python; el procesamiento principal también está en R.</p></div>
       <div class="card"><h3>Actualizable</h3><p>Cada mes nuevo que publica la DNIT se agrega con un comando. Se pueden elegir años, meses y columnas.</p></div>
     </div>
     <p>Sirve para reportes de comercio, para investigaciones sobre el uso de las preferencias arancelarias y para validar o complementar otras bases de comercio exterior.</p>
@@ -331,7 +331,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
     <h2>Método en pocas palabras</h2>
     <ul>
       <li>Se cuentan solo los regímenes aduaneros <strong>definitivos</strong>, según la tabla oficial de regímenes de la DNIT.</li>
-      <li>Se excluyen las fracciones complementarias (EFC1 e IFC1), porque repiten el valor completo del despacho principal y duplicarían los montos.</li>
+      <li>Se excluyen las fracciones complementarias (EFC1, AFC1 e IFC1), porque repiten el valor completo del despacho principal y duplicarían los montos, y los regímenes que no son una venta definitiva, como el aprovisionamiento a bordo (DAAR) o el traspaso dentro de una zona franca (TZF1).</li>
       <li>En exportaciones se toma solo el origen paraguayo.</li>
       <li>"Con acuerdo" incluye las preferencias del MERCOSUR intrazona y los acuerdos preferenciales. "Sin acuerdo" incluye los despachos sin preferencia, los que figuran como OMC y los que no tienen dato de acuerdo.</li>
       <li>Las fechas corresponden a la cancelación del despacho. La electricidad no pasa por la aduana y no está incluida.</li>
@@ -352,7 +352,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
         <tbody>
           <tr><td>MERCOSUR–India</td><td>2009</td><td>2025: importaciones 188,9; exportaciones 23,2</td></tr>
           <tr><td>Paraguay–Taiwán</td><td>2018</td><td>2025: importaciones 79,4; exportaciones 343,3</td></tr>
-          <tr><td>MERCOSUR–Singapur</td><td>1/02/2026</td><td>2026 (enero a octubre): importaciones 46,4; exportaciones 3,9</td></tr>
+          <tr><td>MERCOSUR–Singapur</td><td>1/02/2026</td><td>2026 (enero a septiembre): importaciones 37,3; exportaciones 3,3</td></tr>
           <tr><td>ACE 55 MERCOSUR–México (sector automotor)</td><td>—</td><td>Vehículos de México 2023–2025: 115,6 sin acuerdo; 2,1 con la PAR 4 de ALADI y 0,1 con el acuerdo AAP.R 38</td></tr>
         </tbody>
       </table></div>
@@ -392,7 +392,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
 
 <footer>
   <div class="wrap">
-    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT ni del Ministerio de Industria y Comercio.
+    Proyecto independiente de datos abiertos. Código con licencia MIT en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-dnit-mic">GitHub</a>. No representa ni cuenta con el respaldo de la DNIT, del Banco Central del Paraguay, del Ministerio de Industria y Comercio ni de ningún gobierno.
     <p id="contador" class="contador" hidden></p>
     <p class="banderas"><a href="https://info.flagcounter.com/VjYa" target="_blank" rel="noopener"><img src="https://s05.flagcounter.com/count2/VjYa/bg_201B1D/txt_F5EEF1/border_3A2F33/columns_3/maxflags_15/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Contador de visitas por país" loading="lazy" style="border:0;max-width:100%"></a></p>
   </div>
@@ -480,7 +480,7 @@ let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(dibuja
 
 // Selector de años del gráfico por acuerdo
 const sel = document.getElementById("anio");
-for (let a = 2026; a >= 2011; a--) sel.add(new Option(a === 2026 ? "2026 (ene–oct)" : String(a), a));
+for (let a = 2026; a >= 2011; a--) sel.add(new Option(a === 2026 ? "2026 (ene–sep)" : String(a), a));
 sel.value = 2025;
 sel.addEventListener("change", () => {
   document.getElementById("img-acuerdo").src = `img/acuerdos_${sel.value}_light.png`;

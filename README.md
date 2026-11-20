@@ -99,7 +99,7 @@ La tabla dinámica la arma `python/tabla_dinamica.py` con LibreOffice (requiere 
 ## Comercio según el acuerdo usado, año por año
 
 Un gráfico por año, de exportaciones (FOB) e importaciones (CIF) según el acuerdo usado en el despacho:
-[2011](docs/img/acuerdos_2011_light.png) · [2012](docs/img/acuerdos_2012_light.png) · [2013](docs/img/acuerdos_2013_light.png) · [2014](docs/img/acuerdos_2014_light.png) · [2015](docs/img/acuerdos_2015_light.png) · [2016](docs/img/acuerdos_2016_light.png) · [2017](docs/img/acuerdos_2017_light.png) · [2018](docs/img/acuerdos_2018_light.png) · [2019](docs/img/acuerdos_2019_light.png) · [2020](docs/img/acuerdos_2020_light.png) · [2021](docs/img/acuerdos_2021_light.png) · [2022](docs/img/acuerdos_2022_light.png) · [2023](docs/img/acuerdos_2023_light.png) · [2024](docs/img/acuerdos_2024_light.png) · [2025](docs/img/acuerdos_2025_light.png) · [2026](docs/img/acuerdos_2026_light.png) (2026: enero a octubre). También en la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/#por-acuerdo), con un selector de años.
+[2011](docs/img/acuerdos_2011_light.png) · [2012](docs/img/acuerdos_2012_light.png) · [2013](docs/img/acuerdos_2013_light.png) · [2014](docs/img/acuerdos_2014_light.png) · [2015](docs/img/acuerdos_2015_light.png) · [2016](docs/img/acuerdos_2016_light.png) · [2017](docs/img/acuerdos_2017_light.png) · [2018](docs/img/acuerdos_2018_light.png) · [2019](docs/img/acuerdos_2019_light.png) · [2020](docs/img/acuerdos_2020_light.png) · [2021](docs/img/acuerdos_2021_light.png) · [2022](docs/img/acuerdos_2022_light.png) · [2023](docs/img/acuerdos_2023_light.png) · [2024](docs/img/acuerdos_2024_light.png) · [2025](docs/img/acuerdos_2025_light.png) · [2026](docs/img/acuerdos_2026_light.png) (2026: enero a septiembre). También en la [página web](https://silvia-mov.github.io/comercio-exterior-paraguay-dnit-mic/#por-acuerdo), con un selector de años.
 
 Se generan con `python docs/figuras.py` a partir de `salidas/por_acuerdo/` (un resumen por año de `procesar_despachos.py`).
 
@@ -113,7 +113,7 @@ Para medir, con **datos abiertos y métodos públicos**, cuánto exporta e impor
   se excluye y por qué) está escrita en el [Glosario](docs/GLOSARIO.md) y en archivos de
   configuración que se pueden revisar y cambiar sin programar.
 - **Verificable**: la hoja *Control* muestra todo lo que se dejó afuera, y el código está en
-  Python y en R con resultados idénticos.
+  Python; el procesamiento principal también está en R.
 - **Actualizable**: cada mes nuevo que publica la DNIT se agrega con un comando.
 
 Puede usarse como herramienta principal o **para validar y complementar otras bases de

@@ -146,6 +146,8 @@ def main():
         guardar(fig, "fuentes", modo)
 
         # ------------------------------------------------ 3. Utilización por socio
+        # El título y los números usan el último año COMPLETO (el año en curso tiene menos meses)
+        a_comp = int(anual.loc[anual["MESES"] == 12, "AÑO"].max())
         principales = (socios.groupby(["CODIGO_PAIS", "PAIS"])["DNIT_FOB_CON_ACUERDO"].sum()
                        .sort_values(ascending=False).head(6).reset_index())
         fig, axes = plt.subplots(2, 3, figsize=(10, 5.6), sharex=True, sharey=True)
@@ -154,7 +156,7 @@ def main():
             d = socios[socios["CODIGO_PAIS"] == p["CODIGO_PAIS"]].set_index("AÑO").reindex(anios)
             ax.fill_between(anios, d["UTILIZACION_PCT"], color=t["verde"], alpha=0.18, linewidth=0)
             ax.plot(anios, d["UTILIZACION_PCT"], color=t["verde2"], linewidth=2.2)
-            ultimo = d["UTILIZACION_PCT"].dropna()
+            ultimo = d["UTILIZACION_PCT"].dropna().loc[:a_comp]
             if len(ultimo):
                 ax.text(1.0, 1.02, f"{int(ultimo.index[-1])}: {ultimo.iloc[-1]:.0f} %", ha="right", va="bottom",
                         transform=ax.transAxes, fontsize=9.5, color=t["verde2"], fontweight="bold")
@@ -164,14 +166,14 @@ def main():
             ax.set_yticks([0, 50, 100], ["0 %", "50 %", "100 %"])
             ax.set_xticks([anios[0], anios[len(anios) // 2], anios[-1]])
             estilo(ax, t)
-        ult = {p["PAIS"]: socios[(socios["CODIGO_PAIS"] == p["CODIGO_PAIS"])].sort_values("AÑO")["UTILIZACION_PCT"].iloc[-1]
+        ult = {p["PAIS"]: socios[(socios["CODIGO_PAIS"] == p["CODIGO_PAIS"]) & (socios["AÑO"] == a_comp)]["UTILIZACION_PCT"].iloc[0]
                for _, p in principales.iterrows()}
         orden = sorted(ult, key=ult.get, reverse=True)
         nom = lambda x: TILDES.get(x.title(), x.title())
-        titulo(fig, t, f"Con {nom(orden[0])} y {nom(orden[1])}, más del {int(ult[orden[1]] // 5 * 5)} % usa el acuerdo; "
+        titulo(fig, t, f"En {a_comp}, con {nom(orden[0])} el {ult[orden[0]]:.0f} % usa el acuerdo; "
                f"con {nom(orden[-1])}, solo el {ult[orden[-1]]:.0f} %",
                "Tasa de utilización: % de lo exportado a cada país que usó una preferencia arancelaria. Los 6 socios "
-               f"con más exportaciones con acuerdo (DNIT), último año: {anios[-1]}.")
+               f"con más exportaciones con acuerdo (DNIT). Los números son de {a_comp}, último año completo.")
         if nota_parcial:
             fig.text(0.07, 0.01, nota_parcial, fontsize=8.5, color=t["texto2"])
         guardar(fig, "utilizacion_socios", modo)
