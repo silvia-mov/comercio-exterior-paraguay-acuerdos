@@ -105,7 +105,7 @@ def main():
          "Copia escaneada, leída con OCR. La exoneración de repuestos dura 10 años desde la publicación."),
         ("Bienes de alta tecnología", "0 % de arancel; IVA 10 % sobre el 15 % del valor aduanero (equivale a 1,5 %)",
          "Materias primas, partes y piezas para producir bienes de alta tecnología", "Ley 4427/2012, arts. 7 y 8",
-         "Texto de la BACN. Vigencia a confirmar: no figura en el art. 153 de la Ley 6380/2019."),
+         "Texto de la BACN. Ya no rige (ver Vigencia); hoy aplica la Ley 7546/2025."),
         ("Garantías para las inversiones y el empleo", "Sin exoneración propia en el despacho",
          "Maquinaria y equipos que no se producen en el país", "Ley 5542/2015, art. 9",
          "Remite al régimen arancelario de la Ley 60/90. Lo propio de esta ley es la invariabilidad del impuesto a la renta."),
@@ -164,9 +164,39 @@ def main():
         v = ws.cell(fila[nombre], 9).value or ""
         if "Ley 6380" not in v:
             celda(nombre, 9, (v + ". " if v and v != "Vigente" else "Vigente. ") + "Exceptuada de la derogación general de la Ley 6380/2019, art. 153, num. 5")
+    poner("Inversión: Ley 60/90 (régimen anterior)",
+          "0 % de gravámenes aduaneros (bienes de capital, materias primas e insumos del proyecto); IVA 0 % para bienes de capital",
+          "Lo previsto en el proyecto de inversión aprobado", "Ley 60/1990, art. 5 c) (texto de 1990); IVA: Ley 6380/2019, art. 100, num. 4",
+          "Derogada por la Ley 7548/2025 (art. 34); los proyectos ya aprobados siguen (art. 35).", relleno=VERDE)
+    # Qué normas están ya en la carpeta normas/ del repositorio o en la release normas_aduanas.
+    en_repo = {
+        "Arancel aduanero (derecho de importación)": "Sí: Ley 1095/1984 y Código Aduanero (release normas_aduanas y normas/)",
+        "Tasa por servicio de valoración aduanera": "Sí: Código Aduanero (normas/)",
+        "Canon informático": "Solo la Res. DGA 25/1994 (normas/); falta la Res. MH 1144/1992",
+        "Franquicias diplomáticas y consulares": "Sí (normas/)", "Donaciones al Estado y a otras instituciones": "Sí (normas/, BACN)",
+        "Zonas francas": "Sí (normas/, BACN)", "Inversión: Ley 60/90 (régimen anterior)": "Sí (normas/)",
+        "Inversión: nuevo régimen de incentivos fiscales": "Sí, con su reglamento (Decreto 5432/2026, release normas_aduanas)",
+        "Maquila: Ley 1064/1997 (régimen anterior)": "Sí (normas/)",
+        "Maquila: nuevo régimen": "Sí, con su reglamento (Decreto 5714/2026, release normas_aduanas)",
+        "Política automotriz nacional": "Sí, con la Ley 5819 (normas/)", "Importación de vehículos eléctricos (2012)": "Sí (normas/, BACN)",
+        "Bienes de alta tecnología": "Sí (normas/, BACN)", "Garantías para las inversiones y el empleo": "Sí (normas/, BACN)",
+        "Leasing": "Sí (normas/, BACN)", "Minería": "Sí (normas/, BACN)", "Diabetes": "Sí (normas/)",
+        "Cooperativas": "Sí: Leyes 5501/2015 y 6178 (normas/); falta el texto original de la Ley 438/1994",
+        "Negocios fiduciarios": "Sí (normas/, BACN)", "Ley 285/1993": "Sí (normas/)",
+        "Vacunas": "Sí (normas/, BACN)", "Eventos deportivos internacionales": "Sí (normas/, BACN; escaneada, leída con OCR)",
+        "Tasas de legalización y aranceles consulares": "Sí: Leyes 4033/2010 y 7196/2023 (release normas_aduanas)",
+        "Ajuste de precios en la exportación de granos": "Sí: Ley 5061/2013 (normas/) y Ley 6380/2019 (BACN, leída con OCR)",
+        "Lista nacional de excepciones (LNE)": "En parte: Decreto 3339/2025 (normas/)",
+        "Sector azucarero (AZ)": "En parte: Dec. CMC 19/94 (repositorio normativa-mercosur); falta el decreto nacional",
+    }
+    for nombre, v in en_repo.items():
+        celda(nombre, 10, v)
+    ws.cell(fila["Maquila: nuevo régimen"], 8).value = "Reglamento: Decreto 5714/2026 (release normas_aduanas)"
+    ws.cell(fila["Inversión: nuevo régimen de incentivos fiscales"], 8).value = "Reglamento: Decreto 5432/2026 (release normas_aduanas)"
     poner("Acuerdos, convenios y tratados internacionales", "Preferencia arancelaria de cada acuerdo",
           "Productos con certificado de origen", "Cada acuerdo y su ley aprobatoria",
-          "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).")
+          "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).",
+          relleno=PatternFill(fill_type=None))
     r_rmp = fila["Régimen de materias primas (RMP)"]
     ws.cell(r_rmp, 7).value = "Decreto 11.771/2000 (modifica el art. 12 del Decreto 1053/1993); prorrogado por el Decreto 8664/2022"
     poner("Régimen de materias primas (RMP)", "0 % de arancel", "Materias primas e insumos para el proceso productivo propio",
