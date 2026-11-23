@@ -82,8 +82,8 @@ def main():
                "no en el despacho aduanero: no aparece en los datos de comercio.")
     poner("Turismo de compras (RTC)", nota="Confirmado en los datos 2025: IVA de cerca de 1,3 % y anticipo del IRE "
           "de cerca de 1 % de la base en guaraníes (hoja Control_DNIT_2025).")
-    poner("Anticipo del IRE en la importación", nota="En los datos se ve cerca de 0,4 % a 0,5 % (la base de la DNIT "
-          "puede incluir otros tributos). Solo lo pagan los contribuyentes del IRE general.")
+    poner("Anticipo del IRE en la importación", nota="Confirmado en el texto del Decreto 3182/2019 (BACN, extracto en normas/): 0,4 % "
+          "sobre el valor aduanero más los tributos aduaneros; por eso en los datos se ve cerca de 0,46 %. Solo contribuyentes del IRE general.")
 
     poner("Maquila: Ley 1064/1997 (régimen anterior)", "Tributo único de 1 %", "Valor agregado en territorio nacional",
           "Ley 1064/1997, art. 29", "Igual tasa que la Ley 7547/2025. Se paga como impuesto interno, no en el despacho.",
@@ -209,8 +209,9 @@ def main():
           "(detalle: hoja ISC_Decreto_3109)", None, "Decreto 3109/2019, anexo, arts. 8 a 12 (tasas máximas: Ley 6380/2019, arts. 115 a 119)",
           "Tasas del texto de 2019 del Decreto 3109 (normas/). Puede haber cambios posteriores, por ejemplo el Decreto 7229/2026 "
           "sobre la base del gasoil. Control con la DNIT 2025 (ISC / (valor + arancel), mediana): celulares 1,0 %, cerveza 9,05 %, "
-          "whisky 11,05 %, perfumes 5,02 % = decreto; cigarrillos 20,1 % (decreto: 18 %) y gasoil 14,3 % (decreto: 18 %) no "
-          "coinciden: probable cambio posterior de la tasa o de la base, a confirmar.", relleno=VERDE)
+          "whisky 11,05 %, perfumes 5,02 % = decreto. Gasoil 14,3 %: el Decreto 7229/2026 fija una base especial de "
+          "G 1.888,89 por litro hasta el 31/12/2026 (normas/, leído con OCR). Cigarrillos 20,1 % (decreto: 18 %): falta la norma posterior.",
+          relleno=VERDE)
     import docx as _docx
     _d = _docx.Document(str(RAIZ / "normas" / "Decreto_3109_2019_Reglamento_ISC.docx"))
     hi = wb.create_sheet("ISC_Decreto_3109")
