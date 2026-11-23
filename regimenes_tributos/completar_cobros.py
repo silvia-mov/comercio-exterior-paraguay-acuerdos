@@ -129,6 +129,11 @@ def main():
          "Copia escaneada, leída con OCR. También admisión temporaria sin tasas ni garantías (art. 7)."),
     ]:
         poner(nombre, tasa, base, art, nota, relleno=VERDE)
+    poner("Emergencia por COVID-19", "Sin exoneración en el despacho",
+          "Solicitudes de devolución de créditos fiscales (incluida la devolución del IVA al exportador)",
+          "Ley 6524/2020, art. 15", "En 2020 suspendió las nuevas solicitudes de devolución de créditos fiscales y la resolución "
+          "de las que estaban en trámite (salvo el régimen acelerado). El art. 14 permitió prorrogar vencimientos. No exoneró "
+          "tributos a la importación. Texto del SILpy (normas/).", relleno=VERDE)
     poner("Diabetes", "Sin exoneración en el despacho", "Medicamentos e insumos que entrega el Ministerio de Salud",
           "Ley 5372/2014, art. 16", "La ley obliga a entregar gratis insulina e insumos, pero no exonera tributos a la importación.",
           relleno=VERDE)
@@ -282,7 +287,7 @@ def main():
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
-              "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819 y 6178; tasa de valoración en el Código Aduanero.",
+              "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819, 6178 y 6524/2020; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC de cada producto están en la hoja ISC_Decreto_3109 (texto de 2019 del decreto).",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
