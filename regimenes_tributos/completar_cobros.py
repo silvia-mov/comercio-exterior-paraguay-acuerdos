@@ -162,13 +162,13 @@ def main():
     ws.cell(fila["Arancel aduanero (derecho de importación)"], 14).value = (
         "Ley 1095/1984, art. 2 (tope: hasta 30 % del valor imponible) y art. 10 a) (el Poder Ejecutivo fija y modifica los "
         "niveles); tasa de cada código: decretos de arancel y Arancel Nacional Vigente")
-    poner("Sector azucarero (AZ)", "30 % en las 5 líneas de la partida 17.01 (AEC: 16 %), marca AZ* del Arancel Nacional Vigente",
+    poner("Sector azucarero (AZ)", "30 % en las 5 líneas de la partida 17.01 (AEC: 16 %), también para lo originario del MERCOSUR",
           "Azúcar (partida 17.01 y otras del anexo)",
           "Decreto 6898/2022, arts. 2 y 3 (Anexo III, columna A.I.); Decreto 7306/1995; Dec. CMC 19/94, arts. 3 y 4",
           "El Decreto 7306/1995 incorporó la Dec. CMC 19/94 (cada país aplica su propio arancel al azúcar, también dentro del "
           "MERCOSUR). El 30 % es el tope del arancel que permite la Ley 1095/1984, art. 2. El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
-          "(no oficial) no trae los anexos. La tasa sale del Arancel Nacional Vigente de octubre 2025 del MEF (pág. 64; "
-          "arancel_nacional/Arancel_Nacional_Vigente_oct2025_vs_AEC.xlsx, hoja Arancel), que es un documento de trabajo sin fuerza legal.", relleno=VERDE)
+          "Anexo III «Azúcar», columna A.I.: 30 % en 1701.12.00, 1701.13.00, 1701.14.00, 1701.91.00 y 1701.99.00 (Gaceta Oficial N.º 68 "
+          "del 05/04/2022, normas/). Coincide con el Arancel Nacional Vigente de octubre 2025 (pág. 64).", relleno=VERDE)
     celda("Sector azucarero (AZ)", 7, "Decreto 6898/2022 (antes Decreto 7306/1995 y 6654/2016); Dec. CMC 19/94")
     celda("Régimen automotor (AUT)", 8, "Decreto 6898/2022, arts. 1, 3 y 4 (Anexos I y II): aranceles intrazona de vehículos y autopartes; "
           "Dec. CMC 29/94. Bienes usados del cap. 87: Decreto 7244/2017")
@@ -209,7 +209,7 @@ def main():
         "Tasas de legalización y aranceles consulares": "Sí: Leyes 4033/2010 y 7196/2023 (release normas_aduanas)",
         "Ajuste de precios en la exportación de granos": "Sí: Ley 5061/2013 (normas/) y Ley 6380/2019 (BACN, leída con OCR)",
         "Lista nacional de excepciones (LNE)": "En parte: Decreto 3339/2025 (normas/)",
-        "Sector azucarero (AZ)": "Sí: Decreto 6898/2022 (copia no oficial, sin anexos) y Dec. CMC 19/94",
+        "Sector azucarero (AZ)": "Sí: Decreto 6898/2022 con anexos (Gaceta Oficial N.º 68) y Dec. CMC 19/94",
     }
     for nombre, v in en_repo.items():
         celda(nombre, 10, v)
