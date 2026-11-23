@@ -216,12 +216,14 @@ def main():
     ws.cell(fila["Maquila: nuevo régimen"], 8).value = "Reglamento: Decreto 5714/2026 (release normas_aduanas)"
     ws.cell(fila["Inversión: nuevo régimen de incentivos fiscales"], 8).value = "Reglamento: Decreto 5432/2026 (release normas_aduanas)"
     poner("Impuesto selectivo al consumo (ISC) en la importación",
-          "Tabaco 18 %; bebidas 5 % a 11 %; alto contenido calórico 2 %; combustibles 0 % a 38 %; otros bienes 1 % a 5 % "
+          "Tabaco 20 % (Decreto 6619/2022; antes 18 %); bebidas 5 % a 11 %; alto contenido calórico 2 %; combustibles 0 % a 38 %; otros bienes 1 % a 5 % "
           "(detalle: hoja ISC_Decreto_3109)", None, "Decreto 3109/2019, anexo, arts. 8 a 12 (tasas máximas: Ley 6380/2019, arts. 115 a 119)",
           "Tasas del texto de 2019 del Decreto 3109 (normas/). Puede haber cambios posteriores, por ejemplo el Decreto 7229/2026 "
           "sobre la base del gasoil. Control con la DNIT 2025 (ISC / (valor + arancel), mediana): celulares 1,0 %, cerveza 9,05 %, "
           "whisky 11,05 %, perfumes 5,02 % = decreto. Gasoil 14,3 %: el Decreto 7229/2026 fija una base especial de "
-          "G 1.888,89 por litro hasta el 31/12/2026 (normas/, leído con OCR). Cigarrillos 20,1 % (decreto: 18 %): falta la norma posterior.",
+          "G 1.888,89 por litro hasta el 31/12/2026 (normas/, leído con OCR). Cigarrillos 20,1 %: el Decreto 6619/2022 subió la tasa de "
+          "tabacos, cigarrillos y esencias de 18 % a 20 % (confirmado en el Informe del Primer Semestre 2022 del Ministerio de Hacienda, "
+          "pág. 16, normas/). Según un resumen sin verificar, el Decreto 8878/2023 volvió a modificar ese artículo manteniendo el 20 %.",
           relleno=VERDE)
     import docx as _docx
     _d = _docx.Document(str(RAIZ / "normas" / "Decreto_3109_2019_Reglamento_ISC.docx"))
