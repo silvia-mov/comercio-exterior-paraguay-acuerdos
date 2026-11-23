@@ -159,11 +159,14 @@ def main():
     celda("Ajuste de precios en la exportación de granos", 9, "Vigente (Ley 6380/2019)")
     celda("Bienes de alta tecnología", 9, "Derogada: Ley 6380/2019, art. 153, num. 5 (no está entre las excepciones) y "
           "expresamente por la Ley 7546/2025, art. 22")
+    ws.cell(fila["Arancel aduanero (derecho de importación)"], 14).value = (
+        "Ley 1095/1984, art. 2 (tope: hasta 30 % del valor imponible) y art. 10 a) (el Poder Ejecutivo fija y modifica los "
+        "niveles); tasa de cada código: decretos de arancel y Arancel Nacional Vigente")
     poner("Sector azucarero (AZ)", "30 % en las 5 líneas de la partida 17.01 (AEC: 16 %), marca AZ* del Arancel Nacional Vigente",
           "Azúcar (partida 17.01 y otras del anexo)",
           "Decreto 6898/2022, arts. 2 y 3 (Anexo III, columna A.I.); Decreto 7306/1995; Dec. CMC 19/94, arts. 3 y 4",
           "El Decreto 7306/1995 incorporó la Dec. CMC 19/94 (cada país aplica su propio arancel al azúcar, también dentro del "
-          "MERCOSUR). El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
+          "MERCOSUR). El 30 % es el tope del arancel que permite la Ley 1095/1984, art. 2. El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
           "(no oficial) no trae los anexos. La tasa sale del Arancel Nacional Vigente de octubre 2025 del MEF (pág. 64; "
           "arancel_nacional/Arancel_Nacional_Vigente_oct2025_vs_AEC.xlsx, hoja Arancel), que es un documento de trabajo sin fuerza legal.", relleno=VERDE)
     celda("Sector azucarero (AZ)", 7, "Decreto 6898/2022 (antes Decreto 7306/1995 y 6654/2016); Dec. CMC 19/94")
@@ -188,7 +191,7 @@ def main():
           "Derogada por la Ley 7548/2025 (art. 34); los proyectos ya aprobados siguen (art. 35).", relleno=VERDE)
     # Qué normas están ya en la carpeta normas/ del repositorio o en la release normas_aduanas.
     en_repo = {
-        "Arancel aduanero (derecho de importación)": "Sí: Ley 1095/1984 y Código Aduanero (release normas_aduanas y normas/)",
+        "Arancel aduanero (derecho de importación)": "Sí: Ley 1095/1984 (BACN, escaneada, leída con OCR) y Código Aduanero (normas/). El archivo F07 de la release normas_aduanas es otra ley (1095/1997)",
         "Tasa por servicio de valoración aduanera": "Sí: Código Aduanero (normas/)",
         "Canon informático": "Solo la Res. DGA 25/1994 (normas/); falta la Res. MH 1144/1992",
         "Franquicias diplomáticas y consulares": "Sí (normas/)", "Donaciones al Estado y a otras instituciones": "Sí (normas/, BACN)",
