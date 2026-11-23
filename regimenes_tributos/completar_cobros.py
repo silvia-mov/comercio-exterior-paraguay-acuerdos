@@ -151,10 +151,19 @@ def main():
     celda("Ajuste de precios en la exportación de granos", 9, "Vigente (Ley 6380/2019)")
     celda("Bienes de alta tecnología", 9, "Derogada: Ley 6380/2019, art. 153, num. 5 (no está entre las excepciones) y "
           "expresamente por la Ley 7546/2025, art. 22")
-    poner("Sector azucarero (AZ)", "30 % (Arancel Nacional Vigente)", "Azúcar (partida 17.01 y otras del anexo)",
-          "Dec. CMC 19/94, arts. 3 y 4", "La Dec. CMC 19/94 deja que cada país aplique su propia protección al azúcar, "
-          "también dentro del MERCOSUR. Falta leer el decreto nacional que fija el 30 %.", relleno=CELESTE)
-    celda("Sector azucarero (AZ)", 7, "Dec. CMC 19/94 (MERCOSUR); decreto nacional a confirmar")
+    poner("Sector azucarero (AZ)", "30 % (Arancel Nacional Vigente); el nivel intrazona está en el Anexo III del Decreto 6898/2022",
+          "Azúcar (partida 17.01 y otras del anexo)",
+          "Decreto 6898/2022, arts. 2 y 3 (Anexo III, columna A.I.); Decreto 7306/1995; Dec. CMC 19/94, arts. 3 y 4",
+          "El Decreto 7306/1995 incorporó la Dec. CMC 19/94 (cada país aplica su propio arancel al azúcar, también dentro del "
+          "MERCOSUR). El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
+          "(no oficial) no trae los anexos con las tasas.", relleno=VERDE)
+    celda("Sector azucarero (AZ)", 7, "Decreto 6898/2022 (antes Decreto 7306/1995 y 6654/2016); Dec. CMC 19/94")
+    celda("Régimen automotor (AUT)", 8, "Decreto 6898/2022, arts. 1, 3 y 4 (Anexos I y II): aranceles intrazona de vehículos y autopartes; "
+          "Dec. CMC 29/94. Bienes usados del cap. 87: Decreto 7244/2017")
+    v = ws.cell(fila["Diabetes"], 15).value
+    celda("Diabetes", 15, v + " La exoneración está en otra ley: la Ley 77/1992 (arts. 1 y 2) exonera de tributos aduaneros e "
+          "internos la insulina, los insumos para el control de la diabetes y medicamentos para el cáncer y otras afecciones. "
+          "No figura entre las excepciones del art. 153 de la Ley 6380/2019: vigencia a confirmar (la DNIT la sigue publicando).")
     # Ley 6380/2019, art. 153, num. 5: siguen vigentes solo las exoneraciones de esta lista.
     for nombre in ["Donaciones al Estado y a otras instituciones", "Franquicias diplomáticas y consulares", "Ley 285/1993",
                    "Cooperativas", "Negocios fiduciarios", "Leasing", "Minería", "Zonas francas",
@@ -188,7 +197,7 @@ def main():
         "Tasas de legalización y aranceles consulares": "Sí: Leyes 4033/2010 y 7196/2023 (release normas_aduanas)",
         "Ajuste de precios en la exportación de granos": "Sí: Ley 5061/2013 (normas/) y Ley 6380/2019 (BACN, leída con OCR)",
         "Lista nacional de excepciones (LNE)": "En parte: Decreto 3339/2025 (normas/)",
-        "Sector azucarero (AZ)": "En parte: Dec. CMC 19/94 (repositorio normativa-mercosur); falta el decreto nacional",
+        "Sector azucarero (AZ)": "Sí: Decreto 6898/2022 (copia no oficial, sin anexos) y Dec. CMC 19/94",
     }
     for nombre, v in en_repo.items():
         celda(nombre, 10, v)
