@@ -194,6 +194,31 @@ def main():
         celda(nombre, 10, v)
     ws.cell(fila["Maquila: nuevo régimen"], 8).value = "Reglamento: Decreto 5714/2026 (release normas_aduanas)"
     ws.cell(fila["Inversión: nuevo régimen de incentivos fiscales"], 8).value = "Reglamento: Decreto 5432/2026 (release normas_aduanas)"
+    poner("Impuesto selectivo al consumo (ISC) en la importación",
+          "Tabaco 18 %; bebidas 5 % a 11 %; alto contenido calórico 2 %; combustibles 0 % a 38 %; otros bienes 1 % a 5 % "
+          "(detalle: hoja ISC_Decreto_3109)", None, "Decreto 3109/2019, anexo, arts. 8 a 12 (tasas máximas: Ley 6380/2019, arts. 115 a 119)",
+          "Tasas del texto de 2019 del Decreto 3109 (normas/). Puede haber cambios posteriores, por ejemplo el Decreto 7229/2026 "
+          "sobre la base del gasoil. Control con la DNIT 2025 (ISC / (valor + arancel), mediana): celulares 1,0 %, cerveza 9,05 %, "
+          "whisky 11,05 %, perfumes 5,02 % = decreto; cigarrillos 20,1 % (decreto: 18 %) y gasoil 14,3 % (decreto: 18 %) no "
+          "coinciden: probable cambio posterior de la tasa o de la base, a confirmar.", relleno=VERDE)
+    import docx as _docx
+    _d = _docx.Document(str(RAIZ / "normas" / "Decreto_3109_2019_Reglamento_ISC.docx"))
+    hi = wb.create_sheet("ISC_Decreto_3109")
+    hi.append(["Artículo del anexo", "Grupo", "Bienes gravados", "Tasa"])
+    for tb, (art, grupo) in zip(_d.tables, [("8", "Tabaco"), ("9", "Bebidas"), ("10", "Alto contenido calórico"),
+                                            ("11", "Combustibles derivados del petróleo"), ("12", "Otros bienes")]):
+        for fila_t in tb.rows[1:]:
+            bien = fila_t.cells[0].text.strip().replace("\n", " ")
+            tasa = fila_t.cells[-1].text.strip()
+            hi.append([art, grupo, bien, float(tasa.rstrip("%").replace(",", ".")) / 100 if tasa.endswith("%") else tasa])
+    for c in hi[1]:
+        c.font = Font(name="Arial", size=10, bold=True)
+    for fila_t in hi.iter_rows(min_row=2):
+        fila_t[3].number_format = "0%"
+        fila_t[2].alignment = Alignment(wrap_text=True, vertical="top")
+    for col, w_ in zip("ABCD", (12, 26, 90, 8)):
+        hi.column_dimensions[col].width = w_
+    hi.freeze_panes = "A2"
     poner("Acuerdos, convenios y tratados internacionales", "Preferencia arancelaria de cada acuerdo",
           "Productos con certificado de origen", "Cada acuerdo y su ley aprobatoria",
           "Lo que se usa y lo que se ahorra se mide en la página principal (comercio por acuerdo).",
@@ -248,7 +273,7 @@ def main():
               "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
               "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819 y 6178; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
-              "Las tasas del ISC son las máximas de la ley; la de cada producto la fija el Decreto 3109/2019.",
+              "Las tasas del ISC de cada producto están en la hoja ISC_Decreto_3109 (texto de 2019 del decreto).",
               "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
               "El Código Aduanero (Ley 2422/2004) ya está en la carpeta normas del repositorio."]:
         le.append([t])
