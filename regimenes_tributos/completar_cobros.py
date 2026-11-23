@@ -126,7 +126,7 @@ def main():
          "Despacho directo a consumo con prioridad (art. 3)."),
         ("Eventos deportivos internacionales", "Exentos de todo impuesto, tasa, contribución o canon a la importación",
          "Equipos e implementos deportivos para eventos declarados por decreto", "Ley 7467/2025, arts. 6, 7 y 8",
-         "Copia escaneada, leída con OCR. También admisión temporaria sin tasas ni garantías (art. 7)."),
+         "Texto de la Gaceta Oficial N.º 88 del 24/04/2025 (normas/). También admisión temporaria sin tasas ni garantías (art. 7)."),
     ]:
         poner(nombre, tasa, base, art, nota, relleno=VERDE)
     poner("Emergencia por COVID-19", "Sin exoneración en el despacho",
@@ -199,7 +199,7 @@ def main():
         "Cooperativas": "Sí: Ley 438/1994 y sus cambios (Leyes 5501/2015 y 6178) en normas/",
         "Régimen de materias primas (RMP)": "Sí: Decretos 11.771/2000, 11.525/2007 y 6539/2021 y Res. MH 1/2001 (normas/); el 8664/2022 está citado",
         "Negocios fiduciarios": "Sí (normas/, BACN)", "Ley 285/1993": "Sí (normas/)",
-        "Vacunas": "Sí (normas/, BACN)", "Eventos deportivos internacionales": "Sí (normas/, BACN; escaneada, leída con OCR)",
+        "Vacunas": "Sí (normas/, BACN)", "Eventos deportivos internacionales": "Sí (normas/, Gaceta Oficial N.º 88, con texto)",
         "Tasas de legalización y aranceles consulares": "Sí: Leyes 4033/2010 y 7196/2023 (release normas_aduanas)",
         "Ajuste de precios en la exportación de granos": "Sí: Ley 5061/2013 (normas/) y Ley 6380/2019 (BACN, leída con OCR)",
         "Lista nacional de excepciones (LNE)": "En parte: Decreto 3339/2025 (normas/)",
