@@ -151,12 +151,13 @@ def main():
     celda("Ajuste de precios en la exportación de granos", 9, "Vigente (Ley 6380/2019)")
     celda("Bienes de alta tecnología", 9, "Derogada: Ley 6380/2019, art. 153, num. 5 (no está entre las excepciones) y "
           "expresamente por la Ley 7546/2025, art. 22")
-    poner("Sector azucarero (AZ)", "30 % (Arancel Nacional Vigente); el nivel intrazona está en el Anexo III del Decreto 6898/2022",
+    poner("Sector azucarero (AZ)", "30 % en las 5 líneas de la partida 17.01 (AEC: 16 %), marca AZ* del Arancel Nacional Vigente",
           "Azúcar (partida 17.01 y otras del anexo)",
           "Decreto 6898/2022, arts. 2 y 3 (Anexo III, columna A.I.); Decreto 7306/1995; Dec. CMC 19/94, arts. 3 y 4",
           "El Decreto 7306/1995 incorporó la Dec. CMC 19/94 (cada país aplica su propio arancel al azúcar, también dentro del "
           "MERCOSUR). El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
-          "(no oficial) no trae los anexos con las tasas.", relleno=VERDE)
+          "(no oficial) no trae los anexos. La tasa sale del Arancel Nacional Vigente de octubre 2025 del MEF (pág. 64; "
+          "arancel_nacional/Arancel_Nacional_Vigente_oct2025_vs_AEC.xlsx, hoja Arancel), que es un documento de trabajo sin fuerza legal.", relleno=VERDE)
     celda("Sector azucarero (AZ)", 7, "Decreto 6898/2022 (antes Decreto 7306/1995 y 6654/2016); Dec. CMC 19/94")
     celda("Régimen automotor (AUT)", 8, "Decreto 6898/2022, arts. 1, 3 y 4 (Anexos I y II): aranceles intrazona de vehículos y autopartes; "
           "Dec. CMC 29/94. Bienes usados del cap. 87: Decreto 7244/2017")
