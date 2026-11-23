@@ -102,7 +102,10 @@ def main():
          "Ley 4838/2012, arts. 6 y 7 (art. 7 en la redacción de la Ley 5819)", "La Ley 5819 subió la base del IVA de las motos del 40 % al 100 % del valor aduanero y destina lo recaudado al Hospital del Trauma, el SEME y el MEC."),
         ("Transporte eléctrico", "0 % de impuesto aduanero y 0 % de IVA",
          "Vehículos eléctricos, sus repuestos y equipos para ensamblarlos", "Ley 6925/2022, arts. 10, 11 y 12",
-         "Copia escaneada, leída con OCR. La exoneración de repuestos dura 10 años desde la publicación."),
+         "Leída en la imagen de la copia escaneada (SILpy). Las tres exoneraciones duran 10 años desde la publicación. "
+         "Art. 10 incluye los equipos para centros de recarga. Art. 12 exige transferencia tecnológica con universidades "
+         "públicas y colegios técnicos. Art. 8: fondo con el 10 % del ISC de naftas de 95 octanos o más, turbo fuel, nafta de "
+         "aviación y gasoil premium."),
         ("Bienes de alta tecnología", "0 % de arancel; IVA 10 % sobre el 15 % del valor aduanero (equivale a 1,5 %)",
          "Materias primas, partes y piezas para producir bienes de alta tecnología", "Ley 4427/2012, arts. 7 y 8",
          "Texto de la BACN. Ya no rige (ver Vigencia); hoy aplica la Ley 7546/2025."),
