@@ -137,8 +137,10 @@ def main():
           "Ley 6524/2020, art. 15", "En 2020 suspendió las nuevas solicitudes de devolución de créditos fiscales y la resolución "
           "de las que estaban en trámite (salvo el régimen acelerado). El art. 14 permitió prorrogar vencimientos. No exoneró "
           "tributos a la importación. Texto del SILpy (normas/).", relleno=VERDE)
-    poner("Diabetes", "Sin exoneración en el despacho", "Medicamentos e insumos que entrega el Ministerio de Salud",
-          "Ley 5372/2014, art. 16", "La ley obliga a entregar gratis insulina e insumos, pero no exonera tributos a la importación.",
+    poner("Diabetes", "Exoneración impositiva en la importación y en la venta",
+          "Todos los medicamentos e insumos para el tratamiento y autocontrol de la diabetes",
+          "Ley 5372/2014, art. 21", "La DNIT aplica la exoneración del IVA con listas por marca y principio activo (consultas "
+          "vinculantes de 2016, normas/). La Ley 5372 está entre las excepciones del art. 153 de la Ley 6380/2019, así que sigue vigente.",
           relleno=VERDE)
     poner("Ley 285/1993", "Sin relación con la importación", "Beneficios adicionales que la empresa da a sus trabajadores",
           "Ley 285/1993, arts. 2 y 7", "Reglamenta el art. 93 de la Constitución: esos beneficios son gasto deducible "
@@ -173,9 +175,10 @@ def main():
     celda("Régimen automotor (AUT)", 8, "Decreto 6898/2022, arts. 1, 3 y 4 (Anexos I y II): aranceles intrazona de vehículos y autopartes; "
           "Dec. CMC 29/94. Bienes usados del cap. 87: Decreto 7244/2017")
     v = ws.cell(fila["Diabetes"], 15).value
-    celda("Diabetes", 15, v + " La exoneración está en otra ley: la Ley 77/1992 (arts. 1 y 2) exonera de tributos aduaneros e "
-          "internos la insulina, los insumos para el control de la diabetes y medicamentos para el cáncer y otras afecciones. "
-          "No figura entre las excepciones del art. 153 de la Ley 6380/2019: vigencia a confirmar (la DNIT la sigue publicando).")
+    celda("Diabetes", 15, v + " Además, la Ley 77/1992 (arts. 1 y 2) exonera de tributos aduaneros e internos la insulina, los "
+          "insumos para diabetes y medicamentos para el cáncer y otras afecciones; no figura entre las excepciones del art. 153 de la "
+          "Ley 6380/2019 y, según un resumen sin verificar, las leyes de presupuesto 2025 y 2026 no la exceptuaron: su alcance hoy es "
+          "dudoso, pero la insulina sigue cubierta por la Ley 5372.")
     # Ley 6380/2019, art. 153, num. 5: siguen vigentes solo las exoneraciones de esta lista.
     for nombre in ["Donaciones al Estado y a otras instituciones", "Franquicias diplomáticas y consulares", "Ley 285/1993",
                    "Cooperativas", "Negocios fiduciarios", "Leasing", "Minería", "Zonas francas",
@@ -211,6 +214,17 @@ def main():
         "Lista nacional de excepciones (LNE)": "En parte: Decreto 3339/2025 (normas/)",
         "Sector azucarero (AZ)": "Sí: Decreto 6898/2022 con anexos (Gaceta Oficial N.º 68) y Dec. CMC 19/94",
     }
+    for nombre, art in [("Bienes de capital (BK)", "art. 5 (vigencia hasta el 31/12/2030, Dec. CMC 08/21)"),
+                        ("Informática y telecomunicaciones (BIT)", "art. 6 (vigencia hasta el 31/12/2030, Dec. CMC 08/21)"),
+                        ("Lista nacional de excepciones (LNE)", "art. 4 (vigencia hasta el 31/12/2030, Dec. CMC 11/21)"),
+                        ("Régimen automotor (AUT)", "art. 7 (vigente hasta que el MERCOSUR incorpore el sector)"),
+                        ("Sector azucarero (AZ)", "art. 7 (vigente hasta que el MERCOSUR incorpore el sector)")]:
+        r_ = fila[nombre]
+        prev = ws.cell(r_, 8).value or ""
+        ws.cell(r_, 8).value = (prev + "; " if prev else "") + ("Decreto 6897/2022 (arancel consolidado para importaciones de fuera "
+                                "del MERCOSUR; la columna «Lista» identifica cada lista), " + art +
+                                ". El Decreto 6542/2021 incorporó las Dec. CMC 08/21, 11/21 y 12/21.")
+        en_repo.setdefault(nombre, "Sí: Decreto 6897/2022 (MEF, normas/)")
     for nombre, v in en_repo.items():
         celda(nombre, 10, v)
     ws.cell(fila["Maquila: nuevo régimen"], 8).value = "Reglamento: Decreto 5714/2026 (release normas_aduanas)"
