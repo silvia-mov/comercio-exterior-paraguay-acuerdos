@@ -76,10 +76,12 @@ def main():
           "Monto fijo por despacho, en jornales mínimos diarios: remesa expresa 0 % a 50 % de un jornal; fracciones complementarias "
           "25 %; exportación simplificada 25 %",
           "Cada despacho oficializado (no depende del valor)",
-          "Res. DNA 198/2017, art. 2 (remesa expresa); Res. DNA 218/2020, art. 7 (IFC1); Res. DGA 25/1994, art. 1",
+          "Decreto 1.132/98, arts. 2 y 3; Res. DNA 198/2017, art. 2 (remesa expresa); Res. DNA 218/2020, art. 7 (IFC1); Res. DGA 25/1994, art. 1",
           "Remesa expresa: documentos 0 %, mercaderías de menos de USD 100 25 %, de USD 100 a 1.000 50 % (vigente desde el 01/04/2017). "
-          "Para el despacho general, un resumen sin verificar habla de 2,5 jornales; el monto original está en la Res. MH 1144/1992, "
-          "que falta. Lo percibe el Centro de Despachantes de Aduana (CDAP), no va al presupuesto de Aduanas. La exportación "
+          "Para el despacho general, un resumen sin verificar habla de 2,5 jornales. Historia (textos en normas/): Res. MH 1144/1992 "
+          "fijó la escala, modificada por las Res. MH 801/94 y 214/96; el Decreto 22.024/98 suspendió el canon desde el 30/07/1998; "
+          "el Decreto 1.132/98 lo restableció (art. 1) y facultó al Ministerio de Hacienda a actualizarlo (art. 2), con cobro del "
+          "CDAP hasta la donación del sistema (art. 3). Falta la resolución de Hacienda posterior a 1998 con el monto vigente. Lo percibe el Centro de Despachantes de Aduana (CDAP), no va al presupuesto de Aduanas. La exportación "
           "general no paga (Res. DGA 25/1994).", relleno=VERDE)
     poner("Impuesto selectivo al consumo (ISC) en la importación",
           nota="OJO: son las tasas MÁXIMAS de la ley. La tasa real de cada producto la fija el Decreto 3109/2019 "
@@ -203,7 +205,7 @@ def main():
     en_repo = {
         "Arancel aduanero (derecho de importación)": "Sí: Ley 1095/1984 (BACN, escaneada, leída con OCR) y Código Aduanero (normas/). El archivo F07 de la release normas_aduanas es otra ley (1095/1997)",
         "Tasa por servicio de valoración aduanera": "Sí: Código Aduanero (normas/)",
-        "Canon informático": "Sí: Res. DGA 25/1994, Res. DNA 198/2017 y 218/2020 (normas/); falta la Res. MH 1144/1992",
+        "Canon informático": "Sí: Decretos 22.024/98 y 1.132/98, Res. DGA 25/1994, Res. DNA 198/2017 y 218/2020 (normas/); falta la resolución de Hacienda con el monto general",
         "Franquicias diplomáticas y consulares": "Sí (normas/)", "Donaciones al Estado y a otras instituciones": "Sí (normas/, BACN)",
         "Zonas francas": "Sí (normas/, BACN)", "Inversión: Ley 60/90 (régimen anterior)": "Sí (normas/)",
         "Inversión: nuevo régimen de incentivos fiscales": "Sí, con su reglamento (Decreto 5432/2026, release normas_aduanas)",
