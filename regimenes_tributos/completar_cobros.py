@@ -81,7 +81,9 @@ def main():
           "Para el despacho general, un resumen sin verificar habla de 2,5 jornales. Historia (textos en normas/): Res. MH 1144/1992 "
           "fijó la escala, modificada por las Res. MH 801/94 y 214/96; el Decreto 22.024/98 suspendió el canon desde el 30/07/1998; "
           "el Decreto 1.132/98 lo restableció (art. 1) y facultó al Ministerio de Hacienda a actualizarlo (art. 2), con cobro del "
-          "CDAP hasta la donación del sistema (art. 3). Falta la resolución de Hacienda posterior a 1998 con el monto vigente. Lo percibe el Centro de Despachantes de Aduana (CDAP), no va al presupuesto de Aduanas. La exportación "
+          "CDAP hasta la donación del sistema (art. 3). Falta la resolución de Hacienda posterior a 1998 con el monto vigente. "
+          "Según un resumen sin verificar: Res. 193/2004 (exportación), Res. 525/2006 (importaciones menores) y Res. DNA 908/2022 "
+          "(Exportafácil) extendieron el cobro; el informe CGR N.º 64/2023 de la Contraloría trata la percepción del CDAP. Lo percibe el Centro de Despachantes de Aduana (CDAP), no va al presupuesto de Aduanas. La exportación "
           "general no paga (Res. DGA 25/1994).", relleno=VERDE)
     poner("Impuesto selectivo al consumo (ISC) en la importación",
           nota="OJO: son las tasas MÁXIMAS de la ley. La tasa real de cada producto la fija el Decreto 3109/2019 "
