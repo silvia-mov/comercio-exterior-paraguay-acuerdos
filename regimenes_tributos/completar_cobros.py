@@ -6,7 +6,7 @@ Uso (desde la raíz del repositorio):
 Lee regimenes_tributos/cobros_original.xlsx (la lista armada a partir de las normas, con la tasa y el artículo de
 cada cobro) y salidas/dnit_anual/DNIT_2025_importacion.xlsx. Escribe regimenes_tributos/Cobros_y_regimenes_especiales.xlsx:
 - celdas en verde: tasa leída en la norma (como en el original);
-- celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía;
+- celdas en crema: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía;
 - hoja Control_DNIT_2025: la tasa efectiva que se ve en los datos para cada cobro.
 """
 from pathlib import Path
@@ -17,8 +17,8 @@ from openpyxl.styles import Alignment, Font, PatternFill
 
 RAIZ = Path(__file__).resolve().parent.parent
 CARPETA = RAIZ / "regimenes_tributos"
-CELESTE = PatternFill("solid", fgColor="DCEBFA")
-VERDE = PatternFill("solid", fgColor="B9EEE1")
+CELESTE = PatternFill("solid", fgColor="F1E3C4")
+VERDE = PatternFill("solid", fgColor="B7D0CC")
 
 
 def control(anio=2025):
@@ -316,7 +316,7 @@ def main():
     # Leeme: colores, avisos y normas que faltan.
     le = wb["Leeme"]
     for t in ["", "Agregado en el repositorio (20/11/2026)",
-              "Celdas en celeste: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
+              "Celdas en crema: tasa observada en lo que cobró la DNIT en 2025, sin norma leída todavía.",
               "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819, 6178 y 6524/2020; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC de cada producto están en la hoja ISC_Decreto_3109 (texto de 2019 del decreto).",

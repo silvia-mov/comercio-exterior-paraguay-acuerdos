@@ -50,7 +50,7 @@ def escribir(destino, datos, notas):
         libro = w.book
         libro.formats[0].set_font_name("Calibri")
         libro.formats[0].set_font_size(10)
-        negrita = libro.add_format({"bold": True, "font_name": "Calibri", "font_size": 10, "bg_color": "#FEC9D7"})
+        negrita = libro.add_format({"bold": True, "font_name": "Calibri", "font_size": 10, "bg_color": "#E6DAE7"})
         texto = libro.add_format({"font_name": "Calibri", "font_size": 10})
         datos.to_excel(w, sheet_name="Datos", index=False, header=False, startrow=1)
         hoja = w.sheets["Datos"]

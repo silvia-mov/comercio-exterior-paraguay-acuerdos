@@ -14,15 +14,15 @@ N_RMP = len(HIST['RMP'])
 R = json.load(open(rows_path, encoding='utf-8'))
 
 F = 'Arial'
-HFILL = PatternFill('solid', fgColor='39B89A')
+HFILL = PatternFill('solid', fgColor='5E8F88')
 HFONT = Font(name=F, bold=True, color='FFFFFF')
 BASE = Font(name=F, size=10)
 BOLD = Font(name=F, size=10, bold=True)
-TITLE = Font(name=F, size=14, bold=True, color='39B89A')
+TITLE = Font(name=F, size=14, bold=True, color='5E8F88')
 BLUE = Font(name=F, size=10, color='0000FF')
 GREEN = Font(name=F, size=10, color='008000')
 WRAP = Alignment(wrap_text=True, vertical='top')
-THIN = Border(bottom=Side(style='thin', color='79D3BE'))
+THIN = Border(bottom=Side(style='thin', color='8DB2AC'))
 
 wb = openpyxl.Workbook()
 
@@ -72,9 +72,9 @@ for i, w in enumerate(widths, start=1):
 ws.row_dimensions[1].height = 45
 ws.freeze_panes = 'B2'
 ws.auto_filter.ref = f'A1:P{NL}'
-ws.conditional_formatting.add(f'K2:K{NL}', FormulaRule(formula=[f'$I2<0'], fill=PatternFill('solid', fgColor='B9EEE1')))
-ws.conditional_formatting.add(f'K2:K{NL}', FormulaRule(formula=[f'$I2>0'], fill=PatternFill('solid', fgColor='FEC9D7')))
-ws.conditional_formatting.add(f'N2:N{NL}', FormulaRule(formula=[f'$N2<>"AEC igual"'], fill=PatternFill('solid', fgColor='FF91AD')))
+ws.conditional_formatting.add(f'K2:K{NL}', FormulaRule(formula=[f'$I2<0'], fill=PatternFill('solid', fgColor='B7D0CC')))
+ws.conditional_formatting.add(f'K2:K{NL}', FormulaRule(formula=[f'$I2>0'], fill=PatternFill('solid', fgColor='E6DAE7')))
+ws.conditional_formatting.add(f'N2:N{NL}', FormulaRule(formula=[f'$N2<>"AEC igual"'], fill=PatternFill('solid', fgColor='AF8EB1')))
 
 # ---------------- Estructura completa ----------------
 we = wb.create_sheet('Estructura')
@@ -178,7 +178,7 @@ for rr in (5, 13, rc + 1):
             cell.font, cell.fill = HFONT, HFILL
             cell.alignment = Alignment(wrap_text=True, vertical='center')
 for rr in (4, 12, rc):
-    wr[f'A{rr}'].font = Font(name=F, size=11, bold=True, color='FF5883')
+    wr[f'A{rr}'].font = Font(name=F, size=11, bold=True, color='774D78')
 for row in wr.iter_rows(min_row=6):
     for cell in row:
         if cell.font is None or (cell.font.name != F):
@@ -233,7 +233,7 @@ for k, v in notas:
     if v is None:
         r += 1 if r > 3 else 0
         wl[f'A{r}'] = k
-        wl[f'A{r}'].font = Font(name=F, size=11, bold=True, color='FF5883')
+        wl[f'A{r}'].font = Font(name=F, size=11, bold=True, color='774D78')
     else:
         wl[f'A{r}'], wl[f'B{r}'] = k, v
         wl[f'A{r}'].font, wl[f'B{r}'].font = BOLD, BASE
@@ -352,7 +352,7 @@ wm[f'A{n+1}'].font = Font(name=F, size=9, italic=True)
 # ---------------- Resumen: materias primas ----------------
 rm = wr.max_row + 2
 wr[f'A{rm}'] = 'Régimen de Materias Primas 2025 (arancel 0 % dentro del régimen)'
-wr[f'A{rm}'].font = Font(name=F, size=11, bold=True, color='FF5883')
+wr[f'A{rm}'].font = Font(name=F, size=11, bold=True, color='774D78')
 for c, h in zip('ABC', ['Sentido (ANV del PDF frente al AEC)', 'Líneas en el régimen', 'ANV promedio en el PDF %']):
     wr[f'{c}{rm+1}'] = h
     wr[f'{c}{rm+1}'].font, wr[f'{c}{rm+1}'].fill = HFONT, HFILL

@@ -37,7 +37,7 @@ está en `normas_faltantes.csv`.
 ## Cobros y regímenes especiales (por ley)
 
 `Cobros_y_regimenes_especiales.xlsx`: 45 cobros, regímenes que los bajan o eximen y listas del arancel, con la norma,
-la tasa y el artículo de donde sale. Verde: tasa leída en la norma. Celeste: tasa observada en lo que cobró la DNIT en
+la tasa y el artículo de donde sale. Verde: tasa leída en la norma. Crema: tasa observada en lo que cobró la DNIT en
 2025, sin norma leída todavía. El servicio de valoración (0,5 %) sale del Código Aduanero, arts. 263 y 393 a); el
 cobro sobre la carne (hasta 0,25 % por tonelada), de la Ley 808/1996, art. 14 c), y la Res. CIEFA 3/2021 lo fija en 0,25 % desde 2022 (textos en `normas/`). Hoja *Control_DNIT_2025*: la tasa
 que se ve en los datos para cada cobro. Las tasas del ISC son las máximas de la ley (la de cada producto la fija el
