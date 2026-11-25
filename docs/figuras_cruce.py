@@ -27,9 +27,9 @@ IMG.mkdir(parents=True, exist_ok=True)
 FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
     "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6dc", eje="#c9c0b3",
-                  verde="#5e8f88", verde2="#3f6b65", rosa="#774d78", rosa_claro="#e6dae7", menta="#8db2ac"),
+                  verde="#5e8f88", verde2="#3f6b65", rosa="#774d78", rosa_claro="#c7b0c8", menta="#8db2ac"),
     "dark": dict(texto="#f5eef1", texto2="#bfb3b8", grilla="#2a2427", eje="#4a4044",
-                 verde="#5e8f88", verde2="#8db2ac", rosa="#af8eb1", rosa_claro="#4a3a4d", menta="#b7d0cc"),
+                 verde="#5e8f88", verde2="#8db2ac", rosa="#af8eb1", rosa_claro="#6a546d", menta="#b7d0cc"),
 }
 
 

@@ -25,9 +25,9 @@ IMG = RAIZ / "docs" / "img"
 FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
     "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6dc", eje="#c9c0b3",
-                  con="#5e8f88", socios="#e6dae7", rosa="#774d78"),
+                  con="#5e8f88", socios="#c7b0c8", rosa="#774d78"),
     "dark": dict(texto="#f5eef1", texto2="#bfb3b8", grilla="#2a2427", eje="#4a4044",
-                 con="#5e8f88", socios="#4a3a4d", rosa="#af8eb1"),
+                 con="#5e8f88", socios="#6a546d", rosa="#af8eb1"),
 }
 # Nombres cortos y en lenguaje común de las partidas más frecuentes (config/nombres_cortos_ncm.csv)
 CORTOS = pd.read_csv(RAIZ / "config" / "nombres_cortos_ncm.csv", dtype=str).set_index("partida")["nombre_corto"].to_dict()

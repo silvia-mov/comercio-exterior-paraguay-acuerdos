@@ -43,17 +43,17 @@
 <style>
 :root {
   --bg: #fdfaf3; --panel: #ffffff; --text: #1d1a1c; --text2: #5c5459; --line: #e9e1d3;
-  --s1: #5e8f88; --s2: #e6dae7; --s3: #774d78; --s4: #8db2ac; --accent: #3f6b65; --code: #f7f1e6; --link: #3f6b65; --btn: #5e8f88; --btntext: #08261f; --hero1: #b7d0cc; --hero2: #e6dae7;
+  --s1: #5e8f88; --s2: #c7b0c8; --s3: #774d78; --s4: #8db2ac; --accent: #3f6b65; --code: #f7f1e6; --link: #3f6b65; --btn: #5e8f88; --btntext: #08261f; --hero1: #b7d0cc; --hero2: #e6dae7;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33;
-    --s1: #5e8f88; --s2: #4a3a4d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
+    --s1: #5e8f88; --s2: #6a546d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
   }
 }
 :root[data-theme="dark"] {
   --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33;
-  --s1: #5e8f88; --s2: #4a3a4d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
+  --s1: #5e8f88; --s2: #6a546d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -142,6 +142,9 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   .tw { overflow: visible; }
 }
 .contador[hidden] { display: none; }
+.paneles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+@media (max-width: 760px) { .paneles { grid-template-columns: 1fr; } }
+.panel-tit { font-size: 14px; font-weight: 700; margin: 0 0 2px; }
 .contador { display: inline-block; margin: 12px 0 0; padding: 4px 12px; border-radius: 99px; background: var(--tag, #e6dae7); color: var(--tagtext, #4f3050); font-size: 13px; }
 .comentar { margin: 40px auto 0; max-width: 960px; padding: 0 16px; }
 .comentar .caja { border: 1.5px dashed #8db2ac; border-radius: 12px; padding: 18px 20px; }
@@ -335,14 +338,8 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <h2>Cinco series de cuatro instituciones cuentan casi lo mismo: los datos abiertos de aduanas son confiables</h2>
     <p>Las exportaciones de Paraguay se pueden medir con cinco series de cuatro instituciones: la DNIT, la VUE (Ministerio de Industria y Comercio), el BCP (con dos series: la mensual y la detallada por producto y país) y UN Comtrade. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % de las <strong>exportaciones registradas</strong> del BCP en todos los años (es decir, sin las reexportaciones, que el BCP publica aparte, y sin electricidad), y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos. Los diez cruces de a pares entre las cinco fuentes, con las mayores diferencias y sus explicaciones, están en un Excel: <a href="datos/Cruces_5_fuentes_comercio_Paraguay.xlsx" download>Cruces de las 5 fuentes</a>.</p>
     <div class="card">
-      <div class="legend">
-        <span><span class="sw line" style="background:var(--text)"></span>BCP, exportaciones registradas</span>
-        <span><span class="sw line" style="background:var(--s1)"></span>DNIT, despachos</span>
-        <span><span class="sw line" style="background:var(--s3)"></span>VUE, certificados de origen</span>
-        <span><span class="sw line" style="background:var(--s4)"></span>Espejo, lo que declaran los socios</span>
-      </div>
-      <div id="chart2" role="img" aria-label="Gráfico de líneas que compara las exportaciones de Paraguay según el BCP, la DNIT, la VUE y los datos espejo, 2011 a 2026"></div>
-      <p class="note">Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a> · <a href="datos/utilizacion_por_anio.xlsx" download>Excel</a>. Elaboración propia.</p>
+      <div id="chart2" class="paneles" role="img" aria-label="Tres gráficos de líneas, 2011 a 2026: las exportaciones de Paraguay según la DNIT, los datos espejo y la VUE, cada una comparada con el BCP"><div id="chart2a"></div><div id="chart2b"></div><div id="chart2c"></div></div>
+      <p class="note">Línea gris: BCP, exportaciones registradas (la misma en los tres). Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a> · <a href="datos/utilizacion_por_anio.xlsx" download>Excel</a>. Elaboración propia.</p>
     </div>
     <div class="tw">
       <table id="tabla"></table>
@@ -481,14 +478,14 @@ function ejeX(f, xs) {
     el("text", {x: xs(i), y: f.h - 8, "text-anchor": "middle"}, f.svg).textContent = f.narrow ? "'" + anio(r).slice(2) : anio(r);
   });
 }
-function linea(f, xs, ys, g, color, guiones) {
+function linea(f, xs, ys, g, color, guiones, grosor = 2.5, radio = 3) {
   let tramo = [];
-  const pintar = () => { if (tramo.length > 1) el("polyline", {points: tramo.join(" "), fill: "none", stroke: color, "stroke-width": 2.5, "stroke-linejoin": "round", "stroke-dasharray": guiones || "none"}, f.svg); tramo = []; };
+  const pintar = () => { if (tramo.length > 1) el("polyline", {points: tramo.join(" "), fill: "none", stroke: color, "stroke-width": grosor, "stroke-linejoin": "round", "stroke-dasharray": guiones || "none"}, f.svg); tramo = []; };
   D.forEach((r, i) => {
     const v = g(r);
     if (v === null) { pintar(); return; }
     tramo.push(`${xs(i)},${ys(v)}`);
-    el("circle", {cx: xs(i), cy: ys(v), r: 3, fill: color}, f.svg);
+    if (radio) el("circle", {cx: xs(i), cy: ys(v), r: radio, fill: color}, f.svg);
   });
   pintar();
 }
@@ -517,17 +514,26 @@ function dibujar() {
     el("text", {x: f.W - f.m.r + 6, y: yp(p) + 4}, f.svg).textContent = p + "%";
   ejeX(f, xs);
 
-  // Gráfico 2: cuatro fuentes
-  f = marco("chart2", 290, false);
-  const max2 = 12500, bw2 = f.iw / D.length;
-  const xs2 = i => f.m.l + bw2 * (i + .5);
-  const ys2 = v => f.m.t + f.ih - v / max2 * f.ih;
-  ejeY(f, max2, 2500);
-  linea(f, xs2, ys2, r => r[5], "var(--s4)", "6 4");
-  linea(f, xs2, ys2, r => r[3], "var(--s3)");
-  linea(f, xs2, ys2, r => r[1] + r[2], "var(--s1)");
-  linea(f, xs2, ys2, r => r[4], "var(--text)");
-  ejeX(f, xs2);
+  // Gráfico 2: tres paneles, cada fuente contra el BCP (gris). Paneles chicos en vez de cuatro líneas encimadas.
+  [["chart2a", "DNIT, despachos", r => r[1] + r[2], "var(--s1)"],
+   ["chart2b", "Espejo, lo que declaran los socios", r => r[5], "var(--accent)"],
+   ["chart2c", "VUE, certificados de origen", r => r[3], "var(--s3)"]].forEach(([id, nombre, g, color]) => {
+    const host = document.getElementById(id);
+    host.innerHTML = "";
+    const tit = document.createElement("p"); tit.className = "panel-tit"; tit.style.color = color;
+    tit.innerHTML = nombre + ' <span style="color:var(--text2);font-weight:400">vs. BCP</span>';
+    host.appendChild(tit);
+    const caja = document.createElement("div"); caja.id = id + "-g"; host.appendChild(caja);
+    const f2 = marco(id + "-g", 210, false);
+    f2.narrow = f2.W < 420;
+    const max2 = 12500, bw2 = f2.iw / D.length;
+    const xs2 = i => f2.m.l + bw2 * (i + .5);
+    const ys2 = v => f2.m.t + f2.ih - v / max2 * f2.ih;
+    ejeY(f2, max2, 2500);
+    linea(f2, xs2, ys2, r => r[4], "var(--text2)", null, 1.5, 0);
+    linea(f2, xs2, ys2, g, color, null, 3.5, 3);
+    ejeX(f2, xs2);
+  });
 }
 dibujar();
 let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(dibujar, 150); });
@@ -598,7 +604,7 @@ document.getElementById("tabla").innerHTML =
     const max = Math.max(...p.t.map(v => v || 0)) || 1, bw = W / C.anios.length;
     C.anios.forEach((an, k) => {
       const tt = p.t[k] || 0, cc = p.a[k] || 0, x = k * bw + bw * .15, w = bw * .7, base = H - 18;
-      const hT = tt / max * (H - 30), hC = cc / max * (H - 30), op = k === i ? 1 : .45;
+      const hT = tt / max * (H - 30), hC = cc / max * (H - 30), op = k === i ? 1 : .6;
       el("rect", {x, y: base - hT, width: w, height: hT - hC, fill: "var(--s2)", opacity: op, rx: 2}, svg);
       el("rect", {x, y: base - hC, width: w, height: hC, fill: "var(--s1)", opacity: op, rx: 2}, svg);
       const lejos = Math.abs(k - i) > (W < 500 ? 3 : 1);  // que las etiquetas no se pisen
@@ -664,7 +670,7 @@ document.getElementById("tabla").innerHTML =
     const max = Math.max(...p.t.map(v => v || 0)) || 1, bw = W / P.anios.length;
     P.anios.forEach((an, k) => {
       const tt = p.t[k] || 0, cc = p.a[k] || 0, x = k * bw + bw * .15, w = bw * .7, base = H - 18;
-      const hT = tt / max * (H - 28), hC = cc / max * (H - 28), o = k === i ? 1 : .45;
+      const hT = tt / max * (H - 28), hC = cc / max * (H - 28), o = k === i ? 1 : .6;
       el("rect", {x, y: base - hT, width: w, height: Math.max(hT - hC, 0), fill: "var(--s2)", opacity: o, rx: 2}, svg);
       el("rect", {x, y: base - hC, width: w, height: hC, fill: "var(--s1)", opacity: o, rx: 2}, svg);
       const lejos = Math.abs(k - i) > (W < 500 ? 3 : 1);
