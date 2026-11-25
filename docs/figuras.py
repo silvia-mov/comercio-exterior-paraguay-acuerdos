@@ -26,9 +26,9 @@ IMG.mkdir(parents=True, exist_ok=True)
 FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
     "light": dict(texto="#0b0b0b", texto2="#52514e", grilla="#e4e3df", eje="#c3c2b7",
-                  con="#39b89a", sin="#fec9d7"),
+                  con="#5e8f88", sin="#af8eb1"),
     "dark": dict(texto="#f0efec", texto2="#c3c2b7", grilla="#33332f", eje="#52514e",
-                 con="#39b89a", sin="#6b3a4a"),
+                 con="#5e8f88", sin="#8a5e8c"),
 }
 NOMBRES_CORTOS = {
     "MERCOSUR intrazona (ACE 18)": "MERCOSUR (ACE 18)",

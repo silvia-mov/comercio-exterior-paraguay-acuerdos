@@ -26,10 +26,10 @@ IMG.mkdir(parents=True, exist_ok=True)
 # Fondo propio (no transparente): GitHub elige la versión clara u oscura según la computadora.
 FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
-    "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6e8", eje="#c9bfc3",
-                  verde="#39b89a", verde2="#1f7f68", rosa="#ff5883", rosa_claro="#fec9d7", menta="#79d3be"),
+    "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6dc", eje="#c9c0b3",
+                  verde="#5e8f88", verde2="#3f6b65", rosa="#774d78", rosa_claro="#e6dae7", menta="#8db2ac"),
     "dark": dict(texto="#f5eef1", texto2="#bfb3b8", grilla="#2a2427", eje="#4a4044",
-                 verde="#39b89a", verde2="#79d3be", rosa="#ff91ad", rosa_claro="#6b3a4a", menta="#b9eee1"),
+                 verde="#5e8f88", verde2="#8db2ac", rosa="#af8eb1", rosa_claro="#4a3a4d", menta="#b7d0cc"),
 }
 
 

@@ -16,18 +16,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <style>
 :root {
-  --bg: #fffafb; --panel: #ffffff; --text: #1d1a1c; --text2: #5c5459; --line: #f3dde4;
-  --s1: #39b89a; --s2: #fec9d7; --s3: #ff5883; --s4: #79d3be; --accent: #1f7f68; --code: #fdf0f4; --link: #1f7f68; --btn: #39b89a; --btntext: #08261f; --hero1: #b9eee1; --hero2: #fec9d7;
+  --bg: #fdfaf3; --panel: #ffffff; --text: #1d1a1c; --text2: #5c5459; --line: #e9e1d3;
+  --s1: #5e8f88; --s2: #e6dae7; --s3: #774d78; --s4: #8db2ac; --accent: #3f6b65; --code: #f7f1e6; --link: #3f6b65; --btn: #5e8f88; --btntext: #08261f; --hero1: #b7d0cc; --hero2: #e6dae7;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33;
-    --s1: #39b89a; --s2: #6b3a4a; --s3: #ff91ad; --s4: #b9eee1; --accent: #79d3be; --code: #2a2225; --link: #79d3be; --btn: #39b89a; --btntext: #08261f; --hero1: #123a31; --hero2: #3d1a26;
+    --s1: #5e8f88; --s2: #4a3a4d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
   }
 }
 :root[data-theme="dark"] {
   --bg: #161314; --panel: #201b1d; --text: #f5eef1; --text2: #bfb3b8; --line: #3a2f33;
-  --s1: #39b89a; --s2: #6b3a4a; --s3: #ff91ad; --s4: #b9eee1; --accent: #79d3be; --code: #2a2225; --link: #79d3be; --btn: #39b89a; --btntext: #08261f; --hero1: #123a31; --hero2: #3d1a26;
+  --s1: #5e8f88; --s2: #4a3a4d; --s3: #af8eb1; --s4: #b7d0cc; --accent: #8db2ac; --code: #2a2225; --link: #8db2ac; --btn: #5e8f88; --btntext: #08261f; --hero1: #24403c; --hero2: #3a2a3b;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -120,12 +120,12 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   .tw { overflow: visible; }
 }
 .contador[hidden] { display: none; }
-.contador { display: inline-block; margin: 12px 0 0; padding: 4px 12px; border-radius: 99px; background: var(--tag, #fec9d7); color: var(--tagtext, #7a2440); font-size: 13px; }
+.contador { display: inline-block; margin: 12px 0 0; padding: 4px 12px; border-radius: 99px; background: var(--tag, #e6dae7); color: var(--tagtext, #4f3050); font-size: 13px; }
 .comentar { margin: 40px auto 0; max-width: 960px; padding: 0 16px; }
-.comentar .caja { border: 1.5px dashed #79d3be; border-radius: 12px; padding: 18px 20px; }
+.comentar .caja { border: 1.5px dashed #8db2ac; border-radius: 12px; padding: 18px 20px; }
 .comentar h2 { margin: 0 0 8px; }
 .comentar p { margin: 0 0 14px; }
-.comentar a.boton { display: inline-block; padding: 9px 16px; border-radius: 8px; background: #39b89a; color: #08261f; font-weight: 600; text-decoration: none; }
+.comentar a.boton { display: inline-block; padding: 9px 16px; border-radius: 8px; background: #5e8f88; color: #08261f; font-weight: 600; text-decoration: none; }
 @media print { .comentar { display: none !important; } }
 .check { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px 14px 38px; margin: 12px 0 18px; }
 .check li { margin: 4px 0; }
@@ -185,7 +185,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source media="(prefers-color-scheme: dark)" srcset="img/turismo_compras_dark.png">
         <img src="img/turismo_compras_light.png" alt="Gráfico de barras apiladas, 2011 a 2026: parte de lo importado que pagó IVA reducido, entre 12 % y 24 % cada año, alrededor de 20 % desde 2023, con una línea del BCP que sigue casi los mismos valores" loading="lazy">
       </picture>
-      <p class="note">El IVA reducido para estos productos no empezó en 2024: el Decreto 2063/2024 reemplazó a un régimen anterior parecido (Decreto 1931/2019, y antes otros). En verde, los códigos de la lista actual; antes de 2022 los mismos productos tenían otros códigos y caen en rosa, por eso la división cambia y el total no. <strong>Control con el dato oficial:</strong> el Anexo Estadístico del BCP (Cuadro 52a) publica la importación bajo el Régimen de Turismo, y su porcentaje queda a 1 o 2 puntos del total de las barras en casi todos los años (por ejemplo, 2019: 23,6 % en los dos; 2023: 22,3 % y 22,8 %). Datos: <a href="datos/turismo_bcp_por_anio.csv" download>CSV del BCP</a> · <a href="datos/turismo_bcp_por_anio.xlsx" download>Excel del BCP</a> y <a href="datos/turismo_compras_por_anio.csv" download>CSV</a> · <a href="datos/turismo_compras_por_anio.xlsx" download>Excel</a>. Código: python/turismo_compras_serie.py y python/leer_anexo_bcp.py. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
+      <p class="note">El IVA reducido para estos productos no empezó en 2024: el Decreto 2063/2024 reemplazó a un régimen anterior parecido (Decreto 1931/2019, y antes otros). En verde, los códigos de la lista actual; antes de 2022 los mismos productos tenían otros códigos y caen en violeta, por eso la división cambia y el total no. <strong>Control con el dato oficial:</strong> el Anexo Estadístico del BCP (Cuadro 52a) publica la importación bajo el Régimen de Turismo, y su porcentaje queda a 1 o 2 puntos del total de las barras en casi todos los años (por ejemplo, 2019: 23,6 % en los dos; 2023: 22,3 % y 22,8 %). Datos: <a href="datos/turismo_bcp_por_anio.csv" download>CSV del BCP</a> · <a href="datos/turismo_bcp_por_anio.xlsx" download>Excel del BCP</a> y <a href="datos/turismo_compras_por_anio.csv" download>CSV</a> · <a href="datos/turismo_compras_por_anio.xlsx" download>Excel</a>. Código: python/turismo_compras_serie.py y python/leer_anexo_bcp.py. Fuente: elaboración propia con datos abiertos de la DNIT.</p>
     </div>
   </section>
 
@@ -343,6 +343,31 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     var archivo = a.getAttribute("href").split("/").pop();
     window.goatcounter.count({path: "descarga/" + archivo, title: archivo, event: true});
     window.goatcounter.count({path: "descargas-total", title: "Descargas (total)", event: true});
+  });
+})();
+</script>
+<script>
+/* Al imprimir: siempre tema claro y gráficos con fondo blanco. Debajo de cada gráfico, un enlace para bajarlo en versión clara. */
+(function () {
+  var st = document.createElement("style");
+  st.textContent = ".dl-graf{display:inline-block;font-size:13px;margin:6px 0 0;color:var(--link,inherit)}@media print{.dl-graf{display:none}}";
+  document.head.appendChild(st);
+  var antes = null;
+  addEventListener("beforeprint", function () {
+    var r = document.documentElement; antes = r.getAttribute("data-theme"); r.setAttribute("data-theme", "light");
+    document.querySelectorAll('picture source[media*="dark"]').forEach(function (s) { s.dataset.m = s.media; s.media = "not all"; });
+  });
+  addEventListener("afterprint", function () {
+    var r = document.documentElement; if (antes === null) r.removeAttribute("data-theme"); else r.setAttribute("data-theme", antes);
+    document.querySelectorAll("picture source[data-m]").forEach(function (s) { s.media = s.dataset.m; });
+  });
+  document.querySelectorAll("picture img").forEach(function (img) {
+    var src = img.getAttribute("src") || "";
+    if (!/_light\.png$/.test(src) || /tarjeta/.test(src)) return;
+    var a = document.createElement("a");
+    a.href = src; a.download = src.split("/").pop().replace("_light", ""); a.className = "dl-graf";
+    a.textContent = "Descargar gráfico (fondo blanco)";
+    img.closest("picture").insertAdjacentElement("afterend", a);
   });
 })();
 </script>

@@ -22,7 +22,7 @@ from figuras_cruce import FONDO, TEMAS, estilo, guardar, leyenda, titulo  # noqa
 
 RAIZ = Path(__file__).resolve().parent.parent
 DATOS = RAIZ / "docs" / "datos"
-PALETA = ["#1f8f73", "#39b89a", "#79d3be", "#ff5883", "#ff91ad", "#c76b86", "#8a7f86"]
+PALETA = ["#4a7c75", "#5e8f88", "#8db2ac", "#774d78", "#af8eb1", "#9a7a9c", "#8a7f86"]
 CORTO = {"MERCOSUR intrazona (ACE 18)": "MERCOSUR (ACE 18)", "ALADI Bilateral Brasil (AAP.CE 74)": "Brasil (AAP.CE 74)",
          "ALADI Bilateral Argentina (AAP.CE 13)": "Argentina (AAP.CE 13)", "ALADI Bilateral México (AAP.R 38)": "México (AAP.R 38)",
          "ALADI Preferencia Arancelaria Regional (PAR 4)": "ALADI PAR 4"}

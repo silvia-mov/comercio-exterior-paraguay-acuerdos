@@ -24,10 +24,10 @@ RAIZ = Path(__file__).resolve().parent.parent
 IMG = RAIZ / "docs" / "img"
 FONDO = {"light": "#ffffff", "dark": "#0d1117"}
 TEMAS = {
-    "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6e8", eje="#c9bfc3",
-                  con="#39b89a", socios="#fec9d7", rosa="#ff5883"),
+    "light": dict(texto="#1d1a1c", texto2="#5c5459", grilla="#ece6dc", eje="#c9c0b3",
+                  con="#5e8f88", socios="#e6dae7", rosa="#774d78"),
     "dark": dict(texto="#f5eef1", texto2="#bfb3b8", grilla="#2a2427", eje="#4a4044",
-                 con="#39b89a", socios="#6b3a4a", rosa="#ff91ad"),
+                 con="#5e8f88", socios="#4a3a4d", rosa="#af8eb1"),
 }
 # Nombres cortos y en lenguaje común de las partidas más frecuentes (config/nombres_cortos_ncm.csv)
 CORTOS = pd.read_csv(RAIZ / "config" / "nombres_cortos_ncm.csv", dtype=str).set_index("partida")["nombre_corto"].to_dict()

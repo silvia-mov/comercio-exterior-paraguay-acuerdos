@@ -49,7 +49,7 @@ def turismo():
         estilo(ax, t)
         titulo(fig, t, f"Cerca de una quinta parte de lo importado entra con IVA reducido ({coma(tot[ult.name], 0)} % en {int(ult['AÑO'])})",
                "% de lo importado (CIF, despachos definitivos de la DNIT) que pagó IVA de hasta 2,2 % de la base. "
-               "Antes de 2022 la NCM usaba otros códigos: parte del turismo de compras queda en rosa. Línea: dato oficial del BCP (FOB)." + nota)
+               "Antes de 2022 la NCM usaba otros códigos: parte del turismo de compras queda en violeta. Línea: dato oficial del BCP (FOB)." + nota)
         leyenda(fig, t, 0.07, 0.72, [("Lista del Decreto 2063/2024 (Turismo de Compras)", t["verde"], "■"),
                                      ("Otros con IVA reducido", t["rosa"], "■"),
                                      ("Dato del BCP: Régimen de Turismo", t["texto"], "━")])
