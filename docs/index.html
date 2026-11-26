@@ -162,6 +162,10 @@ body, button, input, select, textarea { font-family: "Source Sans 3", system-ui,
 h1, h2, h3, .kpi .v, .disp .v, .muestra .v { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-optical-sizing: auto; font-weight: 600; letter-spacing: 0; }
 /* Párrafos justificados, con separación en sílabas */
 p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+/* Gráficos de Datawrapper: interactivos en pantalla, imagen fija al imprimir */
+.dw-embed { display: block; }
+@media screen { .dw-print { display: none; } }
+@media print { .dw-embed { display: none !important; } }
 /* Revisión de diseño: contraste de botones, tamaño de toque, ancho de lectura y letra mínima */
 .boton { background: #679891 !important; }
 p { max-width: 72ch; }
@@ -252,7 +256,8 @@ small { font-size: max(12px, .75em); }
     <h2>En 2025, con Bolivia el 82% usa el acuerdo; con Perú, solo el 25%</h2>
     <p>Con los socios del MERCOSUR y con Bolivia, la mayor parte de lo exportado usa la preferencia: entre el 77% y el 82% en 2025, el último año completo. Con Chile la utilización se duplicó desde 2011 (de 33% a 65%), y con Perú sigue siendo baja.</p>
     <div class="card">
-      <picture>
+      <iframe class="dw-embed" data-dw="https://datawrapper.dwcdn.net/jiQM2/" title="Uso de los acuerdos por socio, 2011–2026 (gráfico interactivo)" aria-label="Gráfico de líneas interactivo" src="https://datawrapper.dwcdn.net/jiQM2/" scrolling="no" frameborder="0" style="width:0;min-width:100% !important;border:none;" height="520" loading="lazy"></iframe>
+      <picture class="dw-print">
         <source media="(prefers-color-scheme: dark)" srcset="img/utilizacion_socios_dark.png">
         <img src="img/utilizacion_socios_light.png" alt="Tasa de utilización de las preferencias por país socio, 2011 a 2026: Argentina, Brasil, Uruguay, Chile, Bolivia y Perú" loading="lazy">
       </picture>
@@ -815,6 +820,26 @@ document.getElementById("tabla").innerHTML =
     aplicar(nuevo);
   });
   document.body.appendChild(b);
+})();
+</script>
+<script>
+/* Datawrapper: alto automático y modo claro/oscuro sincronizado con el botón de la página */
+(function () {
+  window.addEventListener("message", function (e) {
+    var h = e.data && e.data["datawrapper-height"]; if (!h) return;
+    document.querySelectorAll("iframe.dw-embed").forEach(function (f) { if (f.contentWindow === e.source) for (var k in h) f.style.height = h[k] + "px"; });
+  });
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function oscuro() { var t = document.documentElement.getAttribute("data-theme"); return t ? t === "dark" : mq.matches; }
+  function aplicar() {
+    var d = oscuro();
+    document.querySelectorAll("iframe.dw-embed").forEach(function (f) {
+      var u = f.getAttribute("data-dw") + "?dark=" + d; if (f.getAttribute("src") !== u) f.setAttribute("src", u);
+    });
+  }
+  new MutationObserver(aplicar).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  if (mq.addEventListener) mq.addEventListener("change", aplicar);
+  aplicar();
 })();
 </script>
 </body>
