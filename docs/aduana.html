@@ -139,6 +139,10 @@ body, button, input, select, textarea { font-family: "Source Sans 3", system-ui,
 h1, h2, h3, .kpi .v, .disp .v, .muestra .v { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-optical-sizing: auto; font-weight: 600; letter-spacing: 0; }
 /* Párrafos justificados, con separación en sílabas */
 p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+/* Gráficos de Datawrapper: interactivos en pantalla, imagen fija al imprimir */
+.dw-embed { display: block; }
+@media screen { .dw-print { display: none; } }
+@media print { .dw-embed { display: none !important; } }
 /* Revisión de diseño: contraste de botones, tamaño de toque y letra mínima */
 .boton { background: #679891 !important; }
 .todo, .flujo p { margin-left: auto; margin-right: auto; }
@@ -195,7 +199,8 @@ small { font-size: max(12px, .75em); }
     </div>
     <p class="note">Qué impuestos paga cada régimen y con qué norma: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/regimenes_tributos">tabla de tributos por régimen</a>. Cobros y regímenes especiales, con la ley y el artículo de cada tasa: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/raw/main/regimenes_tributos/Cobros_y_regimenes_especiales.xlsx">Excel</a>. Normas consultadas: <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/tree/main/normas">carpeta normas</a> (por ejemplo, el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/normas/Ley_2422_2004_Codigo_Aduanero.pdf">Código Aduanero, Ley 2422/2004</a>, y el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/normas/Decreto_2063_2024_Regimen_Turismo_de_Compras.pdf">Decreto 2063/2024</a>). Ejemplo: el cobro de 0,25% sobre la carne exportada que aparece en "OTROS" es de la <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/normas/Ley_808_1996_Fiebre_Aftosa_BACN.pdf">Ley 808/1996</a> (art. 14 c: hasta 0,25% del valor de cada tonelada) y la <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/normas/Resolucion_CIEFA_3_2021_Carne_0_25.pdf">Res. CIEFA 3/2021</a> (0,25% desde el 1 de enero de 2022).</p>
     <div class="card">
-      <picture>
+      <iframe class="dw-embed" data-dw="https://datawrapper.dwcdn.net/YDxiF/" title="Celulares importados en 2023 (gráfico interactivo)" aria-label="Gráfico interactivo" src="https://datawrapper.dwcdn.net/YDxiF/" scrolling="no" frameborder="0" style="width:0;min-width:100% !important;border:none;" height="300" loading="lazy"></iframe>
+      <picture class="dw-print">
         <source media="(prefers-color-scheme: dark)" srcset="img/celulares_doble_conteo_dark.png">
         <img src="img/celulares_doble_conteo_light.png" alt="Gráfico de barras, celulares importados en 2023: USD 3.100 millones sumando todas las filas, 1.722 contando una sola vez y 1.729 en UN Comtrade" loading="lazy">
       </picture>
@@ -422,6 +427,26 @@ small { font-size: max(12px, .75em); }
     aplicar(nuevo);
   });
   document.body.appendChild(b);
+})();
+</script>
+<script>
+/* Datawrapper: alto automático y modo claro/oscuro sincronizado con el botón de la página */
+(function () {
+  window.addEventListener("message", function (e) {
+    var h = e.data && e.data["datawrapper-height"]; if (!h) return;
+    document.querySelectorAll("iframe.dw-embed").forEach(function (f) { if (f.contentWindow === e.source) for (var k in h) f.style.height = h[k] + "px"; });
+  });
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function oscuro() { var t = document.documentElement.getAttribute("data-theme"); return t ? t === "dark" : mq.matches; }
+  function aplicar() {
+    var d = oscuro();
+    document.querySelectorAll("iframe.dw-embed").forEach(function (f) {
+      var u = f.getAttribute("data-dw") + "?dark=" + d; if (f.getAttribute("src") !== u) f.setAttribute("src", u);
+    });
+  }
+  new MutationObserver(aplicar).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  if (mq.addEventListener) mq.addEventListener("change", aplicar);
+  aplicar();
 })();
 </script>
 </body>
