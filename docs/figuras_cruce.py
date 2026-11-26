@@ -105,7 +105,7 @@ def main():
         for a, v in zip(anios, anual["UTILIZACION_PCT"]):
             ax2.text(a, v + 3, f"{v:.0f}".replace(".", ","), ha="center", fontsize=8.5, color=t["rosa"])
         ax2.set_ylim(0, 100)
-        ax2.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _p: f"{x:.0f} %"))
+        ax2.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda x, _p: f"{x:.0f}%"))
         for lado in ("top", "left", "bottom", "right"):
             ax2.spines[lado].set_visible(False)
         ax2.tick_params(colors=t["texto2"], labelsize=9.5, length=0)
@@ -136,8 +136,8 @@ def main():
         estilo(ax, t)
         r = (anual["DNIT_FOB_TOTAL"] / anual["BCP_SIN_ELECTRICIDAD"] * 100)
         titulo(fig, t, "Cuatro fuentes distintas cuentan casi lo mismo: los datos abiertos de aduanas son confiables",
-               f"Exportaciones de Paraguay, millones de USD, sin electricidad. La DNIT queda entre el {int(r.min())} % y "
-               f"el {int(-(-r.max() // 1))} % de las exportaciones registradas del BCP (sin reexportaciones). El espejo está en CIF.")
+               f"Exportaciones de Paraguay, millones de USD, sin electricidad. La DNIT queda entre el {int(r.min())}% y "
+               f"el {int(-(-r.max() // 1))}% de las exportaciones registradas del BCP (sin reexportaciones). El espejo está en CIF.")
         leyenda(fig, t, 0.07, 0.77, [(n, c, "●") for n, _, c, _ in series])
         nota = "En 2022 los archivos de la VUE tienen valores atípicos (octubre y noviembre)."
         if nota_parcial:
@@ -158,20 +158,20 @@ def main():
             ax.plot(anios, d["UTILIZACION_PCT"], color=t["verde2"], linewidth=2.2)
             ultimo = d["UTILIZACION_PCT"].dropna().loc[:a_comp]
             if len(ultimo):
-                ax.text(1.0, 1.02, f"{int(ultimo.index[-1])}: {ultimo.iloc[-1]:.0f} %", ha="right", va="bottom",
+                ax.text(1.0, 1.02, f"{int(ultimo.index[-1])}: {ultimo.iloc[-1]:.0f}%", ha="right", va="bottom",
                         transform=ax.transAxes, fontsize=9.5, color=t["verde2"], fontweight="bold")
             nombre = p["PAIS"].title()
             ax.set_title(TILDES.get(nombre, nombre), loc="left", fontsize=11, color=t["texto"])
             ax.set_ylim(0, 105)
-            ax.set_yticks([0, 50, 100], ["0 %", "50 %", "100 %"])
+            ax.set_yticks([0, 50, 100], ["0%", "50%", "100%"])
             ax.set_xticks([anios[0], anios[len(anios) // 2], anios[-1]])
             estilo(ax, t)
         ult = {p["PAIS"]: socios[(socios["CODIGO_PAIS"] == p["CODIGO_PAIS"]) & (socios["AÑO"] == a_comp)]["UTILIZACION_PCT"].iloc[0]
                for _, p in principales.iterrows()}
         orden = sorted(ult, key=ult.get, reverse=True)
         nom = lambda x: TILDES.get(x.title(), x.title())
-        titulo(fig, t, f"En {a_comp}, con {nom(orden[0])} el {ult[orden[0]]:.0f} % usa el acuerdo; "
-               f"con {nom(orden[-1])}, solo el {ult[orden[-1]]:.0f} %",
+        titulo(fig, t, f"En {a_comp}, con {nom(orden[0])} el {ult[orden[0]]:.0f}% usa el acuerdo; "
+               f"con {nom(orden[-1])}, solo el {ult[orden[-1]]:.0f}%",
                "Participación del comercio con acuerdo: % de lo exportado a cada país que usó una preferencia arancelaria. Los 6 socios "
                f"con más exportaciones con acuerdo (DNIT). Los números son de {a_comp}, último año completo.")
         if nota_parcial:

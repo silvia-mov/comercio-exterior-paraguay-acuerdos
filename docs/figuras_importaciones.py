@@ -33,19 +33,19 @@ def main():
         ax.plot(d["AÑO"], d["PCT_CON_ACUERDO"], color="#8db2ac", linewidth=2.4)
         ax.plot(d["AÑO"], d["PCT_CON_VENTAJA_POTENCIAL"], color="#4a7c75", linewidth=2.4)
         for col, color, dy in (("PCT_CON_ACUERDO", "#8db2ac", 0.6), ("PCT_CON_VENTAJA_POTENCIAL", "#4a7c75", -0.6)):
-            ax.text(ult["AÑO"] + 0.15, ult[col] + dy, f"{ult[col]:.1f} %".replace(".", ","), va="center",
+            ax.text(ult["AÑO"] + 0.15, ult[col] + dy, f"{ult[col]:.1f}%".replace(".", ","), va="center",
                     fontsize=10, color=color, fontweight="bold")
         ax.set_ylim(15, 35)   # línea, no barras: el eje no necesita empezar en 0
-        ax.set_yticks([15, 20, 25, 30, 35], ["15 %", "20 %", "25 %", "30 %", "35 %"])
+        ax.set_yticks([15, 20, 25, 30, 35], ["15%", "20%", "25%", "30%", "35%"])
         ax.set_xticks(list(d["AÑO"])[::2])
         ax.set_xlim(d["AÑO"].min() - 0.3, d["AÑO"].max() + 1.2)
         estilo(ax, t)
-        titulo(fig, t, f"En {int(ult['AÑO'])}, el {ult['PCT_CON_ACUERDO']:.1f} % de lo importado usó un acuerdo; "
-               f"con ventaja arancelaria potencial, el {ult['PCT_CON_VENTAJA_POTENCIAL']:.1f} %".replace(".", ","),
-               "% de lo importado (CIF). Con ventaja potencial: sin los productos con Arancel Externo Común 0 % ni los que, "
+        titulo(fig, t, f"En {int(ult['AÑO'])}, el {ult['PCT_CON_ACUERDO']:.1f}% de lo importado usó un acuerdo; "
+               f"con ventaja arancelaria potencial, el {ult['PCT_CON_VENTAJA_POTENCIAL']:.1f}%".replace(".", ","),
+               "% de lo importado (CIF). Con ventaja potencial: sin los productos con Arancel Externo Común 0% ni los que, "
                "importados sin acuerdo ese año, casi no pagaron arancel (listas nacionales u otros regímenes). Despachos definitivos de la DNIT.")
         leyenda(fig, t, 0.07, 0.73, [("Usó un acuerdo", "#8db2ac", "━"), ("Con ventaja arancelaria potencial", "#4a7c75", "━"),
-                                     ("Usó un acuerdo sin ventaja (ya entraba con 0 %)", "#af8eb1", "■")])
+                                     ("Usó un acuerdo sin ventaja (ya entraba con 0%)", "#af8eb1", "■")])
         guardar(fig, "importaciones_ventaja", modo)
     print("Listo: importaciones_ventaja_{light,dark}.png en", IMG)
 

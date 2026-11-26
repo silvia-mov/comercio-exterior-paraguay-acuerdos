@@ -134,8 +134,8 @@ def main():
         estilo(ax, t)
         tc = ton[ton["MESES"] == 12]
         pc = lambda r: r["MILES_TON_CON_ACUERDO"] / (r["MILES_TON_CON_ACUERDO"] + r["MILES_TON_SIN_ACUERDO"]) * 100
-        titulo(fig, t, f"En toneladas, el {coma(pc(tc.iloc[-1]), 0)} % de lo exportado en {int(tc.iloc[-1]['AÑO'])} usó un acuerdo "
-               f"(en {int(tc.iloc[0]['AÑO'])}, el {coma(pc(tc.iloc[0]), 0)} %)",
+        titulo(fig, t, f"En toneladas, el {coma(pc(tc.iloc[-1]), 0)}% de lo exportado en {int(tc.iloc[-1]['AÑO'])} usó un acuerdo "
+               f"(en {int(tc.iloc[0]['AÑO'])}, el {coma(pc(tc.iloc[0]), 0)}%)",
                "Exportaciones de Paraguay en miles de toneladas (peso neto), con y sin acuerdo. Despachos de la DNIT. "
                "Separa la cantidad del precio: un año con soja cara sube los dólares, no las toneladas. * 2026: enero a septiembre.")
         leyenda(fig, t, 0.08, 0.77, [("Con acuerdo", t["verde"], "■"), ("Sin acuerdo", t["rosa_claro"], "■")])

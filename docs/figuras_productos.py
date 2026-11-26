@@ -65,7 +65,7 @@ def main():
             ax.barh(y, d["TOTAL_USD"] / 1e6, color=t["socios"], height=0.72)
             ax.barh(y, d["CON_ACUERDO_USD"] / 1e6, color=t["con"], height=0.72)
             for k, (_, r) in enumerate(d.iterrows()):
-                ax.text(r["TOTAL_USD"] / 1e6, k, f"  {r['CON_ACUERDO_PCT']:.0f} %", va="center",
+                ax.text(r["TOTAL_USD"] / 1e6, k, f"  {r['CON_ACUERDO_PCT']:.0f}%", va="center",
                         fontsize=9.5, color=t["texto"], fontweight="bold")
             ax.set_yticks(list(y), d["N"], color=t["texto"], fontsize=10)
             ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(millones))
@@ -78,7 +78,7 @@ def main():
             ax.set_axisbelow(True)
             ax.set_xlabel(f"millones de USD {valor}", fontsize=9.5, color=t["texto2"])
             nombres = ", ".join(top3["N"].str.lower().tolist()[:2]) + " y " + top3["N"].str.lower().iloc[2]
-            fig.text(0.01, 0.975, f"{nombres.capitalize()}: el {parte:.0f} % de lo {verbo} con acuerdo en {anio}",
+            fig.text(0.01, 0.975, f"{nombres.capitalize()}: el {parte:.0f}% de lo {verbo} con acuerdo en {anio}",
                      fontsize=14, fontweight="bold", color=t["texto"], va="top")
             fig.text(0.01, 0.91, f"Los 12 productos con más {'exportaciones' if op == 'EXPORTACION' else 'importaciones'} "
                      "que usaron un acuerdo comercial. El número es la parte de todo lo comerciado del\n"

@@ -27,7 +27,7 @@ def main():
         filas.append(
             f'<tr><td>{anio}</td><td class="anid"><span class="nest">'
             f'<i class="n1" style="width:{a / tope * 100:.1f}%"></i><i class="n3" style="width:{v / tope * 100:.1f}%"></i>'
-            f'</span></td><td>{coma(a)} %</td><td>{coma(v)} %</td><td>{coma(sin, 0)}</td></tr>')
+            f'</span></td><td>{coma(a)}%</td><td>{coma(v)}%</td><td>{coma(sin, 0)}</td></tr>')
     tabla = ('<thead><tr><th>Año</th><th></th><th>Usó un acuerdo</th><th>Con ventaja potencial</th>'
              '<th>Sin ventaja (mill. USD)</th></tr></thead>\n        <tbody>' + "".join(filas) + "</tbody>")
     s = HTML.read_text(encoding="utf-8")

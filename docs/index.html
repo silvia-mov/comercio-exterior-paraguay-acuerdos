@@ -62,7 +62,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font: 16px/1.6 "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
 header { padding: 56px 0 36px; background: linear-gradient(120deg, var(--hero1), var(--hero2)); }
@@ -156,8 +156,13 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 .comentar a.boton { display: inline-block; padding: 9px 16px; border-radius: 8px; background: #5e8f88; color: #08261f; font-weight: 600; text-decoration: none; }
 @media print { .comentar { display: none !important; } }
 .aviso-top { background: var(--panel); border-bottom: 1px solid var(--line); color: var(--text2); font-size: 13.5px; text-align: center; padding: 7px 16px; }
+
+/* Tipografía: Fraunces (títulos y cifras grandes) + Source Sans 3 (texto) */
+body, button, input, select, textarea { font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+h1, h2, h3, .kpi .v, .disp .v, .muestra .v { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-optical-sizing: auto; font-weight: 600; letter-spacing: 0; }
 </style>
 <script>(function(){try{var x=localStorage.getItem("tema");if(x==="light"||x==="dark")document.documentElement.setAttribute("data-theme",x);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="aviso-top">Proyecto independiente. No representa ni cuenta con el respaldo de la DNIT, del Banco Central del Paraguay, del Ministerio de Industria y Comercio ni de ningún gobierno.</div>
@@ -211,9 +216,9 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
     <p>La <strong>participación del comercio con acuerdo</strong> es la parte de lo exportado que usó efectivamente una preferencia de un acuerdo comercial (MERCOSUR, acuerdos del MERCOSUR con terceros países y acuerdos ALADI). Se calcula con los despachos de la DNIT: valor FOB de las exportaciones de origen paraguayo, con y sin acuerdo. En esta página la llamamos también "utilización", pero no es la <em>tasa de utilización de preferencias</em> de los estudios académicos, que divide solo por lo que podría usar una preferencia (los productos con rebaja en el acuerdo). Para calcularla haría falta el arancel de cada país comprador, producto por producto, que no está en estos datos.</p>
 
     <div class="kpis">
-      <div class="kpi"><div class="v">39,6 %</div><div class="l">Exportado con acuerdo en 2011</div></div>
-      <div class="kpi"><div class="v">65,0 %</div><div class="l">Máximo de la serie, en 2023</div></div>
-      <div class="kpi"><div class="v">61,6 %</div><div class="l">2026, de enero a septiembre (USD 5.435 M de 8.820 M)</div></div>
+      <div class="kpi"><div class="v">39,6%</div><div class="l">Exportado con acuerdo en 2011</div></div>
+      <div class="kpi"><div class="v">65,0%</div><div class="l">Máximo de la serie, en 2023</div></div>
+      <div class="kpi"><div class="v">61,6%</div><div class="l">2026, de enero a septiembre (USD 5.435 M de 8.820 M)</div></div>
     </div>
 
     <div class="card">
@@ -229,8 +234,8 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
   </section>
 
   <section id="socios">
-    <h2>En 2025, con Bolivia el 82 % usa el acuerdo; con Perú, solo el 25 %</h2>
-    <p>Con los socios del MERCOSUR y con Bolivia, la mayor parte de lo exportado usa la preferencia: entre el 77 % y el 82 % en 2025, el último año completo. Con Chile la utilización se duplicó desde 2011 (de 33 % a 65 %), y con Perú sigue siendo baja.</p>
+    <h2>En 2025, con Bolivia el 82% usa el acuerdo; con Perú, solo el 25%</h2>
+    <p>Con los socios del MERCOSUR y con Bolivia, la mayor parte de lo exportado usa la preferencia: entre el 77% y el 82% en 2025, el último año completo. Con Chile la utilización se duplicó desde 2011 (de 33% a 65%), y con Perú sigue siendo baja.</p>
     <div class="card">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="img/utilizacion_socios_dark.png">
@@ -252,9 +257,9 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 
   <section id="por-acuerdo">
     <h2>El MERCOSUR concentra casi todo el comercio con preferencia, año tras año</h2>
-    <p>Exportaciones (FOB) e importaciones (CIF) de cada año según el acuerdo que se usó en el despacho. El MERCOSUR (ACE 18) es, según el año, entre el 83 % y el 96 % de lo exportado con acuerdo y entre el 81 % y el 96 % de lo importado con acuerdo. Elija el año para ver el detalle:</p>
+    <p>Exportaciones (FOB) e importaciones (CIF) de cada año según el acuerdo que se usó en el despacho. El MERCOSUR (ACE 18) es, según el año, entre el 83% y el 96% de lo exportado con acuerdo y entre el 81% y el 96% de lo importado con acuerdo. Elija el año para ver el detalle:</p>
     <p class="note"><strong>Ojo:</strong> cuatro acuerdos vigentes no aparecen nunca en los despachos de la DNIT: MERCOSUR–India, Paraguay–Taiwán, MERCOSUR–Singapur y el acuerdo automotor con México (ACE 55). Todo el comercio con esos socios figura como "sin acuerdo", pero eso no prueba que no se usen: puede ser que el sistema no tenga un código para ellos. <a href="#acuerdos-dnit">Ver la explicación y las cifras</a>.</p>
-    <p><strong>Importaciones: usar el acuerdo no siempre da una ventaja.</strong> A veces el importador invoca un acuerdo para un producto que ya entraba sin pagar arancel: porque el Arancel Externo Común es 0 %, o porque está en una lista nacional o en otro régimen con arancel 0. Por eso mostramos dos cifras: en 2025, el <strong>25,7 %</strong> de lo importado <strong>usó un acuerdo</strong> (lo que declaró el importador) y el <strong>19,7 %</strong> lo usó <strong>con ventaja arancelaria potencial</strong>, es decir, en productos que sin acuerdo sí pagaban arancel. La diferencia es de entre el 21 % y el 29 % de lo importado con acuerdo, según el año. Es una aproximación: no ve las exoneraciones propias de cada importador ni las rebajas parciales. <a href="aduana.html#ventaja">Ver la serie completa</a>.</p>
+    <p><strong>Importaciones: usar el acuerdo no siempre da una ventaja.</strong> A veces el importador invoca un acuerdo para un producto que ya entraba sin pagar arancel: porque el Arancel Externo Común es 0%, o porque está en una lista nacional o en otro régimen con arancel 0. Por eso mostramos dos cifras: en 2025, el <strong>25,7%</strong> de lo importado <strong>usó un acuerdo</strong> (lo que declaró el importador) y el <strong>19,7%</strong> lo usó <strong>con ventaja arancelaria potencial</strong>, es decir, en productos que sin acuerdo sí pagaban arancel. La diferencia es de entre el 21% y el 29% de lo importado con acuerdo, según el año. Es una aproximación: no ve las exoneraciones propias de cada importador ni las rebajas parciales. <a href="aduana.html#ventaja">Ver la serie completa</a>.</p>
     <div class="card">
       <label for="anio" class="note">Año</label>
       <select id="anio" aria-label="Elegir el año"></select>
@@ -269,13 +274,13 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
         <source media="(prefers-color-scheme: dark)" srcset="img/importaciones_ventaja_dark.png">
         <img src="img/importaciones_ventaja_light.png" alt="Gráfico de líneas, 2011 a 2025: porcentaje de lo importado que usó un acuerdo y porcentaje que lo usó con ventaja arancelaria potencial; la diferencia es de unos 6 puntos por año" loading="lazy">
       </picture>
-      <p class="note">% de lo importado (CIF), años completos. La franja lila es lo que declaró un acuerdo para productos que ya entraban sin pagar arancel (Arancel Externo Común 0 %, o el mismo producto importado sin acuerdo ese año casi no pagó arancel). Datos: <a href="datos/importaciones_acuerdo_ventaja.csv" download>CSV</a> · <a href="datos/importaciones_acuerdo_ventaja.xlsx" download>Excel</a>. Fuente: elaboración propia con datos abiertos de la DNIT y las versiones de la NCM (SAREM).</p>
+      <p class="note">% de lo importado (CIF), años completos. La franja lila es lo que declaró un acuerdo para productos que ya entraban sin pagar arancel (Arancel Externo Común 0%, o el mismo producto importado sin acuerdo ese año casi no pagó arancel). Datos: <a href="datos/importaciones_acuerdo_ventaja.csv" download>CSV</a> · <a href="datos/importaciones_acuerdo_ventaja.xlsx" download>Excel</a>. Fuente: elaboración propia con datos abiertos de la DNIT y las versiones de la NCM (SAREM).</p>
     </div>
     <h3>Cuánto se ahorra con los acuerdos (estimación)</h3>
     <div class="kpis">
       <div class="kpi"><div class="v">USD 411 M</div><div class="l">de arancel ahorrado en 2025 por las importaciones con acuerdo (estimación)</div></div>
       <div class="kpi"><div class="v">USD 16 M</div><div class="l">de arancel pagado en 2025 por productos de origen MERCOSUR importados sin usar el acuerdo</div></div>
-      <div class="kpi"><div class="v">USD 1.361 M</div><div class="l">exportados en 2025 a Argentina, Brasil y Uruguay sin acuerdo, en productos con arancel externo común mayor a 0 (22 % de lo enviado a esos países)</div></div>
+      <div class="kpi"><div class="v">USD 1.361 M</div><div class="l">exportados en 2025 a Argentina, Brasil y Uruguay sin acuerdo, en productos con arancel externo común mayor a 0 (22% de lo enviado a esos países)</div></div>
     </div>
     <p class="note"><b>Ahorro:</b> lo importado con acuerdo multiplicado por la tasa que pagó ese año el mismo producto importado sin acuerdo (o, si nadie lo importó sin acuerdo, por el Arancel Externo Común). <b>Pagado sin usar el MERCOSUR:</b> es poco, y una parte es esperable: el azúcar y los vehículos están fuera del libre comercio del MERCOSUR, y hay mercadería que no cumple las reglas de origen; lo que más pagó fueron agroquímicos (partida 3808) y vehículos (<a href="datos/ahorro_productos_mercosur_sin_acuerdo.csv" download>lista por producto</a> · <a href="datos/ahorro_productos_mercosur_sin_acuerdo.xlsx" download>Excel</a>). <b>Exportaciones al MERCOSUR sin acuerdo:</b> esos países aplican el Arancel Externo Común (salvo sus excepciones nacionales), así que esas ventas podían usar la preferencia; pero una parte sigue viaje a otros destinos (ver "destino en la aduana y destino final") y otra puede no cumplir las reglas de origen. Son estimaciones: no ven exoneraciones propias de cada importador ni rebajas parciales. Datos: <a href="datos/ahorro_arancelario.csv" download>CSV</a> · <a href="datos/ahorro_arancelario.xlsx" download>Excel</a>. Código: <code>python/ahorro_arancelario.py</code>.</p>
       <h3>Cómo cambió cada acuerdo</h3>
@@ -321,7 +326,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
       <p class="note">Cada despacho dice si usó un acuerdo. No sabemos si los productos que no lo usaron tenían o no una rebaja disponible: algunos no la tienen, otros ya pagan cero para todos o siguen viaje a otro país. Datos por producto: <a href="datos/productos_4_digitos.csv" download>CSV (4 dígitos)</a> · <a href="datos/productos_4_digitos.xlsx" download>Excel (4 dígitos)</a> · <a href="datos/productos_8_digitos.zip" download>ZIP (8 dígitos)</a> · <a href="datos/productos_8_digitos.xlsx" download>Excel (8 dígitos)</a>.</p>
     </div>
       <h3>Más productos y más toneladas con acuerdo</h3>
-    <p>Los acuerdos no solo mueven más dólares: cada año hay más productos que se exportan con preferencia, y en toneladas la parte con acuerdo pasó del 49 % en 2011 al 70 % en 2025 (en dólares, del 40 % al 56 %). Las toneladas no dependen de los precios: un año con soja cara sube los dólares, no el peso. Lo exportado con acuerdo va a pocos destinos, sobre todo al MERCOSUR: su índice de concentración por destino ronda los 3.800 puntos, contra unos 900 lo exportado sin acuerdo (más de 2.500 es concentración alta).</p>
+    <p>Los acuerdos no solo mueven más dólares: cada año hay más productos que se exportan con preferencia, y en toneladas la parte con acuerdo pasó del 49% en 2011 al 70% en 2025 (en dólares, del 40% al 56%). Las toneladas no dependen de los precios: un año con soja cara sube los dólares, no el peso. Lo exportado con acuerdo va a pocos destinos, sobre todo al MERCOSUR: su índice de concentración por destino ronda los 3.800 puntos, contra unos 900 lo exportado sin acuerdo (más de 2.500 es concentración alta).</p>
     <div class="card">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="img/diversificacion_dark.png">
@@ -340,7 +345,7 @@ footer { margin-top: 48px; padding: 28px 0 48px; border-top: 1px solid var(--lin
 
   <section id="fuentes-comparadas">
     <h2>Cinco series de cuatro instituciones cuentan casi lo mismo: los datos abiertos de aduanas son confiables</h2>
-    <p>Las exportaciones de Paraguay se pueden medir con cinco series de cuatro instituciones: la DNIT, la VUE (Ministerio de Industria y Comercio), el BCP (con dos series: la mensual y la detallada por producto y país) y UN Comtrade. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94 % y el 101 % de las <strong>exportaciones registradas</strong> del BCP en todos los años (es decir, sin las reexportaciones, que el BCP publica aparte, y sin electricidad), y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94 % y el 106 %. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos. Los diez cruces de a pares entre las cinco fuentes, con las mayores diferencias y sus explicaciones, están en un Excel: <a href="datos/Cruces_5_fuentes_comercio_Paraguay.xlsx" download>Cruces de las 5 fuentes</a>.</p>
+    <p>Las exportaciones de Paraguay se pueden medir con cinco series de cuatro instituciones: la DNIT, la VUE (Ministerio de Industria y Comercio), el BCP (con dos series: la mensual y la detallada por producto y país) y UN Comtrade. Sin la electricidad (que no pasa por la aduana), los despachos de la DNIT quedan entre el 94% y el 101% de las <strong>exportaciones registradas</strong> del BCP en todos los años (es decir, sin las reexportaciones, que el BCP publica aparte, y sin electricidad), y lo que los demás países declaran haber comprado a Paraguay (datos espejo) entre el 94% y el 106%. La VUE se aparta en 2022 por un error en sus archivos y, desde 2023, cubre menos. Además, la serie detallada del BCP por producto y país (1994–2023) coincide con lo que Paraguay informa a UN Comtrade en los 30 años, y con la DNIT en el total y en los productos. Los diez cruces de a pares entre las cinco fuentes, con las mayores diferencias y sus explicaciones, están en un Excel: <a href="datos/Cruces_5_fuentes_comercio_Paraguay.xlsx" download>Cruces de las 5 fuentes</a>.</p>
     <div class="card">
       <div id="chart2" class="paneles" role="img" aria-label="Tres gráficos de líneas, 2011 a 2026: las exportaciones de Paraguay según la DNIT, los datos espejo y la VUE, cada una comparada con el BCP"><div id="chart2a"></div><div id="chart2b"></div><div id="chart2c"></div></div>
       <p class="note">Línea gris: BCP, exportaciones registradas (la misma en los tres). Millones de USD, sin electricidad. DNIT, VUE y BCP en FOB; el espejo en CIF (incluye flete y seguro hasta el comprador). 2026*: enero a septiembre; el espejo de 2026 todavía no existe. En 2022 los archivos de la VUE tienen un error: las partes de calzado (partida 6406) vendidas a Brasil figuran con USD 1.078 millones en octubre y 2.943 millones en noviembre, con solo 57 y 42 toneladas, y los plásticos (partida 3904) con USD 230 millones y 183 toneladas. Por eso la VUE de 2022 supera al BCP. Fuentes: DNIT; VUE (origen de los datos: Ministerio de Industria y Comercio); BCP (SICEX); UN Comtrade. Datos: <a href="datos/utilizacion_por_anio.csv" download>CSV</a> · <a href="datos/utilizacion_por_anio.xlsx" download>Excel</a>. Elaboración propia.</p>
@@ -394,7 +399,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
     <h2>Preguntas frecuentes</h2>
     <details><summary>¿Por qué la VUE no coincide con las exportaciones con acuerdo?</summary><p>Porque la VUE registra todos los certificados de origen emitidos, también los de envíos que no usan una preferencia. Además, la VUE usa el país de destino final y la DNIT el país declarado en el despacho, y la fecha de la VUE es la de emisión del certificado, no la de cancelación del despacho.</p></details>
     <details><summary>¿Qué es la "utilización" de los acuerdos en esta página?</summary><p>Es la participación del comercio con acuerdo: la parte de lo exportado que usó efectivamente una preferencia arancelaria. No es la tasa de utilización de preferencias de los estudios académicos, que divide solo por el comercio que podría usar una preferencia; para eso haría falta el arancel de cada país comprador, producto por producto. Una tasa baja con un socio con el que hay acuerdo puede indicar que los productos no tienen preferencia, que el arancel ya es cero para todos o que cumplir las reglas de origen no conviene.</p></details>
-    <details><summary>¿Qué diferencia hay entre "OMC" y "sin acuerdo"?</summary><p>En la práctica, ninguna: en los dos casos se paga el arancel general, sin rebaja. <strong>Sin acuerdo</strong> quiere decir que el despacho no pidió ninguna preferencia; es lo normal cuando no hay acuerdo con ese país, o cuando lo hay pero no se usó. <strong>OMC</strong> quiere decir que se invocó el trato que Paraguay da a todos los miembros de la Organización Mundial del Comercio (el "trato de nación más favorecida"), que no es una rebaja: es el mismo arancel general que paga cualquiera. Por eso en esta página los dos cuentan como "sin acuerdo". La DNIT tiene un código aparte para "OMC" y no publica la regla de cuándo se usa; pesa menos del 1 % de las importaciones y casi nada en las exportaciones. Hay una tercera etiqueta, "sin dato de acuerdo", cuando el despacho no informa nada en ese campo; son montos mínimos: nunca llega al 0,04 % de lo exportado o de lo importado en un año (el máximo es 0,035 % de las importaciones de 2026, enero a septiembre).</p></details>
+    <details><summary>¿Qué diferencia hay entre "OMC" y "sin acuerdo"?</summary><p>En la práctica, ninguna: en los dos casos se paga el arancel general, sin rebaja. <strong>Sin acuerdo</strong> quiere decir que el despacho no pidió ninguna preferencia; es lo normal cuando no hay acuerdo con ese país, o cuando lo hay pero no se usó. <strong>OMC</strong> quiere decir que se invocó el trato que Paraguay da a todos los miembros de la Organización Mundial del Comercio (el "trato de nación más favorecida"), que no es una rebaja: es el mismo arancel general que paga cualquiera. Por eso en esta página los dos cuentan como "sin acuerdo". La DNIT tiene un código aparte para "OMC" y no publica la regla de cuándo se usa; pesa menos del 1% de las importaciones y casi nada en las exportaciones. Hay una tercera etiqueta, "sin dato de acuerdo", cuando el despacho no informa nada en ese campo; son montos mínimos: nunca llega al 0,04% de lo exportado o de lo importado en un año (el máximo es 0,035% de las importaciones de 2026, enero a septiembre).</p></details>
     <details id="acuerdos-dnit"><summary>¿Están todos los acuerdos de Paraguay en los datos de la DNIT?</summary>
       <p>No todos. <strong>Sí aparecen</strong>: el MERCOSUR, los acuerdos bilaterales con Argentina y Brasil, los acuerdos del MERCOSUR con Chile, Bolivia, Perú, la Comunidad Andina, Colombia, Cuba, Israel, Egipto, la SACU y la Unión Europea (desde 2026), el acuerdo con México y la Preferencia Arancelaria Regional de ALADI.</p>
       <p><strong>No aparecen</strong>, aunque están vigentes: en los despachos de 2011 a 2026, ningún ítem tiene en el campo "acuerdo" un código de estos acuerdos. Por eso todo el comercio con esos socios figura como "sin acuerdo" (las cifras son todo el comercio con el país, no lo que usó el acuerdo):</p>
@@ -411,14 +416,14 @@ python python/procesar_despachos.py --anios 2021</code></pre>
     </details>
     <details><summary>¿Esta página es oficial?</summary><p>No. Es un trabajo independiente hecho con datos públicos. No es una publicación de la DNIT, del Ministerio de Industria y Comercio ni del Banco Central del Paraguay, y no cuenta con su aval. Las cifras oficiales son las que publica cada institución; aquí se explica paso a paso cómo se calculó cada número para que cualquiera pueda revisarlo.</p></details>
     <details><summary>Si una exportación no usa el acuerdo, ¿pagó arancel?</summary><p>No necesariamente. Muchos productos entran con arancel cero en el país comprador aunque no se use ningún acuerdo, porque ese país ya no les cobra arancel a nadie. En esos casos no hace falta pedir la preferencia. Por eso un porcentaje bajo de uso no quiere decir que se pagó de más: solo dice que no se pidió la rebaja. Para saber si se perdió una ventaja habría que comparar, producto por producto, el arancel general del país comprador con el del acuerdo.</p></details>
-    <details><summary>¿Por qué se usa un acuerdo para un producto que ya entra sin arancel?</summary><p>Pasa en las importaciones: el importador declara un acuerdo para un producto que igual pagaba 0 %, porque el Arancel Externo Común es 0 % o porque está en una lista nacional o en otro régimen con arancel 0. Así, el acuerdo figura como "usado" aunque no dio ninguna rebaja. Por eso la página muestra dos cifras: lo que <strong>usó un acuerdo</strong> (lo declarado: 25,7 % de lo importado en 2025) y lo que lo usó <strong>con ventaja arancelaria potencial</strong>, es decir, en productos que sin acuerdo sí pagaban arancel (19,7 % en 2025). Entre 2011 y 2025, entre el 21 % y el 29 % de lo importado con acuerdo no tenía ventaja. <a href="aduana.html#ventaja">Ver la serie año por año</a>.</p></details>
-    <details><summary>¿Por qué con algunos socios se usa poco el acuerdo, como con Perú?</summary><p>Hay varias razones posibles, y suelen mezclarse:</p><ul><li><strong>El producto no tiene rebaja</strong> en ese acuerdo, o la rebaja es parcial.</li><li><strong>El arancel general ya es cero</strong> para ese producto (ver la pregunta anterior).</li><li><strong>No cumple las reglas de origen</strong>: para usar la preferencia, el producto tiene que ser considerado paraguayo según las reglas del acuerdo.</li><li><strong>No compensa el trámite</strong>: si la rebaja es chica, a veces no vale la pena sacar el certificado de origen.</li></ul><p>Con Brasil o Bolivia casi todo lo que se vende tiene rebaja completa y se usa mucho. Con Perú el uso varió entre 18 % y 35 % en los últimos años. Esta página muestra cuánto se usa, no el motivo de cada caso.</p></details>
-    <details><summary>¿Por qué no está la electricidad?</summary><p>La energía de Itaipú y Yacyretá no pasa por la aduana, así que no aparece en los despachos de la DNIT ni en los certificados de origen. Sí la registra el Banco Central del Paraguay (código NCM 2716). Era cerca del 29 % de lo exportado en 2011 y cerca del 11 % en 2025. Para comparar las cuatro fuentes se usa siempre la cifra <strong>sin electricidad</strong>.</p></details>
+    <details><summary>¿Por qué se usa un acuerdo para un producto que ya entra sin arancel?</summary><p>Pasa en las importaciones: el importador declara un acuerdo para un producto que igual pagaba 0%, porque el Arancel Externo Común es 0% o porque está en una lista nacional o en otro régimen con arancel 0. Así, el acuerdo figura como "usado" aunque no dio ninguna rebaja. Por eso la página muestra dos cifras: lo que <strong>usó un acuerdo</strong> (lo declarado: 25,7% de lo importado en 2025) y lo que lo usó <strong>con ventaja arancelaria potencial</strong>, es decir, en productos que sin acuerdo sí pagaban arancel (19,7% en 2025). Entre 2011 y 2025, entre el 21% y el 29% de lo importado con acuerdo no tenía ventaja. <a href="aduana.html#ventaja">Ver la serie año por año</a>.</p></details>
+    <details><summary>¿Por qué con algunos socios se usa poco el acuerdo, como con Perú?</summary><p>Hay varias razones posibles, y suelen mezclarse:</p><ul><li><strong>El producto no tiene rebaja</strong> en ese acuerdo, o la rebaja es parcial.</li><li><strong>El arancel general ya es cero</strong> para ese producto (ver la pregunta anterior).</li><li><strong>No cumple las reglas de origen</strong>: para usar la preferencia, el producto tiene que ser considerado paraguayo según las reglas del acuerdo.</li><li><strong>No compensa el trámite</strong>: si la rebaja es chica, a veces no vale la pena sacar el certificado de origen.</li></ul><p>Con Brasil o Bolivia casi todo lo que se vende tiene rebaja completa y se usa mucho. Con Perú el uso varió entre 18% y 35% en los últimos años. Esta página muestra cuánto se usa, no el motivo de cada caso.</p></details>
+    <details><summary>¿Por qué no está la electricidad?</summary><p>La energía de Itaipú y Yacyretá no pasa por la aduana, así que no aparece en los despachos de la DNIT ni en los certificados de origen. Sí la registra el Banco Central del Paraguay (código NCM 2716). Era cerca del 29% de lo exportado en 2011 y cerca del 11% en 2025. Para comparar las cuatro fuentes se usa siempre la cifra <strong>sin electricidad</strong>.</p></details>
     <details><summary>¿Hasta qué mes hay datos y cada cuánto se actualiza?</summary><p>Los años 2011 a 2025 están completos. 2026 está incompleto: en los gráficos llega hasta septiembre, el último mes disponible del Banco Central, para que las fuentes sean comparables; los Excel de la DNIT y de la VUE pueden traer algún mes más (cada archivo lo dice en su hoja Notas). Los datos del Banco Central son preliminares durante dos años y se pueden corregir. La página se actualiza cuando las instituciones publican meses nuevos.</p></details>
     <details><summary>¿Los montos tienen en cuenta la inflación?</summary><p>No. Todos los valores están en dólares de cada año (dólares corrientes), tal como los publican las fuentes. Una parte de los cambios de un año a otro se debe a los precios (por ejemplo, el precio de la soja) y no solo a las cantidades. Para ver cantidades, los archivos traen también el peso en kilos.</p></details>
     <details><summary>¿Qué es MERCOSUR "intrazona" y qué son los demás acuerdos?</summary><p><strong>MERCOSUR intrazona</strong> es el comercio entre los socios del MERCOSUR (Argentina, Brasil, Paraguay y Uruguay) bajo su propio acuerdo, el ACE 18. Los acuerdos <strong>con terceros países</strong> son los que el MERCOSUR firmó como bloque con otros (Chile, Bolivia, Perú, Colombia, Israel, Egipto, entre otros), y en esta página se llaman "preferenciales" junto con los acuerdos de ALADI. Los dos tipos cuentan como "con acuerdo". Más detalle en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md#2-con-acuerdo-y-sin-acuerdo">glosario</a>.</p></details>
     <details><summary>¿Por qué empieza en 2011?</summary><p>Porque desde 2011 hay datos de las cuatro fuentes (DNIT, VUE, Banco Central y UN Comtrade) y se pueden comparar entre sí. El Banco Central tiene datos más antiguos, pero sin las otras fuentes no se podría verificar que las cifras sean coherentes.</p></details>
-    <details><summary>¿Por qué el BCP da más que la DNIT?</summary><p>Porque el BCP suma la electricidad de Itaipú, Yacyretá y la ANDE, que no pasa por la aduana, y cuenta todos los regímenes aduaneros (maquila, zonas francas, courier y otros). Sin la electricidad, la diferencia es pequeña y no va siempre para el mismo lado: entre 2011 y 2025 los despachos de la DNIT quedan entre el 95 % y el 101 % del BCP, y en 2024 la DNIT supera al BCP en USD 73,5 millones.</p></details>
+    <details><summary>¿Por qué el BCP da más que la DNIT?</summary><p>Porque el BCP suma la electricidad de Itaipú, Yacyretá y la ANDE, que no pasa por la aduana, y cuenta todos los regímenes aduaneros (maquila, zonas francas, courier y otros). Sin la electricidad, la diferencia es pequeña y no va siempre para el mismo lado: entre 2011 y 2025 los despachos de la DNIT quedan entre el 95% y el 101% del BCP, y en 2024 la DNIT supera al BCP en USD 73,5 millones.</p></details>
     <details><summary>¿Puedo usar estos datos y el código?</summary><p>Sí. El código tiene licencia MIT. Al usar los datos de la VUE, cite "Origen de los datos: Ministerio de Industria y Comercio". Este proyecto es independiente y no cuenta con el respaldo de la DNIT ni del Ministerio.</p></details>
   </section>
 
@@ -506,7 +511,7 @@ function dibujar() {
     el("rect", {x, y: ys(r[1]), width: w, height: f.m.t + f.ih - ys(r[1]), fill: "var(--s1)", rx: 2, opacity: op}, f.svg);
     el("rect", {x, y: ys(r[1] + r[2]), width: w, height: ys(r[1]) - ys(r[1] + r[2]) - 1, fill: "var(--s2)", rx: 2, opacity: op}, f.svg)
       .appendChild(document.createElementNS(NS, "title")).textContent =
-        `${anio(r)}: con acuerdo ${fmt(r[1])} M, sin acuerdo ${fmt(r[2])} M (${fmt(100*r[1]/(r[1]+r[2]),1)} %)`;
+        `${anio(r)}: con acuerdo ${fmt(r[1])} M, sin acuerdo ${fmt(r[2])} M (${fmt(100*r[1]/(r[1]+r[2]),1)}%)`;
   });
   const yp = p => f.m.t + f.ih - p / 100 * f.ih;
   el("polyline", {points: D.map((r, i) => `${xs(i)},${yp(100*r[1]/(r[1]+r[2]))}`).join(" "), fill: "none", stroke: "var(--s3)", "stroke-width": 2.5}, f.svg);
@@ -514,7 +519,7 @@ function dibujar() {
   // Etiquetas de la línea: primer año, máximo y último año
   const pc = D.map(r => 100 * r[1] / (r[1] + r[2])), imax = pc.indexOf(Math.max(...pc));
   [...new Set([0, imax, D.length - 1])].forEach(i => el("text", {x: xs(i), y: yp(pc[i]) - 9, "text-anchor": "middle",
-    style: "fill:var(--s3);font-size:12px;font-weight:700;paint-order:stroke;stroke:var(--panel);stroke-width:3px"}, f.svg).textContent = fmt(pc[i], 1) + " %");
+    style: "fill:var(--s3);font-size:12px;font-weight:700;paint-order:stroke;stroke:var(--panel);stroke-width:3px"}, f.svg).textContent = fmt(pc[i], 1) + "%");
   for (let p = 0; p <= 100; p += 25)
     el("text", {x: f.W - f.m.r + 6, y: yp(p) + 4}, f.svg).textContent = p + "%";
   ejeX(f, xs);
@@ -558,7 +563,7 @@ const UT = D.map(r => 100*r[1]/(r[1]+r[2])), uMin = Math.min(...UT), uMax = Math
 const PAL = [[119,77,120],[175,142,177],[230,218,231],[183,208,204],[141,178,172],[94,143,136]];   // más bajo violeta, más alto verde agua
 const chip = u => { const t = (u - uMin) / (uMax - uMin || 1), x = t * (PAL.length - 1), k = Math.min(Math.floor(x), PAL.length - 2), f = x - k;
   const c = PAL[k].map((v,i) => Math.round(v + (PAL[k+1][i]-v)*f));
-  return `<span class="chip" style="background:rgb(${c});color:${t < .15 || t > .85 ? "#fff" : "#1d1a1c"}">${fmt(u,1)} %</span>`; };
+  return `<span class="chip" style="background:rgb(${c});color:${t < .15 || t > .85 ? "#fff" : "#1d1a1c"}">${fmt(u,1)}%</span>`; };
 document.getElementById("tabla").innerHTML =
   "<thead><tr><th>Año</th><th>BCP</th><th>DNIT</th><th>DNIT − BCP</th><th>VUE</th><th>Espejo (CIF)</th><th>Con acuerdo</th><th>% con acuerdo</th></tr></thead><tbody>" +
   D.map(r => { const tot = r[1] + r[2];
@@ -592,9 +597,9 @@ document.getElementById("tabla").innerHTML =
       h = `<p>${cuando}, Paraguay le vendió a <b>${p.n}</b> <b class="v">${usd(t)}</b>.</p>`;
       if (p.p[i]) h += `<p class="chica">Fue el destino número ${p.p[i]} de las exportaciones paraguayas ese año.</p>`;
       if (con > 0) {
-        h += `<p>De eso, <b class="v">${usd(con)} (${fmt(100 * con / t)} %)</b> entró a ${p.n} <b>pagando menos impuestos gracias a un acuerdo comercial</b>.</p>`;
+        h += `<p>De eso, <b class="v">${usd(con)} (${fmt(100 * con / t)}%)</b> entró a ${p.n} <b>pagando menos impuestos gracias a un acuerdo comercial</b>.</p>`;
         const j = p.t.findIndex(v => v > 0);
-        if (j >= 0 && j < i) h += `<p class="chica">En ${C.anios[j]}, esa parte era el ${fmt(100 * (p.a[j] || 0) / p.t[j])} %.</p>`;
+        if (j >= 0 && j < i) h += `<p class="chica">En ${C.anios[j]}, esa parte era el ${fmt(100 * (p.a[j] || 0) / p.t[j])}%.</p>`;
       } else {
         h += `<p>Nada de eso usó un acuerdo comercial: entró a ${p.n} pagando los impuestos normales, porque Paraguay no tiene un acuerdo con ese país o no se usó.</p>`;
       }
@@ -663,9 +668,9 @@ document.getElementById("tabla").innerHTML =
     else {
       h += `<p>${cuando}, Paraguay ${verbo} <b class="v">${usd(t)}</b>.</p>`;
       if (con > 0) {
-        h += `<p>De eso, <b class="v">${usd(con)} (${fmt(100 * con / t)} %)</b> usó un acuerdo comercial` + (p.ac[i] ? `, sobre todo <b>${p.ac[i]}</b>.` : ".") + `</p>`;
+        h += `<p>De eso, <b class="v">${usd(con)} (${fmt(100 * con / t)}%)</b> usó un acuerdo comercial` + (p.ac[i] ? `, sobre todo <b>${p.ac[i]}</b>.` : ".") + `</p>`;
         const j = p.t.findIndex(v => v > 0);
-        if (j >= 0 && j < i) h += `<p class="chica">En ${P.anios[j]}, esa parte era el ${fmt(100 * (p.a[j] || 0) / p.t[j])} %.</p>`;
+        if (j >= 0 && j < i) h += `<p class="chica">En ${P.anios[j]}, esa parte era el ${fmt(100 * (p.a[j] || 0) / p.t[j])}%.</p>`;
       } else h += `<p>Nada de eso usó un acuerdo comercial.</p>`;
     }
     h += `<p class="chica">${p.d}</p>`;
@@ -767,7 +772,7 @@ document.getElementById("tabla").innerHTML =
   var b = document.createElement("button");
   b.type = "button"; b.className = "boton-tema";
   var st = document.createElement("style");
-  st.textContent = ".boton-tema{position:fixed;top:10px;right:12px;z-index:50;font:600 13px/1 system-ui,sans-serif;padding:8px 12px;border-radius:99px;border:1px solid var(--line,#ccc);background:var(--panel,#fff);color:var(--text,#222);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}@media print{.boton-tema{display:none}}@media (min-width:701px){.aviso-top{padding-right:150px!important;padding-left:150px!important}}@media (max-width:700px){.boton-tema{top:6px;right:8px;font-size:12px;padding:6px 9px}.aviso-top{padding-right:108px!important;text-align:left!important}}";
+  st.textContent = ".boton-tema{position:fixed;top:10px;right:12px;z-index:50;font:600 13px/1 'Source Sans 3',system-ui,sans-serif;padding:8px 12px;border-radius:99px;border:1px solid var(--line,#ccc);background:var(--panel,#fff);color:var(--text,#222);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}@media print{.boton-tema{display:none}}@media (min-width:701px){.aviso-top{padding-right:150px!important;padding-left:150px!important}}@media (max-width:700px){.boton-tema{top:6px;right:8px;font-size:12px;padding:6px 9px}.aviso-top{padding-right:108px!important;text-align:left!important}}";
   document.head.appendChild(st);
   function sistema() { return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
   function aplicar(t) {

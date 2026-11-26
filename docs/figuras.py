@@ -90,7 +90,7 @@ def grafico_acuerdos(por_acuerdo, anio, modo, t):
     d = por_acuerdo[por_acuerdo["AÑO"] == anio]
     pct = {op: 100 * d.loc[(d["OPERACION"] == op) & (d["TIPO_ACUERDO"] != "SIN_ACUERDO"), "VALOR_DOLAR"].sum()
            / d.loc[d["OPERACION"] == op, "VALOR_DOLAR"].sum() for op in ("EXPORTACION", "IMPORTACION")}
-    fig.text(0.01, 0.97, f"En {anio}, el {pct['EXPORTACION']:.0f} % de lo exportado y el {pct['IMPORTACION']:.0f} % "
+    fig.text(0.01, 0.97, f"En {anio}, el {pct['EXPORTACION']:.0f}% de lo exportado y el {pct['IMPORTACION']:.0f}% "
              "de lo importado usaron un acuerdo comercial", fontsize=14, fontweight="bold", color=t["texto"], va="top")
     fig.text(0.01, 0.905, f"Comercio de Paraguay según el acuerdo usado, {periodo}. Millones de USD. "
              "Despachos aduaneros definitivos (datos abiertos de la DNIT).",

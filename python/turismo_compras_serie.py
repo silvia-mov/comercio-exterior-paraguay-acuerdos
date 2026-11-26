@@ -6,7 +6,7 @@ Uso (desde la raíz del repositorio):
 Lee salidas/dnit_anual/DNIT_<año>_importacion.xlsx (columna REGIMEN_TRIBUTARIO, que se deduce del IVA pagado
 sobre la base imponible y de la lista de productos del Decreto 2063/2024; no es un campo de la DNIT).
 Escribe docs/datos/turismo_compras_por_anio.csv y docs/datos/celulares_doble_conteo.csv.
-IVA reducido (otro): IVA de hasta 2,2 % de la base en productos que no están en la lista con los códigos de hoy
+IVA reducido (otro): IVA de hasta 2,2% de la base en productos que no están en la lista con los códigos de hoy
 (antes de 2022 la NCM usaba otros códigos, así que parte del turismo de compras cae ahí).
 Solo despachos definitivos (SE_CUENTA = SI). Valor: IMPONIBLE DOLAR (CIF).
 """

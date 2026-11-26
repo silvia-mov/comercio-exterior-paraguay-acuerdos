@@ -2,9 +2,9 @@
 
 Usa los archivos anuales de la DNIT (salidas/dnit_anual/DNIT_<año>_importacion.xlsx, de dnit_raw_por_anio.py).
 Lo importado con acuerdo NO tiene ventaja potencial cuando:
-  1. el Arancel Externo Común del producto ese año es 0 % (MOTIVO_ARANCEL "Con acuerdo, pero AEC 0 %"), o
+  1. el Arancel Externo Común del producto ese año es 0% (MOTIVO_ARANCEL "Con acuerdo, pero AEC 0%"), o
   2. el mismo producto (NCM 8 dígitos), importado SIN acuerdo ese año, casi no pagó arancel
-     (derecho aduanero menor al 0,5 % de la base imponible): listas nacionales, otras leyes o regímenes.
+     (derecho aduanero menor al 0,5% de la base imponible): listas nacionales, otras leyes o regímenes.
 Es una aproximación: no ve exoneraciones propias de cada importador ni preferencias parciales.
 
 Uso (desde la raíz del repositorio):  python python/importaciones_ventaja.py

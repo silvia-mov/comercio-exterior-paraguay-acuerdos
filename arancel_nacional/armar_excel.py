@@ -40,7 +40,7 @@ ws = wb.active
 ws.title = 'Arancel'
 hdr = ['NCM', 'NCM (como en el PDF)', 'Capítulo', 'Descripción', 'Desglose nacional',
        'AEC %', 'ANV %', 'Lista', 'Diferencia ANV − AEC (puntos)', 'Diferencia relativa',
-       'Sentido', 'Página PDF', 'AEC NCM nov-2026 %', 'Control con NCM nov-2026', 'Qué es la lista', 'Régimen de Materias Primas 2025']
+       'Sentido', 'Página PDF', 'AEC NCM nov-2026%', 'Control con NCM nov-2026', 'Qué es la lista', 'Régimen de Materias Primas 2025']
 ws.append(hdr)
 lineas = [r for r in R if r['tipo'] in ('linea', 'desglose')]
 for i, r in enumerate(lineas, start=2):
@@ -205,13 +205,13 @@ notas = [
     ('Arancel', 'Una fila por línea arancelaria (10.459 códigos + 103 desgloses nacionales). Es la hoja para filtrar y analizar.'),
     ('Listas', 'Qué significa cada valor de la columna Lista, con su fuente.'),
     ('Historia_BK, _BIT, _LNE', 'Qué códigos estuvieron en cada lista y con qué arancel, según las notificaciones semestrales de Paraguay al MERCOSUR (2018 a enero 2026).'),
-    ('Materias_primas', 'Códigos del Régimen de Materias Primas de Paraguay por año (2018, 2019, 1er semestre 2020, 2023, 2024 y 2025). Dentro del régimen el arancel es 0 %.'),
+    ('Materias_primas', 'Códigos del Régimen de Materias Primas de Paraguay por año (2018, 2019, 1er semestre 2020, 2023, 2024 y 2025). Dentro del régimen el arancel es 0%.'),
     ('Estructura', 'Todas las filas del PDF en orden (partidas, subpartidas, ítems, códigos y desgloses), para leer la jerarquía.'),
     ('NCM_nov2026', 'La NCM de noviembre 2026 de SAREM (archivo NCM_2026_11.xlsx del repositorio comercio-exterior-paraguay-acuerdos), solo para control.'),
     ('Columnas nuevas (hoja Arancel)', None),
-    ('Régimen de Materias Primas 2025', 'Sí, si el código está en la lista 2025 del régimen. Ojo: el PDF muestra el ANV normal para esos códigos, pero el importador que usa el régimen paga 0 %.'),
+    ('Régimen de Materias Primas 2025', 'Sí, si el código está en la lista 2025 del régimen. Ojo: el PDF muestra el ANV normal para esos códigos, pero el importador que usa el régimen paga 0%.'),
     ('Diferencia ANV − AEC', 'En puntos porcentuales. Ejemplo: AEC 16 y ANV 14,4 da −1,6. Negativo = Paraguay cobra menos que el AEC.'),
-    ('Diferencia relativa', 'La diferencia dividida por el AEC. Ejemplo: −1,6 / 16 = −10 %. Queda vacía cuando el AEC es 0.'),
+    ('Diferencia relativa', 'La diferencia dividida por el AEC. Ejemplo: −1,6 / 16 = −10%. Queda vacía cuando el AEC es 0.'),
     ('Sentido', 'Menor, igual o mayor que el AEC.'),
     ('AEC NCM nov-2026 y Control', 'Busca el mismo código en la NCM de noviembre 2026 y avisa si el AEC cambió o si el código ya no existe.'),
     ('Colores', 'Azul: números copiados del PDF. Verde: dato traído de otra hoja. Negro: fórmulas.'),
@@ -251,14 +251,14 @@ LEG = [
  ('LNE*', 'Lista Nacional de Excepciones al AEC (con asterisco)', 'Indicado por la autora. El PDF no explica qué marca el asterisco.', ''),
  ('AUT', 'Régimen automotor: sector no incorporado al AEC', 'Indicado por la autora. La Dec. CMC 08/22, Art. 4, dice que el arancel del sector automotor se rige por los acuerdos bilaterales o, si no hay, por la legislación interna, hasta que el sector se incorpore al MERCOSUR.', ''),
  ('AZ*', 'Sector azucarero: no armonizado en el MERCOSUR', 'Indicado por la autora. El PDF no trae leyenda.', 'Las 5 líneas son de la partida 17.01, con AEC 16 y ANV 30.'),
- ('DEC. 08/22', 'Decisión CMC 08/22, Art. 2: permite bajar 10 % el arancel respecto del AEC vigente al 01/VII/2022 para los códigos del Anexo IV (Paraguay)', 'normativa-mercosur: decisiones/2022/DEC_008-2022_ES_fe-de-erratas_arancel-externo-comun.txt. Incorporada por el Decreto 8767/2023 (incorporacion_paraguay/2022/decreto-8767-2023.txt). El Anexo IV (lista de Paraguay) no está en el repositorio.', '1.089 de 1.095 líneas cumplen ANV = AEC × 0,9 (ver Leeme).'),
+ ('DEC. 08/22', 'Decisión CMC 08/22, Art. 2: permite bajar 10% el arancel respecto del AEC vigente al 01/VII/2022 para los códigos del Anexo IV (Paraguay)', 'normativa-mercosur: decisiones/2022/DEC_008-2022_ES_fe-de-erratas_arancel-externo-comun.txt. Incorporada por el Decreto 8767/2023 (incorporacion_paraguay/2022/decreto-8767-2023.txt). El Anexo IV (lista de Paraguay) no está en el repositorio.', '1.089 de 1.095 líneas cumplen ANV = AEC × 0,9 (ver Leeme).'),
  ('DEC.37/07', 'Decisión CMC 37/07: fija el AEC de tejidos, confecciones y calzados; Art. 3 permite a Paraguay y Uruguay mantener su arancel nacional en tejidos y confecciones', 'normativa-mercosur: decisiones/2007/DEC_037-2007_ES_texto_modificacion-del-arancel-externo-comun.txt', 'Casos más comunes: AEC 35 y ANV 20; AEC 26 y ANV 18.'),
- ('DEC. 29/15', 'Decisión CMC 29/15: AEC de 35 % para 2008.70 (duraznos) hasta el 31/12/2023; Art. 2 permite a Paraguay mantener su arancel', 'normativa-mercosur: decisiones/2015/DEC_029-2015_ES_texto_arancel-externo-comun.txt', 'En el PDF las 3 líneas tienen AEC 14 y ANV 14 (la vigencia de la decisión terminó en 2023).'),
- ('DEC. 30/15', 'Decisión CMC 30/15: AEC de 28 % para lácteos (04.02, 04.04, 04.06) hasta el 31/12/2023; Art. 2 permite a Paraguay mantener su arancel', 'normativa-mercosur: decisiones/2015/DEC_030-2015_ES_texto_arancel-externo-comun.txt', 'En el PDF las 10 líneas tienen ANV igual al AEC (16 o 14; la vigencia de la decisión terminó en 2023).'),
+ ('DEC. 29/15', 'Decisión CMC 29/15: AEC de 35% para 2008.70 (duraznos) hasta el 31/12/2023; Art. 2 permite a Paraguay mantener su arancel', 'normativa-mercosur: decisiones/2015/DEC_029-2015_ES_texto_arancel-externo-comun.txt', 'En el PDF las 3 líneas tienen AEC 14 y ANV 14 (la vigencia de la decisión terminó en 2023).'),
+ ('DEC. 30/15', 'Decisión CMC 30/15: AEC de 28% para lácteos (04.02, 04.04, 04.06) hasta el 31/12/2023; Art. 2 permite a Paraguay mantener su arancel', 'normativa-mercosur: decisiones/2015/DEC_030-2015_ES_texto_arancel-externo-comun.txt', 'En el PDF las 10 líneas tienen ANV igual al AEC (16 o 14; la vigencia de la decisión terminó en 2023).'),
 ]
 for t in LEG:
     wlst.append(list(t))
-wlst['A13'] = 'Nota: la Dec. CMC 08/22, Art. 3, excluye de la rebaja del 10 % los códigos de las Decisiones 37/07, 26/09, 27/09, 28/15, 29/15 y 30/15.'
+wlst['A13'] = 'Nota: la Dec. CMC 08/22, Art. 3, excluye de la rebaja del 10% los códigos de las Decisiones 37/07, 26/09, 27/09, 28/15, 29/15 y 30/15.'
 wlst['A13'].font = Font(name=F, size=10, italic=True)
 for cell in wlst[1]:
     cell.font, cell.fill = HFONT, HFILL
@@ -323,7 +323,7 @@ for L, crit in (('BK', ['"BK"']), ('BIT', ['"BIT"']), ('LNE', ['"LNE"', '"LNE~*"
 # ---------------- Materias primas ----------------
 wm = wb.create_sheet('Materias_primas')
 YRS = HIST['rmp_years']
-wm.append(['NCM', 'NCM (formato)'] + YRS + ['Años en la lista', 'Descripción en el PDF oct-2025', 'ANV en el PDF oct-2025 %'])
+wm.append(['NCM', 'NCM (formato)'] + YRS + ['Años en la lista', 'Descripción en el PDF oct-2025', 'ANV en el PDF oct-2025%'])
 rcodes = sorted(HIST['RMP'])
 for i, c in enumerate(rcodes, start=2):
     wm.append([c, fmt8(c)] + ['Sí' if y in HIST['RMP'][c] else '' for y in YRS] +
@@ -346,12 +346,12 @@ n = len(rcodes) + 2
 wm[f'B{n}'] = 'Total'; wm[f'B{n}'].font = BOLD
 for col in 'CDEFGH':
     wm[f'{col}{n}'] = f'=COUNTIF({col}2:{col}{n-1},"Sí")'; wm[f'{col}{n}'].font = BOLD
-wm[f'A{n+1}'] = 'Fuente: ' + ' | '.join(f'{y}: {f}' for y, f in HIST['rmp_files'].items()) + '. Hasta 2020 los códigos son de la NCM 2017. Dentro del régimen el arancel es 0 %.'
+wm[f'A{n+1}'] = 'Fuente: ' + ' | '.join(f'{y}: {f}' for y, f in HIST['rmp_files'].items()) + '. Hasta 2020 los códigos son de la NCM 2017. Dentro del régimen el arancel es 0%.'
 wm[f'A{n+1}'].font = Font(name=F, size=9, italic=True)
 
 # ---------------- Resumen: materias primas ----------------
 rm = wr.max_row + 2
-wr[f'A{rm}'] = 'Régimen de Materias Primas 2025 (arancel 0 % dentro del régimen)'
+wr[f'A{rm}'] = 'Régimen de Materias Primas 2025 (arancel 0% dentro del régimen)'
 wr[f'A{rm}'].font = Font(name=F, size=11, bold=True, color='774D78')
 for c, h in zip('ABC', ['Sentido (ANV del PDF frente al AEC)', 'Líneas en el régimen', 'ANV promedio en el PDF %']):
     wr[f'{c}{rm+1}'] = h

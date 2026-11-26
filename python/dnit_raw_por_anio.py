@@ -86,12 +86,12 @@ def motivo_arancel(d, a):
     for lista in ("RMP", "BIT", "BK", "LNE"):        # el último que se aplica tiene prioridad
         m[cod.isin(ls[lista][0])] = NOMBRE_LISTA[lista]
     m[aec.isna()] = "Sin dato de AEC"
-    m[aec == 0] = "AEC 0 %"
+    m[aec == 0] = "AEC 0%"
     m[d["DERECHO"] > 0] = "Pagó arancel"
     con_acuerdo = ~d["ACUERDO"].isin(["SIN ACUERDO", "OMC"])
     m[con_acuerdo] = "Con acuerdo"
-    # Si el AEC ya es 0 %, invocar el acuerdo no da ninguna ventaja: entraría igual con arancel 0
-    m[con_acuerdo & (aec == 0)] = "Con acuerdo, pero AEC 0 % (el acuerdo no da ventaja)"
+    # Si el AEC ya es 0%, invocar el acuerdo no da ninguna ventaja: entraría igual con arancel 0
+    m[con_acuerdo & (aec == 0)] = "Con acuerdo, pero AEC 0% (el acuerdo no da ventaja)"
     return m, {k: v[1] for k, v in ls.items()}
 
 
@@ -122,9 +122,9 @@ def regimen_tributario(d):
     r = pd.Series("Sin base imponible", index=d.index)
     r[tasa == 0] = "Sin IVA (exento o suspendido)"
     r[(tasa > 0) & (tasa <= 2.2)] = "IVA reducido (otro)"
-    r[(tasa > 0) & (tasa <= 2.2) & cod.isin(RTC)] = "Turismo de Compras (IVA ≈ 1,25 %)"
-    r[(tasa > 2.2) & (tasa <= 7.5)] = "IVA 5 %"
-    r[tasa > 7.5] = "IVA 10 %"
+    r[(tasa > 0) & (tasa <= 2.2) & cod.isin(RTC)] = "Turismo de Compras (IVA ≈ 1,25%)"
+    r[(tasa > 2.2) & (tasa <= 7.5)] = "IVA 5%"
+    r[tasa > 7.5] = "IVA 10%"
     return r
 
 
@@ -155,14 +155,14 @@ def main():
                 motivo, fechas_listas = motivo_arancel(datos, a)
                 datos.insert(list(datos.columns).index("ACUERDO") + 1, "MOTIVO_ARANCEL", motivo)
                 datos.insert(list(datos.columns).index("MOTIVO_ARANCEL") + 1, "REGIMEN_TRIBUTARIO", regimen_tributario(datos))
-                nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Con acuerdo, pero AEC 0 %' = declaró un acuerdo pero el producto ya tiene arancel 0 para cualquier país, así que el acuerdo no le dio ventaja; 'Pagó arancel' = DERECHO > 0; "
-                               "'AEC 0 %' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
+                nota_listas = ("MOTIVO_ARANCEL: por qué pagó o no arancel. 'Con acuerdo' = usó una preferencia; 'Con acuerdo, pero AEC 0%' = declaró un acuerdo pero el producto ya tiene arancel 0 para cualquier país, así que el acuerdo no le dio ventaja; 'Pagó arancel' = DERECHO > 0; "
+                               "'AEC 0%' = el Arancel Externo Común ya es 0; luego, si el producto está en una lista de Paraguay notificada "
                                "al MERCOSUR (Bienes de Capital, Informática y Telecomunicaciones, Excepciones, Materias Primas); si no, "
                                "'Otra ley o régimen nacional'. AEC de la versión de la NCM vigente ese año (última versión publicada hasta fin de año que contiene el código). Listas usadas (fecha de notificación): "
                                + ", ".join(f"{NOMBRE_LISTA[k]} {v}" for k, v in fechas_listas.items()) + ". "
                                "REGIMEN_TRIBUTARIO: según el IVA pagado sobre la base imponible. 'Turismo de Compras' = producto de la lista "
-                               "del Decreto 2063/2024 (Régimen de Turismo de Compras, antes Decreto 1931/2019) con IVA cercano al 1,25 % "
-                               "(10 % sobre el 12,5 % de la base); no es un régimen aduanero, entra como importación común. "
+                               "del Decreto 2063/2024 (Régimen de Turismo de Compras, antes Decreto 1931/2019) con IVA cercano al 1,25% "
+                               "(10% sobre el 12,5% de la base); no es un régimen aduanero, entra como importación común. "
                                "Para años anteriores a 2024 se usa la misma lista de productos.")
             reg = reg.merge(REG[["codigo", "incluir", "tipo_dnit", "nota"]].rename(
                 columns={"codigo": "DESTINACION", "incluir": "SE_CUENTA", "tipo_dnit": "TIPO", "nota": "MOTIVO"}),

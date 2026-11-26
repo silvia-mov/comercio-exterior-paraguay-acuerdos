@@ -41,14 +41,14 @@ def turismo():
             ax.bar(r["AÑO"], r["PCT_TURISMO_COMPRAS"], color=t["verde"], alpha=alfa[i], width=0.7)
             ax.bar(r["AÑO"], r["PCT_IVA_REDUCIDO_OTRO"], bottom=r["PCT_TURISMO_COMPRAS"], color=t["rosa"], alpha=alfa[i], width=0.7)
             if r["AÑO"] in (d["AÑO"].min(), comp["AÑO"].max()) or r["MESES"] < 12:
-                ax.text(r["AÑO"], tot[i] + 0.6, coma(tot[i], 0) + " %", ha="center", fontsize=9.5, color=t["texto"])
+                ax.text(r["AÑO"], tot[i] + 0.6, coma(tot[i], 0) + "%", ha="center", fontsize=9.5, color=t["texto"])
         ax.plot(bcp["AÑO"], bcp["PCT_REGIMEN_TURISMO"], color=t["texto"], linewidth=2, marker="o", markersize=4)
         ax.set_ylim(0, 30)
-        ax.set_yticks([0, 10, 20, 30], ["0 %", "10 %", "20 %", "30 %"])
+        ax.set_yticks([0, 10, 20, 30], ["0%", "10%", "20%", "30%"])
         ax.set_xticks(list(d["AÑO"])[::3], [str(a) if m == 12 else f"{a}*" for a, m in zip(d["AÑO"][::3], d["MESES"][::3])])
         estilo(ax, t)
-        titulo(fig, t, f"Cerca de una quinta parte de lo importado entra con IVA reducido ({coma(tot[ult.name], 0)} % en {int(ult['AÑO'])})",
-               "% de lo importado (CIF, despachos definitivos de la DNIT) que pagó IVA de hasta 2,2 % de la base. "
+        titulo(fig, t, f"Cerca de una quinta parte de lo importado entra con IVA reducido ({coma(tot[ult.name], 0)}% en {int(ult['AÑO'])})",
+               "% de lo importado (CIF, despachos definitivos de la DNIT) que pagó IVA de hasta 2,2% de la base. "
                "Antes de 2022 la NCM usaba otros códigos: parte del turismo de compras queda en violeta. Línea: dato oficial del BCP (FOB)." + nota)
         leyenda(fig, t, 0.07, 0.72, [("Lista del Decreto 2063/2024 (Turismo de Compras)", t["verde"], "■"),
                                      ("Otros con IVA reducido", t["rosa"], "■"),

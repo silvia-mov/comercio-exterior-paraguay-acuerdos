@@ -38,10 +38,10 @@ def control(anio=2025):
     for nombre, col, m, norma in [
         ("Servicio de valoración", "SERVICIO", None, "Norma de creación no encontrada todavía"),
         ("Otros (en la importación)", "OTROS", None, "Puede incluir el canon informático y el arancel consular; sin desglose en los datos"),
-        ("IVA, tasa general y reducida", "IVA", ~rtc & (d["IVA"] / d["IMPONIBLE GS"] > 0.03), "Ley 6380/2019, art. 90 (10 % y 5 %)"),
-        ("IVA de Turismo de Compras", "IVA", rtc, "Decreto 2063/2024, art. 7 (10 % sobre el 12,5 % de la base = 1,25 %)"),
-        ("Anticipo del IRE, fuera de Turismo de Compras", "RENTA", ~rtc, "Decreto 3182/2019, anexo, art. 87 (0,4 %)"),
-        ("Anticipo del IRE, Turismo de Compras", "RENTA", rtc, "Decreto 2063/2024, art. 7 (1 %)"),
+        ("IVA, tasa general y reducida", "IVA", ~rtc & (d["IVA"] / d["IMPONIBLE GS"] > 0.03), "Ley 6380/2019, art. 90 (10% y 5%)"),
+        ("IVA de Turismo de Compras", "IVA", rtc, "Decreto 2063/2024, art. 7 (10% sobre el 12,5% de la base = 1,25%)"),
+        ("Anticipo del IRE, fuera de Turismo de Compras", "RENTA", ~rtc, "Decreto 3182/2019, anexo, art. 87 (0,4%)"),
+        ("Anticipo del IRE, Turismo de Compras", "RENTA", rtc, "Decreto 2063/2024, art. 7 (1%)"),
     ]:
         med, part = pct(col, m)
         filas.append([nombre, col, med, part, norma])
@@ -61,23 +61,23 @@ def main():
         if tasa is not None:
             ws.cell(r, 12).fill = relleno
 
-    poner("Tasa por servicio de valoración aduanera", "0,5 %", "Valor en aduana (base gravable de las mercaderías importadas)",
+    poner("Tasa por servicio de valoración aduanera", "0,5%", "Valor en aduana (base gravable de las mercaderías importadas)",
           "Ley 2422/2004 (Código Aduanero), arts. 263 y 393 a)",
-          "El servicio lo creó el Decreto-Ley 5/1974, aprobado por la Ley 489/1974. En 2025 el 99 % del valor importado "
-          "pagó 0,5 % (hoja Control_DNIT_2025).", relleno=VERDE)
+          "El servicio lo creó el Decreto-Ley 5/1974, aprobado por la Ley 489/1974. En 2025 el 99% del valor importado "
+          "pagó 0,5% (hoja Control_DNIT_2025).", relleno=VERDE)
     ws.cell(fila["Tasa por servicio de valoración aduanera"], 7).value = "Ley 2422/2004, Código Aduanero"
     ws.cell(fila["Tasa por servicio de valoración aduanera"], 9).value = "Vigente (se cobró en 2025: hoja Control_DNIT_2025)"
-    poner("Importación de vehículos eléctricos (2012)", "0 % de arancel y 0 % de IVA", "Vehículos eléctricos e híbridos importados",
+    poner("Importación de vehículos eléctricos (2012)", "0% de arancel y 0% de IVA", "Vehículos eléctricos e híbridos importados",
           "Ley 4601/2012, art. 1", "Modificada por la Ley 5183/2014 (carpeta normas). Texto de la BACN.", relleno=VERDE)
     poner("Donaciones al Estado y a otras instituciones", "Exentas de todo tributo", "Bienes donados",
           "Ley 302/1993, art. 2", "No se pueden vender ni transferir por 5 años (art. 5). Texto de la BACN (escaneado, leído con OCR).",
           relleno=VERDE)
     poner("Canon informático",
-          "Monto fijo por despacho, en jornales mínimos diarios: remesa expresa 0 % a 50 % de un jornal; fracciones complementarias "
-          "25 %; exportación simplificada 25 %",
+          "Monto fijo por despacho, en jornales mínimos diarios: remesa expresa 0% a 50% de un jornal; fracciones complementarias "
+          "25%; exportación simplificada 25%",
           "Cada despacho oficializado (no depende del valor)",
           "Decreto 1.132/98, arts. 2 y 3; Res. DNA 198/2017, art. 2 (remesa expresa); Res. DNA 218/2020, art. 7 (IFC1); Res. DGA 25/1994, art. 1",
-          "Remesa expresa: documentos 0 %, mercaderías de menos de USD 100 25 %, de USD 100 a 1.000 50 % (vigente desde el 01/04/2017). "
+          "Remesa expresa: documentos 0%, mercaderías de menos de USD 100 25%, de USD 100 a 1.000 50% (vigente desde el 01/04/2017). "
           "Para el despacho general, un resumen sin verificar habla de 2,5 jornales. Historia (textos en normas/): Res. MH 1144/1992 "
           "fijó la escala, modificada por las Res. MH 801/94 y 214/96; el Decreto 22.024/98 suspendió el canon desde el 30/07/1998; "
           "el Decreto 1.132/98 lo restableció (art. 1) y facultó al Ministerio de Hacienda a actualizarlo (art. 2), con cobro del "
@@ -91,33 +91,33 @@ def main():
     poner("Maquila: nuevo régimen",
           nota="El tributo único se paga a la DNIT como impuesto interno (sobre el valor agregado en el país), "
                "no en el despacho aduanero: no aparece en los datos de comercio.")
-    poner("Turismo de compras (RTC)", nota="Confirmado en los datos 2025: IVA de cerca de 1,3 % y anticipo del IRE "
-          "de cerca de 1 % de la base en guaraníes (hoja Control_DNIT_2025).")
-    poner("Anticipo del IRE en la importación", nota="Confirmado en el texto del Decreto 3182/2019 (BACN, extracto en normas/): 0,4 % "
-          "sobre el valor aduanero más los tributos aduaneros; por eso en los datos se ve cerca de 0,46 %. Solo contribuyentes del IRE general.")
+    poner("Turismo de compras (RTC)", nota="Confirmado en los datos 2025: IVA de cerca de 1,3% y anticipo del IRE "
+          "de cerca de 1% de la base en guaraníes (hoja Control_DNIT_2025).")
+    poner("Anticipo del IRE en la importación", nota="Confirmado en el texto del Decreto 3182/2019 (BACN, extracto en normas/): 0,4% "
+          "sobre el valor aduanero más los tributos aduaneros; por eso en los datos se ve cerca de 0,46%. Solo contribuyentes del IRE general.")
 
-    poner("Maquila: Ley 1064/1997 (régimen anterior)", "Tributo único de 1 %", "Valor agregado en territorio nacional",
+    poner("Maquila: Ley 1064/1997 (régimen anterior)", "Tributo único de 1%", "Valor agregado en territorio nacional",
           "Ley 1064/1997, art. 29", "Igual tasa que la Ley 7547/2025. Se paga como impuesto interno, no en el despacho.",
           relleno=VERDE)
     poner("Franquicias diplomáticas y consulares", "Exentos del gravamen aduanero y de los tributos internos a la importación",
           "Bienes importados por misiones, organismos internacionales y funcionarios que regresan", "Ley 110/1992, art. 3",
           "Bajo condición de reciprocidad (art. 2). No se eximen las tasas por servicios prestados.", relleno=VERDE)
-    poner("Zonas francas", "Impuesto de Zona Franca: 0,5 %", "Ingresos brutos por ventas a terceros países",
+    poner("Zonas francas", "Impuesto de Zona Franca: 0,5%", "Ingresos brutos por ventas a terceros países",
           "Ley 523/1995, arts. 13 y 14",
           "Exentos de todo otro tributo (art. 13). Lo que sale de la zona franca al resto del país paga todos los tributos de "
-          "importación (art. 20), salvo productos que cumplen el régimen de origen. En los datos de la DNIT el 0,5 % figura "
+          "importación (art. 20), salvo productos que cumplen el régimen de origen. En los datos de la DNIT el 0,5% figura "
           "en OTROS en las exportaciones desde zona franca (ZF2E).", relleno=VERDE)
     for nombre, tasa, base, art, nota in [
-        ("Política automotriz nacional", "0 % de arancel; IVA sobre el 20 % del valor aduanero (equivale a 2 %); motos (87.11): IVA pleno",
+        ("Política automotriz nacional", "0% de arancel; IVA sobre el 20% del valor aduanero (equivale a 2%); motos (87.11): IVA pleno",
          "Bienes de capital, materias primas, partes e insumos para producir o ensamblar vehículos (cap. 87)",
-         "Ley 4838/2012, arts. 6 y 7 (art. 7 en la redacción de la Ley 5819)", "La Ley 5819 subió la base del IVA de las motos del 40 % al 100 % del valor aduanero y destina lo recaudado al Hospital del Trauma, el SEME y el MEC."),
-        ("Transporte eléctrico", "0 % de impuesto aduanero y 0 % de IVA",
+         "Ley 4838/2012, arts. 6 y 7 (art. 7 en la redacción de la Ley 5819)", "La Ley 5819 subió la base del IVA de las motos del 40% al 100% del valor aduanero y destina lo recaudado al Hospital del Trauma, el SEME y el MEC."),
+        ("Transporte eléctrico", "0% de impuesto aduanero y 0% de IVA",
          "Vehículos eléctricos, sus repuestos y equipos para ensamblarlos", "Ley 6925/2022, arts. 10, 11 y 12",
          "Leída en la imagen de la copia escaneada (SILpy). Las tres exoneraciones duran 10 años desde la publicación. "
          "Art. 10 incluye los equipos para centros de recarga. Art. 12 exige transferencia tecnológica con universidades "
-         "públicas y colegios técnicos. Art. 8: fondo con el 10 % del ISC de naftas de 95 octanos o más, turbo fuel, nafta de "
+         "públicas y colegios técnicos. Art. 8: fondo con el 10% del ISC de naftas de 95 octanos o más, turbo fuel, nafta de "
          "aviación y gasoil premium."),
-        ("Bienes de alta tecnología", "0 % de arancel; IVA 10 % sobre el 15 % del valor aduanero (equivale a 1,5 %)",
+        ("Bienes de alta tecnología", "0% de arancel; IVA 10% sobre el 15% del valor aduanero (equivale a 1,5%)",
          "Materias primas, partes y piezas para producir bienes de alta tecnología", "Ley 4427/2012, arts. 7 y 8",
          "Texto de la BACN. Ya no rige (ver Vigencia); hoy aplica la Ley 7546/2025."),
         ("Garantías para las inversiones y el empleo", "Sin exoneración propia en el despacho",
@@ -155,7 +155,7 @@ def main():
           relleno=VERDE)
     poner("Ley 285/1993", "Sin relación con la importación", "Beneficios adicionales que la empresa da a sus trabajadores",
           "Ley 285/1993, arts. 2 y 7", "Reglamenta el art. 93 de la Constitución: esos beneficios son gasto deducible "
-          "exento de tributos, hasta el 10 % de la renta neta.", relleno=VERDE)
+          "exento de tributos, hasta el 10% de la renta neta.", relleno=VERDE)
     def celda(nombre, col, valor):
         ws.cell(fila[nombre], col).value = valor
     poner("Tasas de legalización y aranceles consulares", "Sin tasa consular en la importación desde 2023",
@@ -173,14 +173,14 @@ def main():
     celda("Bienes de alta tecnología", 9, "Derogada: Ley 6380/2019, art. 153, num. 5 (no está entre las excepciones) y "
           "expresamente por la Ley 7546/2025, art. 22")
     ws.cell(fila["Arancel aduanero (derecho de importación)"], 14).value = (
-        "Ley 1095/1984, art. 2 (tope: hasta 30 % del valor imponible) y art. 10 a) (el Poder Ejecutivo fija y modifica los "
+        "Ley 1095/1984, art. 2 (tope: hasta 30% del valor imponible) y art. 10 a) (el Poder Ejecutivo fija y modifica los "
         "niveles); tasa de cada código: decretos de arancel y Arancel Nacional Vigente")
-    poner("Sector azucarero (AZ)", "30 % en las 5 líneas de la partida 17.01 (AEC: 16 %), también para lo originario del MERCOSUR",
+    poner("Sector azucarero (AZ)", "30% en las 5 líneas de la partida 17.01 (AEC: 16%), también para lo originario del MERCOSUR",
           "Azúcar (partida 17.01 y otras del anexo)",
           "Decreto 6898/2022, arts. 2 y 3 (Anexo III, columna A.I.); Decreto 7306/1995; Dec. CMC 19/94, arts. 3 y 4",
           "El Decreto 7306/1995 incorporó la Dec. CMC 19/94 (cada país aplica su propio arancel al azúcar, también dentro del "
-          "MERCOSUR). El 30 % es el tope del arancel que permite la Ley 1095/1984, art. 2. El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
-          "Anexo III «Azúcar», columna A.I.: 30 % en 1701.12.00, 1701.13.00, 1701.14.00, 1701.91.00 y 1701.99.00 (Gaceta Oficial N.º 68 "
+          "MERCOSUR). El 30% es el tope del arancel que permite la Ley 1095/1984, art. 2. El Decreto 6898/2022 fija hoy los aranceles intrazona del azúcar y del sector automotor; la copia "
+          "Anexo III «Azúcar», columna A.I.: 30% en 1701.12.00, 1701.13.00, 1701.14.00, 1701.91.00 y 1701.99.00 (Gaceta Oficial N.º 68 "
           "del 05/04/2022, normas/). Coincide con el Arancel Nacional Vigente de octubre 2025 (pág. 64).", relleno=VERDE)
     celda("Sector azucarero (AZ)", 7, "Decreto 6898/2022 (antes Decreto 7306/1995 y 6654/2016); Dec. CMC 19/94")
     celda("Régimen automotor (AUT)", 8, "Decreto 6898/2022, arts. 1, 3 y 4 (Anexos I y II): aranceles intrazona de vehículos y autopartes; "
@@ -200,7 +200,7 @@ def main():
         if "Ley 6380" not in v:
             celda(nombre, 9, (v + ". " if v and v != "Vigente" else "Vigente. ") + "Exceptuada de la derogación general de la Ley 6380/2019, art. 153, num. 5")
     poner("Inversión: Ley 60/90 (régimen anterior)",
-          "0 % de gravámenes aduaneros (bienes de capital, materias primas e insumos del proyecto); IVA 0 % para bienes de capital",
+          "0% de gravámenes aduaneros (bienes de capital, materias primas e insumos del proyecto); IVA 0% para bienes de capital",
           "Lo previsto en el proyecto de inversión aprobado", "Ley 60/1990, art. 5 c) (texto de 1990); IVA: Ley 6380/2019, art. 100, num. 4",
           "Derogada por la Ley 7548/2025 (art. 34); los proyectos ya aprobados siguen (art. 35).", relleno=VERDE)
     # Qué normas están ya en la carpeta normas/ del repositorio o en la release normas_aduanas.
@@ -241,14 +241,14 @@ def main():
     ws.cell(fila["Maquila: nuevo régimen"], 8).value = "Reglamento: Decreto 5714/2026 (release normas_aduanas)"
     ws.cell(fila["Inversión: nuevo régimen de incentivos fiscales"], 8).value = "Reglamento: Decreto 5432/2026 (release normas_aduanas)"
     poner("Impuesto selectivo al consumo (ISC) en la importación",
-          "Tabaco 20 % (Decreto 6619/2022; antes 18 %); bebidas 5 % a 11 %; alto contenido calórico 2 %; combustibles 0 % a 38 %; otros bienes 1 % a 5 % "
+          "Tabaco 20% (Decreto 6619/2022; antes 18%); bebidas 5% a 11%; alto contenido calórico 2%; combustibles 0% a 38%; otros bienes 1% a 5% "
           "(detalle: hoja ISC_Decreto_3109)", None, "Decreto 3109/2019, anexo, arts. 8 a 12 (tasas máximas: Ley 6380/2019, arts. 115 a 119)",
           "Tasas del texto de 2019 del Decreto 3109 (normas/). Puede haber cambios posteriores, por ejemplo el Decreto 7229/2026 "
-          "sobre la base del gasoil. Control con la DNIT 2025 (ISC / (valor + arancel), mediana): celulares 1,0 %, cerveza 9,05 %, "
-          "whisky 11,05 %, perfumes 5,02 % = decreto. Gasoil 14,3 %: el Decreto 7229/2026 fija una base especial de "
-          "G 1.888,89 por litro hasta el 31/12/2026 (normas/, leído con OCR). Cigarrillos 20,1 %: el Decreto 6619/2022 subió la tasa de "
-          "tabacos, cigarrillos y esencias de 18 % a 20 % (confirmado en el Informe del Primer Semestre 2022 del Ministerio de Hacienda, "
-          "pág. 16, normas/). Según un resumen sin verificar, el Decreto 8878/2023 volvió a modificar ese artículo manteniendo el 20 %.",
+          "sobre la base del gasoil. Control con la DNIT 2025 (ISC / (valor + arancel), mediana): celulares 1,0%, cerveza 9,05%, "
+          "whisky 11,05%, perfumes 5,02% = decreto. Gasoil 14,3%: el Decreto 7229/2026 fija una base especial de "
+          "G 1.888,89 por litro hasta el 31/12/2026 (normas/, leído con OCR). Cigarrillos 20,1%: el Decreto 6619/2022 subió la tasa de "
+          "tabacos, cigarrillos y esencias de 18% a 20% (confirmado en el Informe del Primer Semestre 2022 del Ministerio de Hacienda, "
+          "pág. 16, normas/). Según un resumen sin verificar, el Decreto 8878/2023 volvió a modificar ese artículo manteniendo el 20%.",
           relleno=VERDE)
     import docx as _docx
     _d = _docx.Document(str(RAIZ / "normas" / "Decreto_3109_2019_Reglamento_ISC.docx"))
@@ -274,7 +274,7 @@ def main():
           relleno=PatternFill(fill_type=None))
     r_rmp = fila["Régimen de materias primas (RMP)"]
     ws.cell(r_rmp, 7).value = "Decreto 11.771/2000 (modifica el art. 12 del Decreto 1053/1993); prorrogado por el Decreto 8664/2022"
-    poner("Régimen de materias primas (RMP)", "0 % de arancel", "Materias primas e insumos para el proceso productivo propio",
+    poner("Régimen de materias primas (RMP)", "0% de arancel", "Materias primas e insumos para el proceso productivo propio",
           "Decreto 1053/1993, art. 12, en la redacción del Decreto 11.771/2000, art. 1",
           "Requisitos: inscripción anual, pedido de al menos USD 1.500 FOB y que no haya producción nacional. "
           "Texto tomado de una copia de relacionespublicas.com.py (no oficial). Prórrogas: Dec. 6957/2005 y 11.525/2007 "
@@ -286,9 +286,9 @@ def main():
     for col, v in {2: "2. Cobros y reglas en la exportación", 3: "Cobro sobre la carne bovina exportada",
                    4: "Porcentaje sobre la exportación de carne (NCM 0201, 0202 y 0206); figura en OTROS",
                    5: "Exportación", 6: "Directa", 7: "Ley 808/1996, art. 14 c)", 8: "Resolución CIEFA 3/2021 (texto en la carpeta normas)",
-                   9: "Vigente", 10: "Sí (Ley 808/1996)", 11: "Texto de la BACN; datos de la DNIT (OTROS en EC01 y EC03)", 12: "0,25 % por cada tonelada de carne",
+                   9: "Vigente", 10: "Sí (Ley 808/1996)", 11: "Texto de la BACN; datos de la DNIT (OTROS en EC01 y EC03)", 12: "0,25% por cada tonelada de carne",
                    13: "Valor de la carne importada y exportada", 14: "Ley 808/1996, art. 14 c) (tope); Res. CIEFA 3/2021, art. 1 (valor desde el 01/01/2022)",
-                   15: "La Res. CIEFA 3/2021 (17/12/2021, Acta CIEFA 385) fija el valor en 0,25 % desde el 01/01/2022. En los datos de la DNIT se ve cerca de 0,25 %."}.items():
+                   15: "La Res. CIEFA 3/2021 (17/12/2021, Acta CIEFA 385) fija el valor en 0,25% desde el 01/01/2022. En los datos de la DNIT se ve cerca de 0,25%."}.items():
         ws.cell(r, col).value = v
         ws.cell(r, col).font = Font(name="Arial", size=10)
         ws.cell(r, col).alignment = Alignment(wrap_text=True, vertical="top")
@@ -320,7 +320,7 @@ def main():
               "Ley 6380/2019, art. 153, num. 5: deroga todas las exoneraciones de impuestos salvo las de su lista (leído con OCR). Leídas en el texto el 20/11/2026: Leyes 808/1996, 302/1993, 4601/2012, 5542/2015 (BACN), 1064/1997, 110/1992, 523/1995, Decretos 11.771/2000 y 11.525/2007 Res. CIEFA 3/2021 y Leyes 4838/2012, 6925/2022, 4427/2012, 1295/1998, 3180/2007, 5501/2015, 921/1996, 7577/2025, 7467/2025, 5372/2014, 285/1993, 5819, 6178 y 6524/2020; tasa de valoración en el Código Aduanero.",
               "Hoja Control_DNIT_2025: la tasa que se ve en los datos para cada cobro, comparada con la norma.",
               "Las tasas del ISC de cada producto están en la hoja ISC_Decreto_3109 (texto de 2019 del decreto).",
-              "El tributo único de maquila (1 %) se paga como impuesto interno: no figura en los despachos.",
+              "El tributo único de maquila (1%) se paga como impuesto interno: no figura en los despachos.",
               "El Código Aduanero (Ley 2422/2004) ya está en la carpeta normas del repositorio."]:
         le.append([t])
     for c in le["A"]:
