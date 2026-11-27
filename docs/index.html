@@ -262,8 +262,8 @@ small { font-size: max(12px, .75em); }
     </div>
 
       <div class="card">
-      <iframe class="dw-embed" data-dw="https://datawrapper.dwcdn.net/ArxmI/" title="Lo exportado con preferencia, por socio (gráfico interactivo)" aria-label="Gráfico interactivo" src="https://datawrapper.dwcdn.net/ArxmI/" scrolling="no" frameborder="0" style="width:0;min-width:100% !important;border:none;" height="620" loading="lazy"></iframe>
-      <p class="note">Millones de USD FOB exportados con preferencia, años completos. Los 8 países con más exportaciones con preferencia; el país es el destino que figura en el despacho de la DNIT.</p>
+      <iframe class="dw-embed" data-dw="https://datawrapper.dwcdn.net/ArxmI/" title="Lo exportado con preferencia, por socio (gráfico interactivo)" aria-label="Gráfico interactivo" src="https://datawrapper.dwcdn.net/ArxmI/" scrolling="no" frameborder="0" style="width:0;min-width:100% !important;border:none;" height="800" loading="lazy"></iframe>
+      <p class="note">Millones de USD FOB exportados con preferencia, años completos. Los 11 países con más exportaciones con preferencia; el país es el destino que figura en el despacho de la DNIT.</p>
     </div>
 
       <h3>Argentina y Uruguay: destino en la aduana y destino final</h3>
@@ -793,6 +793,7 @@ document.getElementById("tabla").innerHTML =
   document.querySelectorAll("picture img").forEach(function (img) {
     var src = img.getAttribute("src") || "";
     if (!/_light\.png$/.test(src) || /tarjeta/.test(src)) return;
+    if (img.closest("picture.dw-print")) return;   // gráficos de Datawrapper: ya traen «Descargar la imagen»
     var a = document.createElement("a");
     a.href = src; a.download = src.split("/").pop().replace("_light", ""); a.className = "dl-graf";
     a.textContent = "Descargar gráfico (fondo blanco)";

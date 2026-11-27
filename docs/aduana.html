@@ -391,6 +391,7 @@ small { font-size: max(12px, .75em); }
   document.querySelectorAll("picture img").forEach(function (img) {
     var src = img.getAttribute("src") || "";
     if (!/_light\.png$/.test(src) || /tarjeta/.test(src)) return;
+    if (img.closest("picture.dw-print")) return;   // gráficos de Datawrapper: ya traen «Descargar la imagen»
     var a = document.createElement("a");
     a.href = src; a.download = src.split("/").pop().replace("_light", ""); a.className = "dl-graf";
     a.textContent = "Descargar gráfico (fondo blanco)";
