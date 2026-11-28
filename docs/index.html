@@ -232,7 +232,7 @@ small { font-size: max(12px, .75em); }
     <p>La <strong>participación del comercio con acuerdo</strong> es la parte de lo exportado que usó efectivamente una preferencia de un acuerdo comercial (MERCOSUR, acuerdos del MERCOSUR con terceros países y acuerdos ALADI). Se calcula con los despachos de la DNIT: valor FOB de las exportaciones de origen paraguayo, con y sin acuerdo. En esta página la llamamos también "utilización", pero no es la <em>tasa de utilización de preferencias</em> de los estudios académicos, que divide solo por lo que podría usar una preferencia (los productos con rebaja en el acuerdo). Para calcularla haría falta el arancel de cada país comprador, producto por producto, que no está en estos datos.</p>
 
     <div class="kpis">
-      <div class="kpi"><div class="v">39,6%</div><div class="l">Exportado con acuerdo en 2011</div></div>
+      <div class="kpi"><div class="v">39,3%</div><div class="l">Exportado con acuerdo en 2011</div></div>
       <div class="kpi"><div class="v">65,0%</div><div class="l">Máximo de la serie, en 2023</div></div>
       <div class="kpi"><div class="v">61,6%</div><div class="l">2026, de enero a septiembre (USD 5.435 M de 8.820 M)</div></div>
     </div>
@@ -353,7 +353,7 @@ small { font-size: max(12px, .75em); }
       <p class="note">Cada despacho dice si usó un acuerdo. No sabemos si los productos que no lo usaron tenían o no una rebaja disponible: algunos no la tienen, otros ya pagan cero para todos o siguen viaje a otro país. Datos por producto: <a href="datos/productos_4_digitos.csv" download>CSV (4 dígitos)</a> · <a href="datos/productos_4_digitos.xlsx" download>Excel (4 dígitos)</a> · <a href="datos/productos_8_digitos.zip" download>ZIP (8 dígitos)</a> · <a href="datos/productos_8_digitos.xlsx" download>Excel (8 dígitos)</a>.</p>
     </div>
       <h3>Más productos y más toneladas con acuerdo</h3>
-    <p>Los acuerdos no solo mueven más dólares: cada año hay más productos que se exportan con preferencia, y en toneladas la parte con acuerdo pasó del 49% en 2011 al 70% en 2025 (en dólares, del 40% al 56%). Las toneladas no dependen de los precios: un año con soja cara sube los dólares, no el peso. Lo exportado con acuerdo va a pocos destinos, sobre todo al MERCOSUR: su índice de concentración por destino ronda los 3.800 puntos, contra unos 900 lo exportado sin acuerdo (más de 2.500 es concentración alta).</p>
+    <p>Los acuerdos no solo mueven más dólares: cada año hay más productos que se exportan con preferencia, y en toneladas la parte con acuerdo pasó del 49% en 2011 al 70% en 2025 (en dólares, del 39% al 56%). Las toneladas no dependen de los precios: un año con soja cara sube los dólares, no el peso. Lo exportado con acuerdo va a pocos destinos, sobre todo al MERCOSUR: su índice de concentración por destino ronda los 3.800 puntos, contra unos 900 lo exportado sin acuerdo (más de 2.500 es concentración alta).</p>
     <div class="card">
       <iframe class="dw-embed" data-dw="https://datawrapper.dwcdn.net/mBSK2/" title="Productos exportados con acuerdo, cantidad (gráfico interactivo)" aria-label="Gráfico interactivo" src="https://datawrapper.dwcdn.net/mBSK2/" scrolling="no" frameborder="0" style="width:0;min-width:100% !important;border:none;" height="500" loading="lazy"></iframe>
       <picture class="dw-print">
@@ -419,6 +419,7 @@ python python/procesar_despachos.py --anios 2021</code></pre>
       <li>Se excluyen las fracciones complementarias (EFC1, AFC1 e IFC1), porque repiten el valor completo del despacho principal y duplicarían los montos, y los regímenes que no son una venta definitiva, como el aprovisionamiento a bordo (DAAR) o el traspaso dentro de una zona franca (TZF1).</li>
       <li>En exportaciones se toma solo el origen paraguayo.</li>
       <li>"Con acuerdo" incluye las preferencias del MERCOSUR intrazona y los acuerdos preferenciales. "Sin acuerdo" incluye los despachos sin preferencia, los que figuran como OMC y los que no tienen dato de acuerdo.</li>
+      <li>Una exportación declarada con un acuerdo que no vale para el país de destino (por ejemplo, el acuerdo del MERCOSUR hacia Singapur o el de México hacia Estados Unidos) cuenta como <strong>sin acuerdo</strong>, en la categoría "Acuerdo que no corresponde al destino": son errores de carga del despacho. Entre 2011 y 2026 suman USD 164 millones, el 0,25% de lo exportado con acuerdo. La lista de países de cada acuerdo está en <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/config/acuerdos_paises.csv">config/acuerdos_paises.csv</a>.</li>
       <li>Las fechas corresponden a la cancelación del despacho. La electricidad no pasa por la aduana y no está incluida.</li>
     </ul>
     <p>El detalle de cada concepto, columna y decisión está en el <a href="https://github.com/silvia-mov/comercio-exterior-paraguay-acuerdos/blob/main/docs/GLOSARIO.md">glosario</a>.</p>

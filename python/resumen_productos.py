@@ -54,6 +54,7 @@ def resumen_anio(carpeta, anio):
         d.loc[sin, "CODIGO_PAIS"] = nombres.map(normalizar).map(codigos_por_nombre())
         d.loc[sin & (nombres.str.strip() == ""), "CODIGO_PAIS"] = "SD"
     d["CODIGO_PAIS"] = d["CODIGO_PAIS"].fillna("??")
+    d = pd_dnit.marcar_acuerdo_no_corresponde(d)
     d["NCM"] = d["POSICION_NCM"].str.replace(r"\D", "", regex=True).str[:8].replace("", "sin_dato")
 
     claves = ["AÑO_INT", "OPERACION", "NCM", "CODIGO_PAIS", "TIPO_ACUERDO", "ACUERDO_CONSOLIDADO"]

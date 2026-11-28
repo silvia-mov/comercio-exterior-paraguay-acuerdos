@@ -43,7 +43,7 @@ def main():
     prods = pd.concat([pd.read_csv(f, dtype={"NCM": str}, keep_default_na=False)
                        for f in sorted((RAIZ / "salidas" / "productos").glob("productos_20*.csv"))])
     prods = prods[prods["OPERACION"] == "EXPORTACION"]
-    prods["CON"] = prods["TIPO_ACUERDO"] != "SIN_ACUERDO"
+    prods["CON"] = prods["TIPO_ACUERDO"].isin(["PREFERENCIAL", "MERCOSUR_INTRAZONA"])
     meses = prods.groupby("AÑO")["MESES"].max().astype(int)
     anios = sorted(meses.index)
     completos = [a for a in anios if meses[a] == 12]
@@ -75,7 +75,7 @@ def main():
     etiq = [f"{a}*" if meses[a] < 12 else str(a) for a in anios]
     for modo, t in TEMAS.items():
         # ---------------- 1. evolución de cada acuerdo (exportaciones, sin el MERCOSUR en un panel aparte)
-        e = acu[(acu["OPERACION"] == "EXPORTACION") & (acu["TIPO_ACUERDO"] != "SIN_ACUERDO") & acu["AÑO"].isin(completos)]
+        e = acu[(acu["OPERACION"] == "EXPORTACION") & acu["TIPO_ACUERDO"].isin(["PREFERENCIAL", "MERCOSUR_INTRAZONA"]) & acu["AÑO"].isin(completos)]
         e = e.assign(N=e["ACUERDO_CONSOLIDADO"].replace(CORTO))
         piv = e.pivot_table(index="AÑO", columns="N", values="VALOR_USD", aggfunc="sum").fillna(0) / 1e6
         otros = [c for c in piv.sum().sort_values(ascending=False).index if c != "MERCOSUR (ACE 18)"][:6]

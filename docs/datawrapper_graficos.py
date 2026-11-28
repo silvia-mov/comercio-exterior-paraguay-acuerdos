@@ -105,7 +105,7 @@ def evolucion_acuerdos():
              "ALADI Preferencia Arancelaria Regional (PAR 4)": "ALADI PAR 4"}
     a = pd.read_csv(DATOS / "comercio_por_acuerdo.csv", encoding="utf-8-sig")
     meses = pd.read_csv(DATOS / "utilizacion_por_anio.csv", encoding="utf-8-sig").set_index("AÑO")["MESES"]
-    e = a[(a["OPERACION"] == "EXPORTACION") & (a["TIPO_ACUERDO"] != "SIN_ACUERDO") & a["AÑO"].map(lambda x: meses.get(x) == 12)]
+    e = a[(a["OPERACION"] == "EXPORTACION") & a["TIPO_ACUERDO"].isin(["PREFERENCIAL", "MERCOSUR_INTRAZONA"]) & a["AÑO"].map(lambda x: meses.get(x) == 12)]
     e = e.assign(N=e["ACUERDO_CONSOLIDADO"].replace(corto))
     piv = e.pivot_table(index="AÑO", columns="N", values="VALOR_USD", aggfunc="sum").fillna(0) / 1e6
     orden = list(piv.sum().sort_values(ascending=False).index[:9])

@@ -396,6 +396,53 @@ def transformar(df, regimenes_si, acuerdos):
     return df
 
 
+ACUERDO_NO_CORRESPONDE = "ACUERDO_NO_CORRESPONDE"
+NOMBRE_NO_CORRESPONDE = "Acuerdo que no corresponde al destino"
+
+
+def paises_por_acuerdo():
+    """config/acuerdos_paises.csv -> {acuerdo consolidado: [(códigos de país, desde, hasta), ...]}."""
+    t = pd.read_csv(RUTA_CONFIG / "acuerdos_paises.csv", dtype=str, keep_default_na=False)
+    reglas = {}
+    for r in t.itertuples():
+        reglas.setdefault(r.acuerdo_consolidado, []).append(
+            (set(r.paises.split()), int(r.desde) if r.desde else 0, int(r.hasta) if r.hasta else 9999))
+    return reglas
+
+
+def codigo_pais(serie):
+    """«BR - BRASIL» -> BR; si solo viene el nombre, se busca en config/paises_dnit.csv y paises_vue.csv."""
+    cod = serie.str.extract(r"^([A-Z0-9]{2}) - ")[0]
+    sin = cod.isna()
+    if sin.any():
+        norm = lambda s: s.map(lambda t: re.sub(r"\s+", " ", re.sub(r"[^A-Z ]", " ", unicodedata.normalize("NFKD", str(t).upper())
+                                                                       .encode("ascii", "ignore").decode())).strip())
+        tabla = {}
+        for archivo, col in (("paises_vue.csv", "pais_vue"), ("paises_dnit.csv", "pais_dnit")):
+            t = pd.read_csv(RUTA_CONFIG / archivo, dtype=str, keep_default_na=False)
+            tabla.update(dict(zip(norm(t[col]), t["codigo_dnit"])))
+        cod[sin] = norm(serie[sin].str.replace(r"^[A-Z0-9]{2} - ", "", regex=True)).map(tabla)
+    return cod.fillna("??")
+
+
+def marcar_acuerdo_no_corresponde(d, col_pais="CODIGO_PAIS", col_anio="AÑO_INT"):
+    """Exportaciones declaradas con un acuerdo que no vale para el país de destino (por ejemplo, el acuerdo del
+    MERCOSUR hacia Singapur): pasan a «Acuerdo que no corresponde al destino» y dejan de contar como con acuerdo.
+    Solo exportaciones: el país de la DNIT es el destino, que es quien da la preferencia. En las importaciones es el
+    país de procedencia, no el de origen, y no alcanza para saber si el acuerdo corresponde."""
+    reglas = paises_por_acuerdo()
+    con = d["TIPO_ACUERDO"].isin(TIPOS_CON_ACUERDO) & d["OPERACION"].str.startswith("EXP")
+    if not con.any():
+        return d
+    def vale(acuerdo, pais, anio):
+        return any(pais in paises and desde <= anio <= hasta for paises, desde, hasta in reglas.get(acuerdo, []))
+    malo = con.copy()
+    malo[con] = [not vale(a, p, int(y)) for a, p, y in zip(d.loc[con, "ACUERDO_CONSOLIDADO"], d.loc[con, col_pais], d.loc[con, col_anio])]
+    d.loc[malo, "TIPO_ACUERDO"] = ACUERDO_NO_CORRESPONDE
+    d.loc[malo, "ACUERDO_CONSOLIDADO"] = NOMBRE_NO_CORRESPONDE
+    return d
+
+
 def agregar(df, dimensiones):
     out = (df.groupby(dimensiones, dropna=False)
              .agg(CONTEO_DESPACHOS=("DESPACHO_CIFRADO", "nunique"),
@@ -553,7 +600,8 @@ def main():
     if meses != "TODOS":
         en_periodo &= todo["MES_NUM"].isin(meses)
     todo = todo[en_periodo]
-    datos = todo[todo["MOTIVO_EXCLUSION"] == ""]
+    datos = todo[todo["MOTIVO_EXCLUSION"] == ""].copy()
+    datos = marcar_acuerdo_no_corresponde(datos.assign(CODIGO_PAIS=codigo_pais(datos["PAIS_PROC_DEST"])))
     print(f"Items válidos para el análisis: {len(datos):,} de {len(todo):,}")
 
     # Hoja de control: qué se excluyó y por qué, y qué códigos no están en la configuración.

@@ -65,7 +65,7 @@ def grafico_acuerdos(por_acuerdo, anio, modo, t):
         d["M"] = d["VALOR_DOLAR"] / 1e6
         d["nombre"] = d["ACUERDO_CONSOLIDADO"].replace(NOMBRES_CORTOS)
         d = d[d["M"] >= 1].sort_values("M")
-        colores = [t["con"] if tipo != "SIN_ACUERDO" else t["sin"] for tipo in d["TIPO_ACUERDO"]]
+        colores = [t["con"] if tipo in ("PREFERENCIAL", "MERCOSUR_INTRAZONA") else t["sin"] for tipo in d["TIPO_ACUERDO"]]
         # Puntos y no barras: en escala logarítmica el largo de una barra no es proporcional al valor
         y = range(len(d))
         ax.scatter(d["M"], y, s=70, color=colores, zorder=3, edgecolors=t["eje"], linewidths=0.4)
@@ -89,7 +89,7 @@ def grafico_acuerdos(por_acuerdo, anio, modo, t):
     periodo = f"{anio} (enero a {MESES_TXT[n]})" if n < 12 else str(anio)
     # Título con la conclusión (Storytelling with Data); el subtítulo dice qué se mide
     d = por_acuerdo[por_acuerdo["AÑO"] == anio]
-    pct = {op: 100 * d.loc[(d["OPERACION"] == op) & (d["TIPO_ACUERDO"] != "SIN_ACUERDO"), "VALOR_DOLAR"].sum()
+    pct = {op: 100 * d.loc[(d["OPERACION"] == op) & d["TIPO_ACUERDO"].isin(["PREFERENCIAL", "MERCOSUR_INTRAZONA"]), "VALOR_DOLAR"].sum()
            / d.loc[d["OPERACION"] == op, "VALOR_DOLAR"].sum() for op in ("EXPORTACION", "IMPORTACION")}
     fig.text(0.01, 0.97, f"En {anio}, el {pct['EXPORTACION']:.0f}% de lo exportado y el {pct['IMPORTACION']:.0f}% "
              "de lo importado usaron un acuerdo comercial", fontsize=14, fontweight="bold", color=t["texto"], va="top")

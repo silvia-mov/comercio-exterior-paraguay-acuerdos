@@ -59,6 +59,7 @@ Dentro del tipo `SIN_ACUERDO` el reporte distingue tres etiquetas, porque **no s
 | **Sin acuerdo** | `SIN ACUERDO` | El despacho no pidió ninguna preferencia: se pagó el arancel general. |
 | **OMC (sin preferencia)** | `OMC` | La DNIT usa un código aparte, `OMC`. La OMC **no es un acuerdo preferencial** como los ACE o los TLC: lo que se aplica entre miembros de la OMC es el trato de nación más favorecida (NMF), es decir, el arancel general. Por eso se cuenta como *sin acuerdo*, pero se muestra separado. En 2021 fueron USD 70 millones de importaciones (sobre todo desde Estados Unidos, Países Bajos y México) y casi nada en exportaciones. La DNIT no publica la regla con la que asigna este código. |
 | **Sin dato de acuerdo** | Celda vacía (o `NULL`, `NAN`, etc.) | El despacho **no informa** el acuerdo. No quiere decir que no se usó ninguno: el dato falta. En 2021 no hubo ningún caso. |
+| **Acuerdo que no corresponde al destino** | (se calcula) | Exportación declarada con un acuerdo que no vale para el país de destino: por ejemplo, el acuerdo del MERCOSUR hacia Singapur, el de México hacia Estados Unidos o el de Chile hacia Brasil. Son errores de carga del despacho y se cuentan como *sin acuerdo*. La lista de países de cada acuerdo está en `config/acuerdos_paises.csv` (Venezuela cuenta como MERCOSUR de 2012 a 2016). Solo se controla en exportaciones: en importaciones la DNIT da el país de procedencia, no el de origen. Entre 2011 y 2026, USD 164 millones (0,25% de lo exportado con acuerdo). |
 
 ### Vacío no es lo mismo que cero
 

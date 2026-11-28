@@ -371,6 +371,44 @@ transformar <- function(dt, cfg) {
   dt
 }
 
+# Exportaciones declaradas con un acuerdo que no vale para el país de destino (config/acuerdos_paises.csv):
+# pasan a «Acuerdo que no corresponde al destino» y cuentan como sin acuerdo. Igual que la versión de Python.
+normalizar_pais <- function(x) {
+  x <- toupper(iconv(x, to = "ASCII//TRANSLIT", sub = ""))
+  trimws(gsub("\\s+", " ", gsub("[^A-Z ]", " ", x)))
+}
+
+codigo_pais <- function(pais) {
+  cod <- ifelse(grepl("^[A-Z0-9]{2} - ", pais), substr(pais, 1, 2), NA_character_)
+  sin <- is.na(cod)
+  if (any(sin)) {
+    tabla <- c()
+    for (par in list(c("paises_vue.csv", "pais_vue"), c("paises_dnit.csv", "pais_dnit"))) {
+      t <- fread(file.path(RUTA_CONFIG, par[1]), colClasses = "character", encoding = "UTF-8")
+      tabla[normalizar_pais(t[[par[2]]])] <- t$codigo_dnit
+    }
+    cod[sin] <- unname(tabla[normalizar_pais(sub("^[A-Z0-9]{2} - ", "", pais[sin]))])
+  }
+  ifelse(is.na(cod), "??", cod)
+}
+
+marcar_acuerdo_no_corresponde <- function(dt) {
+  reglas <- fread(file.path(RUTA_CONFIG, "acuerdos_paises.csv"), colClasses = "character", encoding = "UTF-8")
+  dt[, CODIGO_PAIS := codigo_pais(PAIS_PROC_DEST)]
+  vale <- function(acuerdo, pais, anio) {
+    r <- reglas[acuerdo_consolidado == acuerdo]
+    if (!nrow(r)) return(FALSE)
+    any(mapply(function(p, d, h) pais %in% strsplit(p, " ")[[1]] &&
+                 anio >= ifelse(d == "", 0, as.integer(d)) && anio <= ifelse(h == "", 9999, as.integer(h)),
+               r$paises, r$desde, r$hasta))
+  }
+  con <- dt$TIPO_ACUERDO %in% TIPOS_CON_ACUERDO & startsWith(dt$OPERACION, "EXP")
+  malo <- con
+  if (any(con)) malo[con] <- !mapply(vale, dt$ACUERDO_CONSOLIDADO[con], dt$CODIGO_PAIS[con], dt$ANIO_INT[con])
+  dt[malo, `:=`(TIPO_ACUERDO = "ACUERDO_NO_CORRESPONDE", ACUERDO_CONSOLIDADO = "Acuerdo que no corresponde al destino")]
+  dt
+}
+
 agregar <- function(dt, dims) {
   out <- dt[, c(list(CONTEO_DESPACHOS = uniqueN(DESPACHO_CIFRADO), CONTEO_ITEMS = .N),
                 lapply(.SD, sum)),
@@ -488,7 +526,7 @@ if (length(archivos) == 0) {
   # Filtro de período también por el contenido (por si un archivo trae otros meses)
   if (!is.null(anios)) todo <- todo[ANIO_INT %in% anios]
   if (!identical(meses, "TODOS")) todo <- todo[MES_NUM %in% meses]
-  datos <- todo[MOTIVO_EXCLUSION == ""]
+  datos <- marcar_acuerdo_no_corresponde(todo[MOTIVO_EXCLUSION == ""])
   cat(sprintf("Items válidos para el análisis: %s de %s\n",
               format(nrow(datos), big.mark = ","), format(nrow(todo), big.mark = ",")))
 

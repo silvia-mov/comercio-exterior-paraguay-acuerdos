@@ -121,6 +121,7 @@ def resumen_dnit_anio(carpeta, anio, regimenes_si, acuerdos):
         faltan = sorted(d.loc[d["CODIGO_PAIS"].isna(), "DNIT_NOMBRE_PAIS"].unique())
         if faltan:
             print(f"  AVISO: países sin código (agregarlos a config/paises_dnit.csv): {faltan}")
+    d = pd_dnit.marcar_acuerdo_no_corresponde(d.assign(CODIGO_PAIS=d["CODIGO_PAIS"].fillna("??")))
     d["PARTIDA"] = d["POSICION_NCM"].str.replace(".", "", regex=False).str[:4]
     d["CON"] = np.where(d["TIPO_ACUERDO"].isin(TIPOS_CON_ACUERDO), d["FOB_DOLAR"], 0.0)
     d["SIN"] = d["FOB_DOLAR"] - d["CON"]
